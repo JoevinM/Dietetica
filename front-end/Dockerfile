@@ -1,5 +1,12 @@
-FROM ubuntu:latest
+FROM node:20-alpine
 
-RUN apt-get update
-RUN apt-get upgrade -y
-RUN apt-get install -y node
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm install
+
+COPY . .
+
+EXPOSE 9000
+
+CMD ["npm", "run", "dev", "--", "--host"]
