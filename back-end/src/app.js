@@ -3,16 +3,18 @@ const cors = require("cors");
 
 const app = express();
 
+const userRoutes = require("./routes/user.routes");
+const weightRoutes = require("./routes/weight.routes");
+const mealRoutes = require("./routes/meal.routes");
+
 app.use(cors());
 app.use(express.json());
 
 require("./config/db");
 
-const userRoutes = require("./routes/user.routes");
-const authRoutes = require("./routes/auth.routes");
-
-app.use("/api/users", userRoutes);
-app.use("/api/auth", authRoutes);
+app.use("/users", userRoutes);
+app.use("/weights", weightRoutes);
+app.use("/meals", mealRoutes);
 
 app.use((req, res, next) => {
   res.status(404).json({ message: "Route non trouvée" });
