@@ -1,4 +1,4 @@
-const weightRepository = require("../repositories/weight.repository");
+const weightRepository = require("../repositories/WeightRepository");
 
 class WeightController {
 

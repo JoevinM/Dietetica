@@ -1,4 +1,4 @@
-const mealRepository = require("../repositories/meal.repository");
+const mealRepository = require("../repositories/MealRepository");
 
 class MealController {
 

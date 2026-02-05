@@ -1,5 +1,5 @@
 const app = require("../app");
-const activityRepository = require("../repositories/meal.repository");
+const activityRepository = require("../repositories/MealRepository");
 
 class ActivityController {
 

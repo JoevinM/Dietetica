@@ -1,5 +1,5 @@
 const app = require("../app");
-const appointmentRepository = require("../repositories/meal.repository");
+const appointmentRepository = require("../repositories/MealRepository");
 
 class AppointmentController {
 
