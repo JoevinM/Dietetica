@@ -8,7 +8,7 @@ services:
       dockerfile: Dockerfile
     image: dietetica-back
     ports:
-      - "5252:5252"
+      - "3000:3000"
     environment:
       DB_HOST: postgres
       DB_USER: postgres
@@ -17,19 +17,6 @@ services:
       DB_PORT: 5432
     depends_on:
       - postgres
-
-  front-end:
-    build:
-      context: ./front-end
-      dockerfile: Dockerfile
-    image: dietetica-front
-    ports:
-      - "9000:9000"
-    depends_on:
-      - back-end
-    volumes:
-      - ./front-end:/app
-      - /app/node_modules
 
   postgres:
     image: postgres:16-alpine
