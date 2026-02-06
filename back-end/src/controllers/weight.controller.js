@@ -1,3 +1,4 @@
+const app = require("../app");
 const weightRepository = require("../repositories/WeightRepository");
 
 class WeightController {
@@ -43,6 +44,7 @@ class WeightController {
     if (!deleted) {
       return res.status(404).json({ message: "Weight not found" });
     }
+
     res.status(204).send();
   }
 

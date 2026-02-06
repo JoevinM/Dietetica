@@ -1,54 +1,49 @@
+const app = require("../app");
 const userRepository = require("../repositories/UserRepository");
 
 class UserController {
 
   getAll(req, res) {
-    const users = userRepository.findAll();
-    res.json(users);
+    res.json(userRepository.findAll());
   }
 
   getById(req, res) {
-    const { id } = req.params;
-
-    const user = userRepository.findById(Number(id));
-
+    const user = userRepository.findById(Number(req.params.id));
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
-
     res.json(user);
   }
 
   create(req, res) {
     const user = userRepository.create({
       id: Date.now(),
-      ...req.body
+      email: req.body.email,
+      password: req.body.password,
+      first_name: req.body.first_name,
+      last_name: req.body.last_name,
+      status: req.body.status
     });
 
     res.status(201).json(user);
   }
 
   update(req, res) {
-    const { id } = req.params;
-
-    const updatedUser = userRepository.update(
-      Number(id),
+    const updated = userRepository.update(
+      Number(req.params.id),
       req.body
     );
 
-    if (!updatedUser) {
+    if (!updated) {
       return res.status(404).json({ message: "User not found" });
     }
 
-    res.json(updatedUser);
+    res.json(updated);
   }
 
   delete(req, res) {
-    const { id } = req.params;
-
-    const deletedUser = userRepository.delete(Number(id));
-
-    if (!deletedUser) {
+    const deleted = userRepository.delete(Number(req.params.id));
+    if (!deleted) {
       return res.status(404).json({ message: "User not found" });
     }
 

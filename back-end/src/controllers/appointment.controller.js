@@ -1,5 +1,5 @@
 const app = require("../app");
-const appointmentRepository = require("../repositories/MealRepository");
+const appointmentRepository = require("../repositories/AppointmentRepository");
 
 class AppointmentController {
 
@@ -20,8 +20,8 @@ class AppointmentController {
       id: Date.now(),
       userId: req.body.userId,
       date: req.body.date,
-      startTime: req.body.startTime,
-      endTime: req.body.endTime
+      start_time: req.body.start_time,
+      end_time: req.body.end_time
     });
 
     res.status(201).json(appointment);
@@ -45,7 +45,14 @@ class AppointmentController {
     if (!deleted) {
       return res.status(404).json({ message: "Appointment not found" });
     }
+
     res.status(204).send();
+  }
+
+  getByUser(req, res) {
+    res.json(
+      appointmentRepository.findByUserId(Number(req.params.userId))
+    );
   }
 }
 

@@ -1,5 +1,5 @@
 const app = require("../app");
-const activityRepository = require("../repositories/MealRepository");
+const activityRepository = require("../repositories/ActivityRepository");
 
 class ActivityController {
 
@@ -19,8 +19,7 @@ class ActivityController {
     const activity = activityRepository.create({
       id: Date.now(),
       userId: req.body.userId,
-      date: req.body.date,
-      foods: req.body.foods || []
+      description: req.body.description
     });
 
     res.status(201).json(activity);
@@ -45,6 +44,12 @@ class ActivityController {
       return res.status(404).json({ message: "Activity not found" });
     }
     res.status(204).send();
+  }
+
+  getByUser(req, res) {
+    res.json(
+      activityRepository.findByUserId(Number(req.params.userId))
+    );
   }
 }
 

@@ -1,3 +1,4 @@
+const app = require("../app");
 const mealRepository = require("../repositories/MealRepository");
 
 class MealController {
@@ -18,8 +19,8 @@ class MealController {
     const meal = mealRepository.create({
       id: Date.now(),
       userId: req.body.userId,
-      date: req.body.date,
-      foods: req.body.foods || []
+      description: req.body.description,
+      total_calory: req.body.total_calory
     });
 
     res.status(201).json(meal);
@@ -43,7 +44,14 @@ class MealController {
     if (!deleted) {
       return res.status(404).json({ message: "Meal not found" });
     }
+
     res.status(204).send();
+  }
+
+  getByUser(req, res) {
+    res.json(
+      mealRepository.findByUserId(Number(req.params.userId))
+    );
   }
 }
 
