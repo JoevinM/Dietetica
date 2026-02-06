@@ -6,6 +6,9 @@ const app = express();
 const userRoutes = require("./routes/user.routes");
 const weightRoutes = require("./routes/weight.routes");
 const mealRoutes = require("./routes/meal.routes");
+const appointmentRoutes = require("./routes/appointment.routes");
+const activityRoutes = require("./routes/activity.routes");
+const newsletterRoutes = require("./routes/newsletter.routes");
 
 app.use(cors());
 app.use(express.json());
@@ -15,6 +18,9 @@ require("./config/db");
 app.use("/users", userRoutes);
 app.use("/weights", weightRoutes);
 app.use("/meals", mealRoutes);
+app.use("/appointments", appointmentRoutes);
+app.use("/activities", activityRoutes);
+app.use("/newsletters", newsletterRoutes);
 
 app.use((req, res, next) => {
   res.status(404).json({ message: "Route non trouvée" });
