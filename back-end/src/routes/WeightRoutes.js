@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const weightController = require("../controllers/weight.controller");
+const weightController = require("../controllers/WeightController");
 
 router.get("/", weightController.getAll);
 router.get("/:id", weightController.getById);

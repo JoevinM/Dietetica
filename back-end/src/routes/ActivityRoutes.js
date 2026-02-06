@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const activityController = require("../controllers/activity.controller");
+const activityController = require("../controllers/ActivityController");
 
 router.get("/", activityController.getAll);
 router.get("/:id", activityController.getById);

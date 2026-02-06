@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const newsletterController = require("../controllers/newsletter.controller");
+const newsletterController = require("../controllers/NewsletterController");
 
 router.get("/", newsletterController.getAll);
 router.get("/:id", newsletterController.getById);

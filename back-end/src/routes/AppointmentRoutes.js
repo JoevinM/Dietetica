@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const appointmentController = require("../controllers/appointment.controller");
+const appointmentController = require("../controllers/AppointmentController");
 
 router.get("/", appointmentController.getAll);
 router.get("/:id", appointmentController.getById);

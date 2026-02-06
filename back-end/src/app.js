@@ -3,12 +3,12 @@ const cors = require("cors");
 
 const app = express();
 
-const userRoutes = require("./routes/user.routes");
-const weightRoutes = require("./routes/weight.routes");
-const mealRoutes = require("./routes/meal.routes");
-const appointmentRoutes = require("./routes/appointment.routes");
-const activityRoutes = require("./routes/activity.routes");
-const newsletterRoutes = require("./routes/newsletter.routes");
+const userRoutes = require("./routes/UserRoutes");
+const weightRoutes = require("./routes/WeightRoutes");
+const mealRoutes = require("./routes/MealRoutes");
+const appointmentRoutes = require("./routes/AppointmentRoutes");
+const activityRoutes = require("./routes/ActivityRoutes");
+const newsletterRoutes = require("./routes/NewsletterRoutes");
 
 app.use(cors());
 app.use(express.json());
