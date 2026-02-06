@@ -3,9 +3,7 @@ version: "3.8"
 services:
 
   back-end:
-    build:
-      context: ./back-end
-      dockerfile: Dockerfile
+    build: ./back-end
     image: dietetica-back
     ports:
       - "3000:3000"
@@ -28,7 +26,6 @@ services:
       - "5432:5432"
     volumes:
       - postgres-data:/var/lib/postgresql/data
-      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
 
 volumes:
   postgres-data:
