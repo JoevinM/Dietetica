@@ -10,5 +10,3 @@ COPY . .
 EXPOSE 3000
 
 CMD ["npm", "start"]
-CMD ["npx", "prisma", "migrate", "dev", "--name", "init"]
-CMD ["npx", 'prisma', "generate"]
