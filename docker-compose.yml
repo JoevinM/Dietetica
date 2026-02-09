@@ -13,6 +13,8 @@ services:
       DB_PORT: 5432
     depends_on:
       - postgres
+    volumes:
+      - ./back-end:/back-end
 
   postgres:
     image: postgres:16-alpine

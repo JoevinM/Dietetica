@@ -1,3 +1,4 @@
 node_modules/
 .env
 .vscode/
+back-end/package-lock.json
