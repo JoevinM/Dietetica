@@ -6,73 +6,65 @@ datasource db {
   provider = "postgresql"
 }
 
-// Model
-
 model Dietician {
-  id         String        @id @default(uuid())
-  first_name String
-  last_name  String
-  email      String        @unique
-  password   String
-  bio        String?
-  created_at DateTime      @default(now())
-
-  users       User[]
-  newsletters Newsletter[]
+  id           String        @id @default(uuid())
+  first_name   String
+  last_name    String
+  email        String        @unique
+  password     String
+  bio          String?
+  created_at   DateTime      @default(now())
   appointments Appointment[]
+  newsletters  Newsletter[]
+  users        User[]
 }
 
 model User {
-  id          String        @id @default(uuid())
-  first_name  String
-  last_name   String
-  email       String        @unique
-  password    String
-  height      Float?
-  birth_date  DateTime?
-  created_at  DateTime      @default(now())
-
-  dietician_id String?
-  dietician    Dietician?   @relation(fields: [dietician_id], references: [id], onDelete: SetNull)
-
-  daily_entries DailyEntry[]
+  id            String        @id @default(uuid())
+  first_name    String
+  last_name     String
+  email         String        @unique
+  password      String
+  height        Float?
+  birth_date    DateTime?
+  created_at    DateTime      @default(now())
+  dietician_id  String?
   appointments  Appointment[]
+  daily_entries DailyEntry[]
+  dietician     Dietician?    @relation(fields: [dietician_id], references: [id])
 }
 
 model DailyEntry {
-  id       String    @id @default(uuid())
+  id       String   @id @default(uuid())
   user_id  String
   date     DateTime
   weight   Float?
   calories Int?
   activity String?
   notes    String?
-
-  user User @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  user     User     @relation(fields: [user_id], references: [id], onDelete: Cascade)
 
   @@unique([user_id, date])
 }
 
 model Newsletter {
-  id          String    @id @default(uuid())
+  id           String    @id @default(uuid())
   dietician_id String
-  title       String
-  content     String
-  created_at  DateTime  @default(now())
-
-  dietician Dietician @relation(fields: [dietician_id], references: [id], onDelete: Cascade)
+  title        String
+  content      String
+  created_at   DateTime  @default(now())
+  dietician    Dietician @relation(fields: [dietician_id], references: [id], onDelete: Cascade)
 }
 
 model Appointment {
-  id             String    @id @default(uuid())
-  user_id        String
-  dietician_id   String
-  date           DateTime
-  start_time     DateTime
-  end_time       DateTime
+  id              String    @id @default(uuid())
+  user_id         String
+  dietician_id    String
+  date            DateTime
+  start_time      DateTime
+  end_time        DateTime
   google_event_id String?
-  status         String    @default("confirmed")
-
-  user      User      @relation(fields: [user_id], references: [id], onDelete: Cascade)
-  dietician Dietician @relation(fields: [dietician_id], references: [id], onDelete: Cascade)
+  status          String    @default("confirmed")
+  dietician       Dietician @relation(fields: [dietician_id], references: [id], onDelete: Cascade)
+  user            User      @relation(fields: [user_id], references: [id], onDelete: Cascade)
 }
