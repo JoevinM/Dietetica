@@ -5,6 +5,7 @@ services:
     image: dietetica-back
     ports:
       - "3000:3000"
+      - "51212:51212"
     environment:
       DB_HOST: postgres
       DB_USER: postgres
