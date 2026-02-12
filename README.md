@@ -3,7 +3,7 @@ This is the end project of our Holberton program
 
 
 	Tuto lancement project/prisma:
-		si premier lancement ce placé dans le dossier back-end:
+		si premier lancement ce placer dans le dossier back-end:
 			- npm install
 			- docker compose up --build
 		sinon:
