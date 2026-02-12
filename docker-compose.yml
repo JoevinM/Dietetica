@@ -6,6 +6,8 @@ services:
     ports:
       - "3000:3000"
       - "51212:51212"
+    env_file:
+      - ./back-end/.env
     environment:
       DB_HOST: postgres
       DB_USER: postgres
