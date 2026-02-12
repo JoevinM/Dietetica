@@ -1,6 +1,6 @@
 node_modules/
-.env
 .vscode/
 back-end/package-lock.json
 
 /generated/prisma
+back-end/.env
