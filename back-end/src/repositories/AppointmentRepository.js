@@ -118,4 +118,4 @@ class AppointmentRepository extends BaseRepository {
   }
 }
 
-export default AppointmentRepository;
+export default new AppointmentRepository();
