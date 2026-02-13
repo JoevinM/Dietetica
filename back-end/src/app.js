@@ -5,6 +5,8 @@ import userRoute from './routes/UserRoutes.js';
 import dailyEntryRoute from "./routes/DailyEntryRoute.js";
 import appointmentRoute from "./routes/AppointmentRoute.js";
 import errorHandler from "./middlewares/ErrorHandler.js";
+import dieticianRoute from "./routes/DieticianRoute.js";
+import newsletterRoute from "./routes/NewsletterRoute.js";
 
 const app = express();
 
@@ -14,6 +16,8 @@ app.use(express.json());
 app.use('/users', userRoute);
 app.use("/daily", dailyEntryRoute);
 app.use("/appointments", appointmentRoute);
+app.use("/dieticians", dieticianRoute);
+app.use("/newsletters", newsletterRoute);
 
 app.use(errorHandler);
 
