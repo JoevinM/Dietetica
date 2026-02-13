@@ -1,6 +1,6 @@
 // back-end/src/repositories/NewsletterRepository.js
 
-const BaseRepository = require('./BaseRepository');
+import BaseRepository from './BaseRepository.js';
 
 class NewsletterRepository extends BaseRepository {
   constructor() {
@@ -31,4 +31,4 @@ class NewsletterRepository extends BaseRepository {
   }
 }
 
-module.exports = new NewsletterRepository();
+export default new NewsletterRepository();
