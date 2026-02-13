@@ -14,10 +14,10 @@ class AppointmentController {
   async getById(req, res, next) {
     try {
       const { id } = req.params;
-      const appointment = await appointmentRepository.findById(Number(id));
+      const appointment = await appointmentRepository.findById(String(id));
 
       if (!appointment) {
-        return res.status(404).json({ message: "Rendez-vous non trouvé" });
+        return res.status(404).json({ message: "Rendez-vous not found" });
       }
 
       res.json(appointment);
@@ -29,7 +29,7 @@ class AppointmentController {
   async getByUserId(req, res, next) {
     try {
       const { userId } = req.params;
-      const appointments = await appointmentRepository.findByUserId(Number(userId));
+      const appointments = await appointmentRepository.findByUserId(String(userId));
 
       res.json(appointments);
     } catch (err) {
@@ -49,7 +49,7 @@ class AppointmentController {
   async update(req, res, next) {
     try {
       const { id } = req.params;
-      const appointment = await appointmentRepository.update(Number(id), req.body);
+      const appointment = await appointmentRepository.update(String(id), req.body);
 
       res.json(appointment);
     } catch (err) {
@@ -60,7 +60,7 @@ class AppointmentController {
   async deleteAppointment(req, res, next) {
     try {
       const { id } = req.params;
-      await appointmentRepository.delete(Number(id));
+      await appointmentRepository.delete(String(id));
       res.status(204).send();
     } catch (err) {
       next(err);
