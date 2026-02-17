@@ -1,6 +1,6 @@
 // back-end/src/repositories/AppointmentRepository.js
 
-const BaseRepository = require('./BaseRepository');
+import BaseRepository from './BaseRepository.js';
 
 class AppointmentRepository extends BaseRepository {
   constructor() {
@@ -118,4 +118,4 @@ class AppointmentRepository extends BaseRepository {
   }
 }
 
-module.exports = new AppointmentRepository();
+export default new AppointmentRepository();

@@ -19,7 +19,7 @@ class UserController {
       const user = await userRepository.findById(String(id));
 
       if (!user) {
-        return res.status(404).json({ message: 'Utilisateur non trouvé' });
+        return res.status(404).json({ message: 'Utilisateur not found' });
       }
 
       res.json(user);
@@ -56,7 +56,7 @@ class UserController {
     }
   }
 
-  async delete(req, res, next) {
+  async deleteUser(req, res, next) {
     try {
       const { id } = req.params;
       await userRepository.delete(String(id));

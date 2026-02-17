@@ -10,4 +10,5 @@ router.post('/', userController.create); // enlever la possibilité de s'elever 
 router.patch('/:id', authenticateToken, userController.update); // enlever la possibilité de s'elever admin
 router.delete('/:id', authenticateToken, adminOnly, userController.delete);
 
+
 export default router;
