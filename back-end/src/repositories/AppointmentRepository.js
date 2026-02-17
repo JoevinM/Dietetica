@@ -10,7 +10,7 @@ class AppointmentRepository extends BaseRepository {
   async findByUserId(user_id) {
     return await this.findMany(
       { user_id },
-      { 
+      {
         orderBy: { date: 'asc' },
         include: {
           dietician: {
@@ -29,7 +29,7 @@ class AppointmentRepository extends BaseRepository {
   async findByDieticianId(dietician_id) {
     return await this.findMany(
       { dietician_id },
-      { 
+      {
         orderBy: { date: 'asc' },
         include: {
           user: {
@@ -53,7 +53,7 @@ class AppointmentRepository extends BaseRepository {
           gte: new Date()
         }
       },
-      { 
+      {
         orderBy: { date: 'asc' },
         include: {
           dietician: {
@@ -76,7 +76,7 @@ class AppointmentRepository extends BaseRepository {
           gte: new Date()
         }
       },
-      { 
+      {
         orderBy: { date: 'asc' },
         include: {
           user: {
@@ -92,12 +92,12 @@ class AppointmentRepository extends BaseRepository {
   }
 
   async checkAvailability(dietician_id, date, start_time, end_time, excludeId = null) {
-    const appointments = await this.findMany({ 
+    const appointments = await this.findMany({
       dietician_id,
       date: new Date(date)
     });
 
-    const relevantAppointments = excludeId 
+    const relevantAppointments = excludeId
       ? appointments.filter(apt => apt.id !== excludeId)
       : appointments;
 
@@ -116,6 +116,37 @@ class AppointmentRepository extends BaseRepository {
 
     return !hasConflict;
   }
+
+  async createAppointment({ userId, dieticianId, startTime, endTime, description }) {
+
+  // Create Google Calendar event
+  const event = await GoogleCalendarService.createEvent({
+    summary: `Appointment with user ${userId}`,
+    description,
+    startTime,
+    endTime
+  });
+
+  // Save locally
+  return await this.create({
+    user_id: userId,
+    dietician_id: dieticianId,
+    start_time: startTime,
+    end_time: endTime,
+    external_id: event.id
+  });
+  }
+
+  async cancelAppointment(id) {
+  const appointment = await this.findOne({ id });
+
+  if (appointment.external_id) {
+    await GoogleCalendarService.deleteEvent(appointment.external_id);
+  }
+
+  return this.delete({ id });
+  }
+
 }
 
-export default AppointmentRepository;
+export default new AppointmentRepository();

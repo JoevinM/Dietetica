@@ -14,7 +14,7 @@ class AppointmentController {
   async getById(req, res, next) {
     try {
       const { id } = req.params;
-      const appointment = await appointmentRepository.findById(Number(id));
+      const appointment = await appointmentRepository.findById(String(id));
 
       if (!appointment) {
         return res.status(404).json({ message: "Rendez-vous non trouvé" });
@@ -29,7 +29,7 @@ class AppointmentController {
   async getByUserId(req, res, next) {
     try {
       const { userId } = req.params;
-      const appointments = await appointmentRepository.findByUserId(Number(userId));
+      const appointments = await appointmentRepository.findByUserId(String(userId));
 
       res.json(appointments);
     } catch (err) {
@@ -38,18 +38,18 @@ class AppointmentController {
   }
 
   async create(req, res, next) {
-    try {
-      const appointment = await appointmentRepository.create(req.body);
-      res.status(201).json(appointment);
-    } catch (err) {
-      next(err);
-    }
+  try {
+    const appointment = await appointmentRepository.createAppointment(req.body);
+    res.status(201).json(appointment);
+  } catch (err) {
+    next(err);
   }
+}
 
   async update(req, res, next) {
     try {
       const { id } = req.params;
-      const appointment = await appointmentRepository.update(Number(id), req.body);
+      const appointment = await appointmentRepository.update(String(id), req.body);
 
       res.json(appointment);
     } catch (err) {
@@ -58,14 +58,13 @@ class AppointmentController {
   }
 
   async deleteAppointment(req, res, next) {
-    try {
-      const { id } = req.params;
-      await appointmentRepository.delete(Number(id));
-      res.status(204).send();
-    } catch (err) {
-      next(err);
-    }
+  try {
+    await appointmentRepository.cancelAppointment(req.params.id);
+    res.status(204).send();
+  } catch (err) {
+    next(err);
   }
+}
 }
 
 export default new AppointmentController();
