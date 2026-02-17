@@ -11,6 +11,7 @@ class DieticianRepository extends BaseRepository {
       last_name: true,
       bio: true,
       created_at: true
+			admin: false
     });
   }
 

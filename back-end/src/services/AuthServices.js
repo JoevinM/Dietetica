@@ -15,7 +15,9 @@ async function login(email, password) {
   if (!ok) throw new Error("Wrong Password");
 
   return jwt.sign(
-    { id: user.id, role: "user" },
+    {
+			id: user.id,
+			admin: user.admin },
     MDP_JWT,
     { expiresIn: "1h" }
   );
