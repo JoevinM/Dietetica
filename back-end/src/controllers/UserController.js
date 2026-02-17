@@ -14,10 +14,10 @@ class UserController {
   async getById(req, res, next) {
     try {
       const { id } = req.params;
-      const user = await userRepository.findById(Number(id));
+      const user = await userRepository.findById(String(id));
 
       if (!user) {
-        return res.status(404).json({ message: 'Utilisateur non trouvé' });
+        return res.status(404).json({ message: 'Utilisateur not found' });
       }
 
       res.json(user);
@@ -38,7 +38,7 @@ class UserController {
   async update(req, res, next) {
     try {
       const { id } = req.params;
-      const user = await userRepository.update(Number(id), req.body);
+      const user = await userRepository.update(String(id), req.body);
       res.json(user);
     } catch (err) {
       next(err);
@@ -48,7 +48,7 @@ class UserController {
   async deleteUser(req, res, next) {
     try {
       const { id } = req.params;
-      await userRepository.delete(Number(id));
+      await userRepository.delete(String(id));
       res.status(204).send();
     } catch (err) {
       next(err);

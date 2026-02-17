@@ -14,10 +14,10 @@ class DailyEntryController {
   async getById(req, res, next) {
     try {
       const { id } = req.params;
-      const entry = await dailyEntryRepository.findById(Number(id));
+      const entry = await dailyEntryRepository.findById(String(id));
 
       if (!entry) {
-        return res.status(404).json({ message: 'Entrée non trouvée' });
+        return res.status(404).json({ message: 'Entry not found' });
       }
 
       res.json(entry);
@@ -29,7 +29,7 @@ class DailyEntryController {
   async getByUserId(req, res, next) {
     try {
       const { userId } = req.params;
-      const entries = await dailyEntryRepository.findByUserId(Number(userId));
+      const entries = await dailyEntryRepository.findByUserId(String(userId));
 
       res.json(entries);
     } catch (err) {
@@ -49,7 +49,7 @@ class DailyEntryController {
   async update(req, res, next) {
     try {
       const { id } = req.params;
-      const entry = await dailyEntryRepository.update(Number(id), req.body);
+      const entry = await dailyEntryRepository.update(String(id), req.body);
       res.json(entry);
     } catch (err) {
       next(err);
@@ -59,7 +59,7 @@ class DailyEntryController {
   async deleteEntry(req, res, next) {
     try {
       const { id } = req.params;
-      await dailyEntryRepository.delete(Number(id));
+      await dailyEntryRepository.delete(String(id));
       res.status(204).send();
     } catch (err) {
       next(err);
