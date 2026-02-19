@@ -79,7 +79,7 @@ class DieticianController {
 
 			// Checks that the user is an admin
 			if (req.user.role !== "admin") {
-				return res.status(403).json({ message: "Accès refusé : seul un admin peut supprimer un diététicien." });
+				return res.status(403).json({ message: "Access denied : Only admin can delete a dietician." });
 			}
 			// Database deletion
 			await dieticianRepository.delete(String(id));
