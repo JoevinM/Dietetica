@@ -5,19 +5,27 @@ import prisma from "../PrismaClient.js";
 const MDP_JWT = process.env.MDP_JWT || "dev_secret";
 
 async function login(email, password) {
-  const user = await prisma.user.findUnique({
-    where: { email }
-  });
+  let account = await prisma.user.findUnique({ where: { email } });
+  let role;
 
-  if (!user) throw new Error("Wrong Email");
+  if (account) {
+    role = "user"; // User normal, jamais admin
+  } else {
+    account = await prisma.dietician.findUnique({ where: { email } });
+    if (!account) throw new Error("Wrong Email");
 
-  const ok = await bcrypt.compare(password, user.password);
+    // Dietician peut être admin ou non
+    role = account.admin ? "admin" : "dietician";
+  }
+
+  const ok = await bcrypt.compare(password, account.password);
   if (!ok) throw new Error("Wrong Password");
 
   return jwt.sign(
     {
-			id: user.id,
-			admin: user.admin },
+      id: account.id,
+      role, // "user" | "dietician" | "admin"
+    },
     MDP_JWT,
     { expiresIn: "1h" }
   );

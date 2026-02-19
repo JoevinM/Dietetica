@@ -1,4 +1,3 @@
-import authenticateToken from '../middlewares/Auth.js';
 import userRepository from '../repositories/UserRepository.js';
 import bcrypt from "bcryptjs";
 
@@ -19,7 +18,7 @@ class UserController {
       const user = await userRepository.findById(String(id));
 
       if (!user) {
-        return res.status(404).json({ message: 'Utilisateur not found' });
+        return res.status(404).json({ message: 'User not found' });
       }
 
       res.json(user);
