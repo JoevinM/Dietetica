@@ -4,7 +4,7 @@ export default function dieticianSelfOrAdmin(req, res, next) {
 
 	// If the user is not an admin and tries to modify another account
   if (req.user.role !== "admin" && userId !== targetId) {
-    return res.status(403).json({ message: "Accès refusé : impossible de modifier un autre diététicien." });
+    return res.status(403).json({ message: "Access denied : can't modify another dietician." });
   }
 
   next();
