@@ -1,4 +1,5 @@
 import userRepository from '../repositories/UserRepository.js';
+import bcrypt from "bcryptjs";
 
 class UserController {
 
@@ -26,14 +27,23 @@ class UserController {
     }
   }
 
-  async create(req, res, next) {
-    try {
-      const user = await userRepository.create(req.body);
-      res.status(201).json(user);
-    } catch (err) {
-      next(err);
-    }
-  }
+	async create(req, res, next) {
+  	try {
+    	const { password, ...rest } = req.body;
+
+    	const hashedPassword = await bcrypt.hash(password, 10);
+
+    	const user = await userRepository.create({
+      	...rest,
+      	password: hashedPassword
+    	});
+
+    	res.status(201).json(user);
+
+  	} catch (err) {
+    	next(err);
+  	}
+	}
 
   async update(req, res, next) {
     try {
@@ -49,7 +59,7 @@ class UserController {
     try {
       const { id } = req.params;
       await userRepository.delete(String(id));
-      res.status(204).send();
+			res.status(200).json({ message: "User deleted" });
     } catch (err) {
       next(err);
     }

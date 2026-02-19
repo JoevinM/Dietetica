@@ -10,7 +10,8 @@ class DieticianRepository extends BaseRepository {
       first_name: true,
       last_name: true,
       bio: true,
-      created_at: true
+      created_at: true,
+			admin : true,
     });
   }
 
@@ -28,6 +29,10 @@ class DieticianRepository extends BaseRepository {
     const count = await this.count({ email });
     return count > 0;
   }
+
+	async findFirst(where) {
+  return await this.model.findFirst({ where });
+	}
 
   async findByIdWithClients(id) {
     return await this.model.findUnique({
