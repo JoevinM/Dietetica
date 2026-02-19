@@ -1,6 +1,7 @@
 // back-end/src/repositories/AppointmentRepository.js
 
 import BaseRepository from './BaseRepository.js';
+import GoogleCalendarService from '../services/GoogleCalendarService.js';
 
 class AppointmentRepository extends BaseRepository {
   constructor() {
