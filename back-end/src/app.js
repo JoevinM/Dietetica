@@ -7,6 +7,7 @@ import appointmentRoute from "./routes/AppointmentRoute.js";
 import errorHandler from "./middlewares/ErrorHandler.js";
 import dieticianRoute from "./routes/DieticianRoute.js";
 import newsletterRoute from "./routes/NewsletterRoute.js";
+import calendarRoutes from './routes/calendarRoute.js';
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.use("/daily", dailyEntryRoute);
 app.use("/appointments", appointmentRoute);
 app.use("/dieticians", dieticianRoute);
 app.use("/newsletters", newsletterRoute);
+app.use('/', calendarRoutes);
 
 app.use(errorHandler);
 

@@ -119,32 +119,32 @@ class AppointmentRepository extends BaseRepository {
 
   async createAppointment({ userId, dieticianId, startTime, endTime, description }) {
 
-  // Create Google Calendar event
-  const event = await GoogleCalendarService.createEvent({
-    summary: `Appointment with user ${userId}`,
-    description,
-    startTime,
-    endTime
-  });
+    // Create Google Calendar event
+    const event = await GoogleCalendarService.createEvent({
+      summary: `Appointment with user ${userId}`,
+      description,
+      start: new Date(startTime).toISOString(),
+      end: new Date(endTime).toISOString(),
+    });
 
-  // Save locally
-  return await this.create({
-    user_id: userId,
-    dietician_id: dieticianId,
-    start_time: startTime,
-    end_time: endTime,
-    external_id: event.id
-  });
+    // Save locally
+    return await this.create({
+      user_id: userId,
+      dietician_id: dieticianId,
+      start_time: startTime,
+      end_time: endTime,
+      external_id: event.id
+    });
   }
 
   async cancelAppointment(id) {
-  const appointment = await this.findOne({ id });
+    const appointment = await this.findOne({ id });
 
-  if (appointment.external_id) {
-    await GoogleCalendarService.deleteEvent(appointment.external_id);
-  }
+    if (appointment.external_id) {
+      await GoogleCalendarService.deleteEvent(appointment.external_id);
+    }
 
-  return this.delete({ id });
+    return this.delete({ id });
   }
 
 }

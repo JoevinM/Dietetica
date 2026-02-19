@@ -1,52 +1,52 @@
-import { google } from "googleapis";
-import dotenv from "dotenv";
-dotenv.config();
+import { google } from 'googleapis';
 
-class GoogleCalendarService {
-  constructor() {
-    this.auth = new google.auth.JWT(
-      process.env.GOOGLE_CLIENT_EMAIL,
-      null,
-      process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n'),
-      ["https://www.googleapis.com/auth/calendar"]
-    );
+const oAuth2Client = new google.auth.OAuth2(
+  process.env.GOOGLE_CLIENT_ID,
+  process.env.GOOGLE_CLIENT_SECRET,
+  process.env.GOOGLE_REDIRECT_URI
+);
 
-    this.calendar = google.calendar({ version: "v3", auth: this.auth });
-    this.calendarId = process.env.CALENDAR_ID;
-  }
+const calendar = google.calendar({ version: 'v3', auth: oAuth2Client });
 
-  async createEvent({ summary, description, startTime, endTime }) {
-    const response = await this.calendar.events.insert({
-      calendarId: this.calendarId,
-      requestBody: {
-        summary,
-        description,
-        start: { dateTime: new Date(startTime).toISOString() },
-        end: { dateTime: new Date(endTime).toISOString() }
-      }
-    });
-
-    return response.data;
-  }
-
-  async deleteEvent(eventId) {
-    return this.calendar.events.delete({
-      calendarId: this.calendarId,
-      eventId
-    });
-  }
-
-  async listEvents(timeMin, timeMax) {
-    const response = await this.calendar.events.list({
-      calendarId: this.calendarId,
-      timeMin,
-      timeMax,
-      singleEvents: true,
-      orderBy: "startTime"
-    });
-
-    return response.data.items;
-  }
+function getAuthUrl() {
+  const scopes = [
+    'https://www.googleapis.com/auth/calendar.events',
+    'https://www.googleapis.com/auth/calendar.readonly'
+  ];
+  return oAuth2Client.generateAuthUrl({
+    access_type: 'offline',
+    scope: scopes,
+  });
 }
 
-export default new GoogleCalendarService();
+async function setCredentials(tokens) {
+  oAuth2Client.setCredentials(tokens);
+}
+
+async function listEvents() {
+  const res = await calendar.events.list({
+    calendarId: process.env.CALENDAR_ID,
+    timeMin: new Date().toISOString(),
+    maxResults: 50,
+    singleEvents: true,
+    orderBy: 'startTime',
+  });
+  return res.data.items;
+}
+
+async function createEvent(event) {
+  const res = await calendar.events.insert({
+    calendarId: process.env.CALENDAR_ID,
+    resource: event,
+  });
+  return res.data;
+}
+
+async function deleteEvent(eventId) {
+  return await calendar.events.delete({
+    calendarId: process.env.CALENDAR_ID,
+    eventId,
+  });
+}
+
+export { getAuthUrl, setCredentials, listEvents, createEvent, deleteEvent };
