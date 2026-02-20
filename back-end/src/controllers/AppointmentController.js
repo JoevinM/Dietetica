@@ -38,13 +38,13 @@ class AppointmentController {
   }
 
   async create(req, res, next) {
-    try {
-      const appointment = await appointmentRepository.create(req.body);
-      res.status(201).json(appointment);
-    } catch (err) {
-      next(err);
-    }
+  try {
+    const appointment = await appointmentRepository.createAppointment(req.body);
+    res.status(201).json(appointment);
+  } catch (err) {
+    next(err);
   }
+}
 
   async update(req, res, next) {
     try {
@@ -58,14 +58,13 @@ class AppointmentController {
   }
 
   async deleteAppointment(req, res, next) {
-    try {
-      const { id } = req.params;
-      await appointmentRepository.delete(String(id));
-      res.status(204).send();
-    } catch (err) {
-      next(err);
-    }
+  try {
+    await appointmentRepository.cancelAppointment(req.params.id);
+    res.status(204).send();
+  } catch (err) {
+    next(err);
   }
+}
 }
 
 export default new AppointmentController();
