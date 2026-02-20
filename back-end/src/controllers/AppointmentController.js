@@ -17,7 +17,7 @@ class AppointmentController {
       const appointment = await appointmentRepository.findById(String(id));
 
       if (!appointment) {
-        return res.status(404).json({ message: "Rendez-vous not found" });
+        return res.status(404).json({ message: "appointment not found" });
       }
 
       res.json(appointment);

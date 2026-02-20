@@ -16,7 +16,7 @@ const googleCallback = async (req, res) => {
   oAuth2Client.setCredentials(tokens);
 
   // Ici tu peux sauvegarder tokens.access_token dans la DB pour l'utilisateur
-  res.send('Connexion réussie, tu peux maintenant créer un rendez-vous.');
+  res.send('Connection successful, you can now create an appointment.');
 };
 
 module.exports = { getAuthUrl, googleCallback };
