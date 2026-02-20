@@ -4,7 +4,7 @@ import express from 'express';
 const router = express.Router();
 import GoogleCalendarService from '../services/GoogleCalendarService.js';
 
-// Route pour récupérer l'URL d'auth Google
+// Route to get google url auth
 router.get('/auth-url', (req, res) => {
   const url = GoogleCalendarService.getAuthUrl();
   res.json({ url });
@@ -28,7 +28,7 @@ router.get("/auth/google/callback", async (req, res, next) => {
   }
 });
 
-// Endpoint pour créer un rendez-vous
+// Endpoint to create appointment
 router.post('/appointments', async (req, res) => {
   const { summary, description, start, end, attendeeEmail } = req.body;
 
@@ -47,7 +47,7 @@ router.post('/appointments', async (req, res) => {
   }
 });
 
-// Endpoint pour lister les rendez-vous
+// Endpoint to list appointment
 router.get('/appointments', async (req, res) => {
   try {
     const events = await GoogleCalendarService.listEvents();
