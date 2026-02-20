@@ -14,6 +14,7 @@ model Dietician {
   password     String
   bio          String?
   created_at   DateTime      @default(now())
+  admin        Boolean       @default(false)
   appointments Appointment[]
   newsletters  Newsletter[]
   users        User[]
