@@ -1,0 +1,97 @@
+// ─── Variables ─────────────────────────────────────────
+$green-deep:  #2D6A4F;
+$green-mid:   #52B788;
+$green-light: #B7E4C7;
+$text-dark:   #1A2E23;
+$text-soft:   #7A9589;
+$white:       #FFFFFF;
+
+$font-display: 'Cormorant Garamond', Georgia, serif;
+$font-body: 'DM Sans', sans-serif;
+$transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=DM+Sans:wght@300;400;500&display=swap');
+
+
+// ─── Footer ────────────────────────────────────────────
+.footer {
+  background: $text-dark;
+  font-family: $font-body;
+  text-align: center;
+  position: relative;
+
+  // Fine ligne décorative en haut
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(
+      90deg,
+      $green-deep,
+      $green-mid,
+      $green-light,
+      $green-mid,
+      $green-deep
+    );
+  }
+
+  &__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3rem 2rem 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  // ─── Logo ──────────────────────────────────────────
+  &__logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    text-decoration: none;
+    font-family: $font-display;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: $white;
+    transition: color $transition;
+
+    &-icon {
+      width: 30px;
+      height: 30px;
+      color: $green-mid;
+
+      svg {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    &:hover {
+      color: $green-light;
+    }
+  }
+
+  // ─── Bottom Bar ─────────────────────────────────────
+  &__bottom {
+    border-top: 1px solid rgba($white, 0.06);
+  }
+
+  &__bottom-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.2rem 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    span {
+      font-size: 0.85rem;
+      color: rgba($white, 0.7);
+      font-weight: 300;
+    }
+  }
+}
