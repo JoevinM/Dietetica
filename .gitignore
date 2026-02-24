@@ -4,3 +4,4 @@ back-end/package-lock.json
 
 /generated/prisma
 back-end/.env
+front-end/package-lock.json
