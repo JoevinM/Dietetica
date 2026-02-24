@@ -45,8 +45,8 @@ $radius-full:  50px;
     inset: 0;
     background:
       radial-gradient(ellipse 60% 60% at 20% 80%, rgba($green-mid, 0.35) 0%, transparent 60%),
-      radial-gradient(ellipse 50% 50% at 80% 20%, rgba(darken($green-deep, 10%), 0.8) 0%, transparent 60%),
-      linear-gradient(145deg, $green-deep 0%, darken($green-deep, 12%) 100%);
+      radial-gradient(ellipse 50% 50% at 80% 20%, rgba($green-deep, 10%) 0%, transparent 60%),
+      linear-gradient(145deg, $green-deep 0%, $green-deep 100%);
   }
 
   // Grille pointillée subtile
@@ -471,7 +471,7 @@ $radius-full:  50px;
   }
 
   &:hover {
-    background: darken($green-deep, 6%);
+    background: $green-deep;
     box-shadow: 0 6px 24px rgba($green-deep, 0.4);
     transform: translateY(-1px);
 
