@@ -21,7 +21,7 @@ export default function Header() {
         {/* Desktop Nav */}
         <nav className="header__nav">
           <a href="/" className="header__nav-link header__nav-link--active">Accueil</a>
-          <a href="/programmes" className="header__nav-link">Programmes</a>
+          <a href="/NewLetter" className="header__nav-link">Article</a>
           <a href="/recettes" className="header__nav-link">Recettes</a>
           <a href="/conseils" className="header__nav-link">Conseils</a>
           <a href="/contact" className="header__nav-link">Contact</a>
