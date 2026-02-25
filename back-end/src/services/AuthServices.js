@@ -21,14 +21,30 @@ async function login(email, password) {
   const ok = await bcrypt.compare(password, account.password);
   if (!ok) throw new Error("Wrong Password");
 
-  return jwt.sign(
-    {
-      id: account.id,
-      role, // "user" | "dietician" | "admin"
-    },
+  // Crée le token
+  const token = jwt.sign(
+    { id: account.id, role },
     MDP_JWT,
     { expiresIn: "1h" }
   );
+
+  const user =
+    {
+      id: account.id,
+      email: account.email,
+      role, // "user" | "dietician" | "admin"
+    };
+    return { user, token };
 }
 
-export default { login };
+async function me(token) {
+  const decoded = jwt.verify(token, MDP_JWT);
+  let account = await prisma.user.findUnique({ where: { id: decoded.id } });
+  if (!account) account = await prisma.dietician.findUnique({ where: { id: decoded.id } });
+  if (!account) throw new Error("User not found");
+
+  const role = account.admin ? "admin" : account.role || "user";
+  return { id: account.id, email: account.email, role };
+}
+
+export default { login, me };
