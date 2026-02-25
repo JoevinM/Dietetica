@@ -1,3 +1,5 @@
+@use "sass:color";
+
 // ─── Variables ──────────────────────────────────────────────────────────────
 $green-deep:    #2D6A4F;
 $green-mid:     #52B788;
@@ -265,7 +267,7 @@ $transition:    0.25s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 0 2px 12px rgba($green-deep, 0.25);
 
     &:hover {
-      background: darken($green-deep, 5%);
+      background: color.adjust($green-deep, $lightness: -5%)m;
       box-shadow: 0 4px 16px rgba($green-deep, 0.35);
       transform: translateY(-1px);
     }
