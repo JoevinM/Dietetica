@@ -1,5 +1,8 @@
 import { useState } from "react";
 import "/src/Login.scss";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "./context/AuthContext";
+import api from "./services/api";
 
 export default function LoginPage() {
   const [form, setForm] = useState({ email: "", password: "" });
@@ -10,10 +13,17 @@ export default function LoginPage() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // logique de connexion ici
-    console.log("Connexion :", form);
+    try {
+      const { data } = await api.post("/auth/login", form);
+      // Ton backend doit retourner { token, user } — adapte si différent
+      login(data.user, data.token);
+      navigate("/");
+    } catch (err) {
+      console.error("Erreur de connexion :", err.response?.data?.message);
+      // Ici tu peux afficher un message d'erreur dans le state
+    }
   };
 
   return (
