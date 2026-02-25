@@ -12,9 +12,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/login" element={<Login />} />
-        <Route
-          path="/"
-          element={
+        <Route path="/" element={
             <ProtectedRoute>
               <Home />
             </ProtectedRoute>
