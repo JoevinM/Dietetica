@@ -1,22 +1,28 @@
 import { Routes, Route } from "react-router-dom";
+import { AuthProvider } from "./context/AuthContext";
+import ProtectedRoute from "./components/ProtectedRoute";
+import Home from "./Home";
 import Login from "./Login";
 import Header from "./components/Header";
-import Footer from "./components/Footer"
-
-function Home() {
-  return <h1>Accueil</h1>
-}
+import Footer from "./components/Footer";
 
 function App() {
   return (
-    <>
-      <Header/>
+    <AuthProvider>
+      <Header />
       <Routes>
-        <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
+        <Route
+          path="/"
+          element={
+            <ProtectedRoute>
+              <Home />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
-      <Footer/>
-    </>
+      <Footer />
+    </AuthProvider>
   );
 }
 
