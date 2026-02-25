@@ -20,8 +20,7 @@ export default function LoginPage() {
   e.preventDefault();
 
   try {
-    const { data } = await api.post("/auth/login", form);
-    login(data.user);
+    await login(form.email, form.password);
     navigate("/", {replace: true});
   } catch (err) {
     console.error("Erreur de connexion :", err.response?.data?.message);
