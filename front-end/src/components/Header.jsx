@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { useAuth } from "../context/AuthContext";
 import "/src/components/Header.scss";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const { user, logout } = useAuth();
 
   return (
     <header className="header">
@@ -31,6 +33,7 @@ export default function Header() {
         <div className="header__auth">
           <a href="/login" className="btn btn--ghost">Connexion</a>
           <a href="/register" className="btn btn--solid">Commencer</a>
+          <a href="/" className="btn btn--solid">Déconnexion</a>
         </div>
 
         {/* Burger */}
