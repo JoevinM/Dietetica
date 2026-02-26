@@ -156,21 +156,10 @@ $transition:    0.25s cubic-bezier(0.4, 0, 0.2, 1);
 
   &__welcome {
     font-family: $font-body;
-    font-size: 0.85rem;
-    font-weight: 400;
     color: $text-mid;
     margin-right: 0.25rem;
-    letter-spacing: 0.01em;
-    white-space: nowrap;
-
-    span {
-      font-weight: 500;
-      color: $green-deep;
-    }
-
-    @media (max-width: 860px) {
-      display: none;
-    }
+    display: inline-flex;
+    align-items: center;
   }
 
 // ─────────────────────────────────────────────────────────────────────────────
