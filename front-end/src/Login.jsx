@@ -1,18 +1,30 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "./context/AuthContext";
+import api from "./services/api";
 import "/src/Login.scss";
 
 export default function LoginPage() {
   const [form, setForm] = useState({ email: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);
   const [focused, setFocused] = useState(null);
+  const { login } = useAuth();
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Connexion :", form);
+
+    try {
+      await login(form.email, form.password);
+      navigate("/", { replace: true });
+    } catch (err) {
+      console.error("Erreur de connexion :", err.response?.data?.message);
+    }
   };
 
   return (
@@ -26,7 +38,11 @@ export default function LoginPage() {
         <form className="login__form" onSubmit={handleSubmit} noValidate>
 
           {/* Email */}
-          <div className={`login__field ${focused === "email" ? "login__field--focused" : ""} ${form.email ? "login__field--filled" : ""}`}>
+          <div
+            className={`login__field ${
+              focused === "email" ? "login__field--focused" : ""
+            } ${form.email ? "login__field--filled" : ""}`}
+          >
             <label htmlFor="email">Adresse e-mail</label>
 
             <div className="login__input-wrap">
@@ -52,14 +68,16 @@ export default function LoginPage() {
           </div>
 
           {/* Password */}
-          <div className={`login__field ${focused === "password" ? "login__field--focused" : ""} ${form.password ? "login__field--filled" : ""}`}>
-
+          <div
+            className={`login__field ${
+              focused === "password" ? "login__field--focused" : ""
+            } ${form.password ? "login__field--filled" : ""}`}
+          >
             <div className="login__field-header">
               <label htmlFor="password">Mot de passe</label>
             </div>
 
             <div className="login__input-wrap">
-
               <span className="login__input-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
                   <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
@@ -103,6 +121,7 @@ export default function LoginPage() {
 
           <button type="submit" className="login__submit">
             <span>Se connecter</span>
+
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M5 12h14M12 5l7 7-7 7"/>
             </svg>

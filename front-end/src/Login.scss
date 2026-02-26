@@ -1,4 +1,7 @@
-// ─── Variables ───────────────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
+// Variables
+// ─────────────────────────────────────────────────────────────────────────────
+
 $green-deep:   #2D6A4F;
 $green-mid:    #52B788;
 $text-mid:     #4A6357;
@@ -9,13 +12,18 @@ $white:        #FFFFFF;
 
 $font-display: 'Cormorant Garamond', Georgia, serif;
 $font-body:    'DM Sans', sans-serif;
-$transition:           0.25s cubic-bezier(0.4, 0, 0.2, 1);
-$radius-middle:    15px;
-$radius-full:  50px;
+
+$transition:      0.25s cubic-bezier(0.4, 0, 0.2, 1);
+$radius-middle:   15px;
+$radius-full:     50px;
 
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=DM+Sans:wght@300;400;500&display=swap');
 
-// ─── Panneau droit (formulaire) ───────────────────────────────────────────────
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Panneau droit (formulaire)
+// ─────────────────────────────────────────────────────────────────────────────
+
 .login__form-panel {
   flex: 1;
   display: flex;
@@ -43,7 +51,11 @@ $radius-full:  50px;
   to   { opacity: 1; transform: translateY(0); }
 }
 
+
+// ─────────────────────────────────────────────────────────────────────────────
 // Logo
+// ─────────────────────────────────────────────────────────────────────────────
+
 .login__logo {
   display: inline-flex;
   align-items: center;
@@ -56,13 +68,23 @@ $radius-full:  50px;
   margin-bottom: 2.5rem;
 
   &-icon {
-    width: 30px; height: 30px;
-    color: $green-deep; flex-shrink: 0;
-    svg { width: 100%; height: 100%; }
+    width: 30px;
+    height: 30px;
+    color: $green-deep;
+    flex-shrink: 0;
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
   }
 }
 
+
+// ─────────────────────────────────────────────────────────────────────────────
 // Heading
+// ─────────────────────────────────────────────────────────────────────────────
+
 .login__heading {
   margin-bottom: 2rem;
 
@@ -74,7 +96,9 @@ $radius-full:  50px;
     margin-bottom: 0.4rem;
     line-height: 1.2;
 
-    span { font-style: normal; }
+    span {
+      font-style: normal;
+    }
   }
 
   p {
@@ -84,14 +108,22 @@ $radius-full:  50px;
   }
 }
 
+
+// ─────────────────────────────────────────────────────────────────────────────
 // Form
+// ─────────────────────────────────────────────────────────────────────────────
+
 .login__form {
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
 }
 
+
+// ─────────────────────────────────────────────────────────────────────────────
 // Field
+// ─────────────────────────────────────────────────────────────────────────────
+
 .login__field {
   display: flex;
   flex-direction: column;
@@ -104,7 +136,6 @@ $radius-full:  50px;
     letter-spacing: 0.02em;
     transition: color $transition;
   }
-
 }
 
 .login__field-header {
@@ -114,8 +145,10 @@ $radius-full:  50px;
 }
 
 
-
+// ─────────────────────────────────────────────────────────────────────────────
 // Input wrapper
+// ─────────────────────────────────────────────────────────────────────────────
+
 .login__input-wrap {
   position: relative;
   display: flex;
@@ -132,10 +165,14 @@ $radius-full:  50px;
     border: 1.5px solid rgba($green-mid, 0.25);
     border-radius: $radius-middle;
     outline: none;
-    transition: border-color $transition, box-shadow $transition;
+    transition:
+      border-color $transition,
+      box-shadow $transition;
     font-weight: 300;
 
-    &::placeholder { color: rgba($text-soft, 0.5); }
+    &::placeholder {
+      color: rgba($text-soft, 0.5);
+    }
 
     &:focus {
       border-color: $green-mid;
@@ -149,6 +186,11 @@ $radius-full:  50px;
   box-shadow: 0 0 0 3px rgba($green-mid, 0.12);
 }
 
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Icons
+// ─────────────────────────────────────────────────────────────────────────────
+
 .login__input-icon {
   position: absolute;
   left: 0.85rem;
@@ -158,10 +200,20 @@ $radius-full:  50px;
   pointer-events: none;
   transition: color $transition;
 
-  svg { width: 16px; height: 16px; }
+  svg {
+    width: 16px;
+    height: 16px;
+  }
 }
 
-.login__field--focused .login__input-icon { color: $green-deep; }
+.login__field--focused .login__input-icon {
+  color: $green-deep;
+}
+
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Eye toggle
+// ─────────────────────────────────────────────────────────────────────────────
 
 .login__eye {
   position: absolute;
@@ -176,11 +228,21 @@ $radius-full:  50px;
   transition: color $transition;
   border-radius: 4px;
 
-  svg { width: 16px; height: 16px; }
-  &:hover { color: $green-deep; }
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  &:hover {
+    color: $green-deep;
+  }
 }
 
+
+// ─────────────────────────────────────────────────────────────────────────────
 // Submit
+// ─────────────────────────────────────────────────────────────────────────────
+
 .login__submit {
   height: 52px;
   width: 100%;
@@ -202,22 +264,30 @@ $radius-full:  50px;
   margin-top: 0.25rem;
 
   svg {
-    width: 18px; height: 18px;
+    width: 18px;
+    height: 18px;
     transition: transform $transition;
   }
 
   &:hover {
-    background: #2D6A4F;
     box-shadow: 0 6px 24px rgba($green-deep, 0.4);
     transform: translateY(-1px);
 
-    svg { transform: translateX(3px); }
+    svg {
+      transform: translateX(3px);
+    }
   }
 
-  &:active { transform: translateY(0); }
+  &:active {
+    transform: translateY(0);
+  }
 }
 
+
+// ─────────────────────────────────────────────────────────────────────────────
 // Register link
+// ─────────────────────────────────────────────────────────────────────────────
+
 .login__register {
   text-align: center;
   font-size: 0.85rem;
@@ -234,17 +304,25 @@ $radius-full:  50px;
     &::after {
       content: '';
       position: absolute;
-      bottom: -1px; left: 0;
-      width: 0; height: 1px;
+      bottom: -1px;
+      left: 0;
+      width: 0;
+      height: 1px;
       background: $green-deep;
       transition: width $transition;
     }
 
-    &:hover::after { width: 100%; }
+    &:hover::after {
+      width: 100%;
+    }
   }
 }
 
-// ─── Responsive mobile ────────────────────────────────────────────────────────
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Responsive mobile
+// ─────────────────────────────────────────────────────────────────────────────
+
 @media (max-width: 900px) {
   .login__form-panel {
     min-height: auto;

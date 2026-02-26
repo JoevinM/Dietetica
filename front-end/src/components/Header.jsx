@@ -1,9 +1,18 @@
 import { useState } from "react";
+import { useAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 import "/src/components/Header.scss";
 import { NavLink } from "react-router-dom";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    await logout();
+    navigate("/login");
+  };
 
   const closeMenu = () => setMenuOpen(false);
 
@@ -25,6 +34,7 @@ export default function Header() {
       <div className="header__inner">
 
         {/* Logo */}
+
         <NavLink to="/" end className="header__logo" onClick={closeMenu}>
           <span className="header__logo-icon">
             <svg viewBox="0 0 32 32" fill="none">
@@ -44,6 +54,7 @@ export default function Header() {
         </NavLink>
 
         {/* Desktop Nav */}
+
         <nav className="header__nav">
           {routes.map(({ path, label, end }) => (
             <NavLink
@@ -58,16 +69,33 @@ export default function Header() {
         </nav>
 
         {/* Auth Buttons */}
+
         <div className="header__auth">
-          <NavLink to="/login" className="btn btn--ghost">
-            Connexion
-          </NavLink>
-          <NavLink to="/register" className="btn btn--solid">
-            Commencer
-          </NavLink>
+          {user ? (
+            <>
+              <span className="header__welcome">
+                Bonjour {user.name}
+              </span>
+
+              <button onClick={handleLogout} className="btn btn--ghost">
+                Déconnexion
+              </button>
+            </>
+          ) : (
+            <>
+              <NavLink to="/login" className="btn btn--ghost">
+                Connexion
+              </NavLink>
+
+              <NavLink to="/register" className="btn btn--solid">
+                Commencer
+              </NavLink>
+            </>
+          )}
         </div>
 
         {/* Burger */}
+
         <button
           className={`header__burger ${menuOpen ? "header__burger--open" : ""}`}
           onClick={() => setMenuOpen(prev => !prev)}
@@ -81,6 +109,7 @@ export default function Header() {
       </div>
 
       {/* Mobile Menu */}
+
       <div
         className={`header__mobile-menu ${
           menuOpen ? "header__mobile-menu--open" : ""
@@ -100,12 +129,21 @@ export default function Header() {
         </nav>
 
         <div className="header__mobile-auth">
-          <NavLink to="/login" onClick={closeMenu} className="btn btn--ghost">
-            Connexion
-          </NavLink>
-          <NavLink to="/register" onClick={closeMenu} className="btn btn--solid">
-            Commencer
-          </NavLink>
+          {user ? (
+            <button onClick={logout} className="btn btn--ghost">
+              Déconnexion
+            </button>
+          ) : (
+            <>
+              <NavLink to="/login" onClick={closeMenu} className="btn btn--ghost">
+                Connexion
+              </NavLink>
+
+              <NavLink to="/register" onClick={closeMenu} className="btn btn--solid">
+                Commencer
+              </NavLink>
+            </>
+          )}
         </div>
       </div>
     </header>
