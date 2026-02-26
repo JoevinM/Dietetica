@@ -29,8 +29,12 @@ router.get("/auth/google/callback", async (req, res, next) => {
 });
 
 // Endpoint to create appointment
-router.post('/appointments', async (req, res) => {
+router.post('/calendar', async (req, res) => {
   const { summary, description, start, end, attendeeEmail } = req.body;
+
+  console.log('attendeeEmail :', attendeeEmail);
+  console.log('start :', start);
+  console.log('end :', end);
 
   try {
     const event = {
@@ -38,17 +42,24 @@ router.post('/appointments', async (req, res) => {
       description,
       start: { dateTime: start },
       end: { dateTime: end },
-      attendees: [{ email: attendeeEmail }],
+      ...(attendeeEmail && attendeeEmail.trim() !== "" && {
+        attendees: [{ email: attendeeEmail }]
+      }),
     };
+
+    console.log('Event envoyé à Google :', JSON.stringify(event, null, 2));
+
     const result = await GoogleCalendarService.createEvent(event);
     res.json(result);
   } catch (err) {
+    console.error('Erreur Google Calendar complète :', err.message);
+    console.error('Détails :', err.errors || err.response?.data);
     res.status(500).json({ error: err.message });
   }
 });
 
 // Endpoint to list appointment
-router.get('/appointments', async (req, res) => {
+router.get('/calendar', async (req, res) => {
   try {
     const events = await GoogleCalendarService.listEvents();
     res.json(events);

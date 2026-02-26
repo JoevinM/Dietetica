@@ -7,6 +7,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import NewLetter from "./components/NewLetter";
 import NewLetterDetail from "./components/NewLetterDetail";
+import Google from "./components/google";
 
 function App() {
   return (
@@ -17,6 +18,12 @@ function App() {
         <Route path="/" element={
             <ProtectedRoute>
               <Home />
+            </ProtectedRoute>
+          }
+        />
+		<Route path="/google" element={
+            <ProtectedRoute>
+              <Google />
             </ProtectedRoute>
           }
         />
