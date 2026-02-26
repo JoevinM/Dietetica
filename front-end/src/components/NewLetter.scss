@@ -223,18 +223,6 @@ $radius-full:  50px;
     gap: .5rem;
   }
 
-  &__author {
-    display: flex;
-    align-items: center;
-    gap: .5rem;
-  }
-
-  &__author-name {
-    font-size: .78rem;
-    font-weight: 500;
-    color: $text-mid;
-  }
-
   &__date {
     font-size: .75rem;
     color: $text-soft;
