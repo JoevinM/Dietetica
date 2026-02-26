@@ -5,6 +5,8 @@ import Home from "./Home";
 import Login from "./Login";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import NewLetter from "./components/NewLetter";
+import NewLetterDetail from "./components/NewLetterDetail";
 
 function App() {
   return (
@@ -12,14 +14,14 @@ function App() {
       <Header />
       <Routes>
         <Route path="/login" element={<Login />} />
-        <Route
-          path="/"
-          element={
+        <Route path="/" element={
             <ProtectedRoute>
               <Home />
             </ProtectedRoute>
           }
         />
+		<Route path="/newletter" element={<NewLetter />} />
+		<Route path="/newletter/:id" element={<NewLetterDetail />} />
       </Routes>
       <Footer />
     </AuthProvider>

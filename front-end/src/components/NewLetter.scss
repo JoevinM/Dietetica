@@ -1,0 +1,405 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap');
+
+// ─── Variables ─────────────────────────────────────────
+$green-deep:  #2D6A4F;
+$green-mid:   #52B788;
+$green-light: #B7E4C7;
+$green-pale:  #D8F3DC;
+$text-dark:   #1A2E23;
+$text-mid:    #4A6357;
+$text-soft:   #7A9589;
+$cream:       #FAFAF7;
+$beige:       #F0EBE1;
+$white:       #FFFFFF;
+$error:       #E05C5C;
+
+$font-display: 'Cormorant Garamond', Georgia, serif;
+$font-body:    'DM Sans', sans-serif;
+$tr:           0.25s cubic-bezier(0.4, 0, 0.2, 1);
+$radius-sm:    10px;
+$radius-md:    16px;
+$radius-full:  50px;
+
+
+// ─── Hero ──────────────────────────────────────────────
+.nl-hero {
+  background: $green-deep;
+  position: relative;
+  overflow: hidden;
+  padding: 5rem 2rem 4rem;
+  text-align: center;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 55% 55% at 15% 85%, rgba($green-mid, .28) 0%, transparent 65%),
+      radial-gradient(ellipse 40% 60% at 85% 10%, rgba($green-light, .12) 0%, transparent 60%);
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba($green-light, .07) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+
+  &__inner {
+    position: relative;
+    z-index: 1;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  &__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    font-size: .72rem;
+    font-weight: 500;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: $green-light;
+    margin-bottom: 1.25rem;
+
+    &::before,
+    &::after {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 1.5px;
+      background: $green-light;
+      border-radius: 2px;
+    }
+  }
+
+  h1 {
+    font-family: $font-display;
+    font-size: clamp(2.4rem, 5vw, 3.6rem);
+    font-weight: 500;
+    line-height: 1.15;
+    color: $white;
+    margin-bottom: 1rem;
+
+    em {
+      font-style: italic;
+      color: $green-light;
+    }
+  }
+
+  p {
+    font-size: .9rem;
+    font-weight: 300;
+    color: rgba($white, .55);
+    line-height: 1.75;
+    max-width: 440px;
+    margin: 0 auto;
+  }
+}
+
+
+// ─── Filters ───────────────────────────────────────────
+.nl-filters {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 2rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+
+  &__count {
+    font-family: $font-body;
+    font-size: .82rem;
+    color: $text-soft;
+    font-weight: 300;
+
+    strong {
+      color: $text-dark;
+      font-weight: 500;
+    }
+  }
+}
+
+.nl-search {
+  display: flex;
+  align-items: center;
+  background: $white;
+  border: 1.5px solid rgba($green-mid, .22);
+  border-radius: $radius-full;
+  padding: .4rem 1rem;
+  gap: .5rem;
+  flex: 1;
+  max-width: 320px;
+  transition: border-color $tr, box-shadow $tr;
+
+  &:focus-within {
+    border-color: $green-mid;
+    box-shadow: 0 0 0 3px rgba($green-mid, .1);
+  }
+
+  svg {
+    width: 15px;
+    height: 15px;
+    color: $text-soft;
+    flex-shrink: 0;
+  }
+
+  input {
+    border: none;
+    outline: none;
+    background: transparent;
+    font-family: $font-body;
+    font-size: .875rem;
+    color: $text-dark;
+    width: 100%;
+
+    &::placeholder {
+      color: rgba($text-soft, .5);
+    }
+  }
+}
+
+
+// ─── Grid ──────────────────────────────────────────────
+.nl-grid {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+
+// ─── Card ──────────────────────────────────────────────
+.nl-card {
+  background: $white;
+  border: 1px solid rgba($green-mid, .14);
+  border-radius: $radius-md;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform $tr, box-shadow $tr;
+  animation: nlFadeUp .5s ease both;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba($green-deep, .1);
+  }
+
+  // Accent bar (non-featured only)
+  &:not(.nl-card--featured)::before {
+    content: '';
+    display: block;
+    height: 4px;
+    background: linear-gradient(90deg, $green-deep, $green-mid);
+    flex-shrink: 0;
+  }
+
+  // Staggered animations
+  @for $i from 1 through 9 {
+    &:nth-child(#{$i}) {
+      animation-delay: #{$i * 0.05}s;
+    }
+  }
+
+  &__body {
+    padding: 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: .75rem;
+  }
+
+  &__meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: .5rem;
+  }
+
+  &__date {
+    font-size: .75rem;
+    color: $text-soft;
+    font-weight: 300;
+  }
+
+  &__badge {
+    display: inline-block;
+    font-size: .7rem;
+    font-weight: 500;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    color: $green-deep;
+    background: $green-pale;
+    padding: .25rem .65rem;
+    border-radius: $radius-full;
+
+    &--featured {
+      background: rgba($green-mid, .15);
+      color: $green-mid;
+    }
+  }
+
+  &__title {
+    font-family: $font-display;
+    font-size: 1.35rem;
+    font-weight: 500;
+    line-height: 1.3;
+    color: $text-dark;
+  }
+
+  &__excerpt {
+    font-size: .875rem;
+    font-weight: 300;
+    color: $text-mid;
+    line-height: 1.7;
+    display: -webkit-box;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    flex: 1;
+  }
+
+  &__read {
+    font-size: .8rem;
+    font-weight: 500;
+    color: $green-deep;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: .35rem;
+    transition: gap $tr;
+
+    svg {
+      width: 14px;
+      height: 14px;
+      transition: transform $tr;
+    }
+  }
+
+  &:hover &__read svg {
+    transform: translateX(3px);
+  }
+}
+
+
+// ─── Card Featured ─────────────────────────────────────
+.nl-card--featured {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  @media (max-width: 660px) {
+    grid-template-columns: 1fr;
+  }
+
+  .nl-card__visual {
+    background: linear-gradient(135deg, $green-deep 0%, #1b4332 100%);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    min-height: 200px;
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba($green-light, .1) 1px, transparent 1px);
+      background-size: 22px 22px;
+    }
+
+    @media (max-width: 660px) {
+      min-height: 160px;
+    }
+  }
+
+  .nl-card__visual-icon {
+    position: relative;
+    z-index: 1;
+
+    svg {
+      width: 80px;
+      height: 80px;
+      opacity: .25;
+    }
+  }
+
+  .nl-card__body {
+    padding: 2rem;
+    gap: 1rem;
+  }
+
+  .nl-card__title {
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+  }
+
+  .nl-card__footer {
+    padding: 0;
+    margin-top: auto;
+  }
+}
+
+
+// ─── States (loading / empty / error) ──────────────────
+.nl-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 4rem 2rem;
+  color: $text-soft;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+
+  svg {
+    width: 48px;
+    height: 48px;
+    opacity: .3;
+  }
+
+  p {
+    font-size: .9rem;
+    font-weight: 300;
+  }
+
+  &--error p {
+    color: $error;
+  }
+}
+
+.nl-spinner {
+  width: 32px;
+  height: 32px;
+  border: 2px solid rgba($green-mid, .2);
+  border-top-color: $green-mid;
+  border-radius: 50%;
+  animation: nlSpin .7s linear infinite;
+}
+
+
+// ─── Animations ────────────────────────────────────────
+@keyframes nlFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes nlSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
