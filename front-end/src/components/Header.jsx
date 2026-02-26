@@ -23,7 +23,7 @@ export default function Header() {
 
   const routes = [
     { path: "/", label: "Accueil", end: true },
-    { path: "/programmes", label: "Programmes" },
+    { path: "/newsletter", label: "Article" },
     { path: "/recettes", label: "Recettes" },
     { path: "/conseils", label: "Conseils" },
     { path: "/contact", label: "Contact" },

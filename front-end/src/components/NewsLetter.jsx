@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import "/src/components/NewLetter.scss";
+import "/src/components/NewsLetter.scss";
 
 export default function Newsletters() {
   const [newsletters, setNewsletters] = useState([]);
@@ -32,6 +32,7 @@ export default function Newsletters() {
   return (
     <>
       {/* Hero */}
+
       <section className="nl-hero">
         <div className="nl-hero__inner">
           <div className="nl-hero__eyebrow">Nos publications</div>
@@ -40,6 +41,7 @@ export default function Newsletters() {
       </section>
 
       {/* Filters */}
+
       <div className="nl-filters">
         <p className="nl-filters__count">
           <strong>{filtered.length}</strong> Article{filtered.length !== 1 ? "s" : ""} disponible{filtered.length !== 1 ? "s" : ""}
@@ -58,6 +60,7 @@ export default function Newsletters() {
       </div>
 
       {/* Content */}
+
       <div className="nl-grid">
         {loading && (
           <div className="nl-state">
@@ -108,7 +111,7 @@ export default function Newsletters() {
 
               <h2 className="nl-card__title">{newsletter.title}</h2>
               <p className="nl-card__excerpt">{newsletter.content}</p>
-              <Link to={`/newletter/${newsletter.id}`} className="nl-card__read">
+              <Link to={`/newsletter/${newsletter.id}`} className="nl-card__read">
                 Lire
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M5 12h14M12 5l7 7-7 7"/>

@@ -5,8 +5,8 @@ import Home from "./Home";
 import Login from "./Login";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import NewLetter from "./components/NewLetter";
-import NewLetterDetail from "./components/NewLetterDetail";
+import NewsLetter from "./components/NewsLetter";
+import NewsLetterDetail from "./components/NewsLetterDetail";
 
 function App() {
   return (
@@ -27,8 +27,8 @@ function App() {
               }
             />
 
-            <Route path="/newletter" element={<NewLetter />} />
-            <Route path="/newletter/:id" element={<NewLetterDetail />} />
+            <Route path="/newsletter" element={<NewsLetter />} />
+            <Route path="/newsletter/:id" element={<NewsLetterDetail />} />
           </Routes>
         </div>
 
