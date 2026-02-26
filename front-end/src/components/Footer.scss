@@ -3,7 +3,6 @@ $green-deep:  #2D6A4F;
 $green-mid:   #52B788;
 $green-light: #B7E4C7;
 $text-dark:   #1A2E23;
-$text-soft:   #7A9589;
 $white:       #FFFFFF;
 
 $font-display: 'Cormorant Garamond', Georgia, serif;
@@ -20,7 +19,7 @@ $transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   text-align: center;
   position: relative;
 
-  // Fine ligne décorative en haut
+  // Fine ligne décorative en haut du footer
   &::before {
     content: '';
     position: absolute;

@@ -1,32 +1,28 @@
 // ─── Variables ───────────────────────────────────────────────────────────────
 $green-deep:   #2D6A4F;
 $green-mid:    #52B788;
-$green-light:  #B7E4C7;
-$green-pale:   #D8F3DC;
-$cream:        #FAFAF7;
-$beige:        #F0EBE1;
-$text-dark:    #1A2E23;
 $text-mid:     #4A6357;
+$text-dark:    #1A2E23;
 $text-soft:    #7A9589;
+$cream:        #FAFAF7;
 $white:        #FFFFFF;
-$error:        #E05C5C;
 
 $font-display: 'Cormorant Garamond', Georgia, serif;
 $font-body:    'DM Sans', sans-serif;
-$tr:           0.25s cubic-bezier(0.4, 0, 0.2, 1);
-$radius-sm:    10px;
-$radius-md:    14px;
+$transition:           0.25s cubic-bezier(0.4, 0, 0.2, 1);
+$radius-middle:    15px;
 $radius-full:  50px;
 
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=DM+Sans:wght@300;400;500&display=swap');
 
 // ─── Panneau droit (formulaire) ───────────────────────────────────────────────
 .login__form-panel {
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   background: $cream;
-  padding: 4rem 1.5rem;
+  padding: 2rem 1.5rem;
 }
 
 .login__form-wrapper {
@@ -106,7 +102,7 @@ $radius-full:  50px;
     font-weight: 500;
     color: $text-mid;
     letter-spacing: 0.02em;
-    transition: color $tr;
+    transition: color $transition;
   }
 
 }
@@ -134,9 +130,9 @@ $radius-full:  50px;
     color: $text-dark;
     background: $white;
     border: 1.5px solid rgba($green-mid, 0.25);
-    border-radius: $radius-md;
+    border-radius: $radius-middle;
     outline: none;
-    transition: border-color $tr, box-shadow $tr;
+    transition: border-color $transition, box-shadow $transition;
     font-weight: 300;
 
     &::placeholder { color: rgba($text-soft, 0.5); }
@@ -160,7 +156,7 @@ $radius-full:  50px;
   display: flex;
   align-items: center;
   pointer-events: none;
-  transition: color $tr;
+  transition: color $transition;
 
   svg { width: 16px; height: 16px; }
 }
@@ -177,7 +173,7 @@ $radius-full:  50px;
   display: flex;
   align-items: center;
   padding: 4px;
-  transition: color $tr;
+  transition: color $transition;
   border-radius: 4px;
 
   svg { width: 16px; height: 16px; }
@@ -200,18 +196,18 @@ $radius-full:  50px;
   border: none;
   border-radius: $radius-full;
   cursor: pointer;
-  transition: all $tr;
+  transition: all $transition;
   box-shadow: 0 4px 20px rgba($green-deep, 0.3);
   letter-spacing: 0.01em;
   margin-top: 0.25rem;
 
   svg {
     width: 18px; height: 18px;
-    transition: transform $tr;
+    transition: transform $transition;
   }
 
   &:hover {
-    background: darken($green-deep, 6%);
+    background: #2D6A4F;
     box-shadow: 0 6px 24px rgba($green-deep, 0.4);
     transform: translateY(-1px);
 
@@ -241,7 +237,7 @@ $radius-full:  50px;
       bottom: -1px; left: 0;
       width: 0; height: 1px;
       background: $green-deep;
-      transition: width $tr;
+      transition: width $transition;
     }
 
     &:hover::after { width: 100%; }
@@ -249,9 +245,9 @@ $radius-full:  50px;
 }
 
 // ─── Responsive mobile ────────────────────────────────────────────────────────
-@media (max-width: 860px) {
+@media (max-width: 900px) {
   .login__form-panel {
-    min-height: 100vh;
+    min-height: auto;
     padding: 3rem 1.5rem;
     align-items: flex-start;
     padding-top: 4rem;

@@ -6,17 +6,20 @@ import Footer from "./components/Footer"
 function Home() {
   return <h1>Accueil</h1>
 }
-
 function App() {
   return (
-    <>
-      <Header/>
-      <Routes>
+    <div className="app-layout">
+    <Header />
+
+    <div className="app-content">
+        <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
-      </Routes>
-      <Footer/>
-    </>
+        </Routes>
+    </div>
+
+    <Footer />
+    </div>
   );
 }
 
