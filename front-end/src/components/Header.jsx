@@ -1,10 +1,17 @@
 import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 import "/src/components/Header.scss";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const { user, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    await logout();
+    navigate("/login");
+  };
 
   return (
     <header className="header">
@@ -31,9 +38,19 @@ export default function Header() {
 
         {/* Auth Buttons */}
         <div className="header__auth">
-          <a href="/login" className="btn btn--ghost">Connexion</a>
-          <a href="/register" className="btn btn--solid">Commencer</a>
-          <a href="/" className="btn btn--solid">Déconnexion</a>
+          {user ? (
+            <>
+              <span className="header__welcome">Bonjour {user.name}</span>
+              <button onClick={handleLogout} className="btn btn--ghost">
+                Déconnexion
+              </button>
+            </>
+          ) : (
+            <>
+              <a href="/login" className="btn btn--ghost">Connexion</a>
+              <a href="/register" className="btn btn--solid">Commencer</a>
+            </>
+          )}
         </div>
 
         {/* Burger */}
@@ -58,8 +75,16 @@ export default function Header() {
           <a href="/contact" onClick={() => setMenuOpen(false)}>Contact</a>
         </nav>
         <div className="header__mobile-auth">
-          <a href="/login" className="btn btn--ghost">Connexion</a>
-          <a href="/register" className="btn btn--solid">Commencer</a>
+          {user ? (
+            <button onClick={logout} className="btn btn--ghost">
+              Déconnexion
+            </button>
+          ) : (
+            <>
+              <a href="/login" className="btn btn--ghost">Connexion</a>
+              <a href="/register" className="btn btn--solid">Commencer</a>
+            </>
+          )}
         </div>
       </div>
     </header>

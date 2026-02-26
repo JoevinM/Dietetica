@@ -32,6 +32,7 @@ async function login(email, password) {
     {
       id: account.id,
       email: account.email,
+      name: account.first_name,
       role, // "user" | "dietician" | "admin"
     };
     return { user, token };
@@ -44,7 +45,7 @@ async function me(token) {
   if (!account) throw new Error("User not found");
 
   const role = account.admin ? "admin" : account.role || "user";
-  return { id: account.id, email: account.email, role };
+  return { id: account.id, email: account.email, name: account.first_name, role };
 }
 
 export default { login, me };

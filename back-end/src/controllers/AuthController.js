@@ -43,8 +43,7 @@ export function logout(req, res) {
   res.clearCookie("token", {
     httpOnly: true,
     secure: false,
-    sameSite: "strict",
-    maxAge: 60 * 60 * 1000 //1h
+    sameSite: "strict"
   });
   res.json({ message: "Déconnecté" });
 }
