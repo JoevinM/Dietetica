@@ -31,25 +31,6 @@ $white:       #FFFFFF;
 
   &__header { margin-bottom: 1.5rem; }
 
-  &__author {
-    display: flex; align-items: center; gap: .75rem;
-    margin-bottom: 1.5rem;
-  }
-
-  &__avatar {
-    width: 40px; height: 40px; border-radius: 50%;
-    background: $green-light;
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: .85rem; font-weight: 600; color: $green-deep;
-    flex-shrink: 0;
-  }
-
-  &__author-name {
-    display: block;
-    font-size: .85rem; font-weight: 500; color: $text-mid;
-  }
-
   &__date {
     display: block;
     font-size: .78rem; font-weight: 300; color: $text-soft;

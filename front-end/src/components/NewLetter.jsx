@@ -29,12 +29,6 @@ export default function Newsletters() {
       day: "numeric", month: "long", year: "numeric",
     });
 
-  const getFullName = (dietician) => {
-    if (!dietician) return "Diététicien";
-
-    return `${dietician.first_name} ${dietician.last_name}`;
-  };
-
   return (
     <>
       {/* Hero */}
@@ -48,7 +42,7 @@ export default function Newsletters() {
       {/* Filters */}
       <div className="nl-filters">
         <p className="nl-filters__count">
-          <strong>{filtered.length}</strong> newsletter{filtered.length !== 1 ? "s" : ""} disponible{filtered.length !== 1 ? "s" : ""}
+          <strong>{filtered.length}</strong> Article{filtered.length !== 1 ? "s" : ""} disponible{filtered.length !== 1 ? "s" : ""}
         </p>
         <div className="nl-search">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -56,7 +50,7 @@ export default function Newsletters() {
           </svg>
           <input
             type="text"
-            placeholder="Rechercher une newsletter…"
+            placeholder="Rechercher un article…"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
@@ -105,9 +99,6 @@ export default function Newsletters() {
 
             <div className="nl-card__body">
               <div className="nl-card__meta">
-                <div className="nl-card__author">
-                  <span className="nl-card__author-name">{getFullName(newsletter.dietician_id)}</span>
-                </div>
                 <span className="nl-card__date">{formatDate(newsletter.created_at)}</span>
               </div>
 
@@ -117,7 +108,7 @@ export default function Newsletters() {
 
               <h2 className="nl-card__title">{newsletter.title}</h2>
               <p className="nl-card__excerpt">{newsletter.content}</p>
-              <Link to={`/newsletters/${newsletter.id}`} className="nl-card__read">
+              <Link to={`/newletter/${newsletter.id}`} className="nl-card__read">
                 Lire
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M5 12h14M12 5l7 7-7 7"/>

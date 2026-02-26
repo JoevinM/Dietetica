@@ -24,12 +24,6 @@ export default function NewsletterDetail() {
       day: "numeric", month: "long", year: "numeric",
     });
 
-  const getInitials = (d) =>
-    d ? `${d.first_name?.[0] ?? ""}${d.last_name?.[0] ?? ""}`.toUpperCase() : "?";
-
-  const getFullName = (d) =>
-    d ? `${d.first_name} ${d.last_name}` : "Diététicien";
-
   if (loading) return <div className="nld-state"><div className="nld-spinner" /><p>Chargement…</p></div>;
   if (error)   return <div className="nld-state nld-state--error"><p>{error}</p><Link to="/newsletters" className="nld-back">← Retour</Link></div>;
 
@@ -37,22 +31,16 @@ export default function NewsletterDetail() {
     <article className="nld">
       <div className="nld__inner">
 
-        <Link to="/newsletters" className="nld__back">
+        <Link to="/newletter" className="nld__back">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M19 12H5M12 19l-7-7 7-7"/>
           </svg>
-          Toutes les newsletters
+          Tous les articles
         </Link>
 
         <header className="nld__header">
-          <div className="nld__author">
-            <div className="nld__avatar">{getInitials(newsletter.dietician)}</div>
-            <div>
-              <span className="nld__author-name">{getFullName(newsletter.dietician)}</span>
-              <span className="nld__date">{formatDate(newsletter.created_at)}</span>
-            </div>
-          </div>
-          <h1 className="nld__title">{newsletter.title}</h1>
+        <span className="nld__date">{formatDate(newsletter.created_at)}</span>
+        <h1 className="nld__title">{newsletter.title}</h1>
         </header>
 
         <div className="nld__divider" />
