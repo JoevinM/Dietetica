@@ -1,59 +1,33 @@
-@use "sass:color";
+@use "../styles/variables.scss" as v;
 
-// ─── Variables ──────────────────────────────────────────────────────────────
-$green-deep:    #2D6A4F;
-$green-mid:     #52B788;
-$green-light:   #B7E4C7;
-$green-pale:    #D8F3DC;
-$cream:         #FAFAF7;
-$beige:         #F0EBE1;
-$text-dark:     #1A2E23;
-$text-mid:      #4A6357;
-$white:         #FFFFFF;
+// ─────────────────────────────────────────────────────────────────────────────
+// Header
+// ─────────────────────────────────────────────────────────────────────────────
 
-$font-display:  'Cormorant Garamond', Georgia, serif;
-$font-body:     'DM Sans', sans-serif;
-
-$header-height: 72px;
-$radius:        50px;
-$transition:    0.25s cubic-bezier(0.4, 0, 0.2, 1);
-
-// ─── Google Fonts ────────────────────────────────────────────────────────────
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=DM+Sans:wght@300;400;500&display=swap');
-
-// ─── Header ──────────────────────────────────────────────────────────────────
 .header {
   position: sticky;
   top: 0;
   z-index: 100;
   width: 100%;
-  background: rgba($cream, 0.92);
+  background: rgba(v.$cream, 0.92);
   backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border-bottom: 1px solid rgba($green-mid, 0.15);
-  font-family: $font-body;
-
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 5%;
-    width: 90%;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, $green-light, transparent);
-  }
+  border-bottom: 1px solid rgba(v.$green-mid, 0.15);
+  font-family: v.$font-body;
 
   &__inner {
     max-width: 1200px;
     margin: 0 auto;
-    height: $header-height;
+    height: v.$header-height;
     padding: 0 2rem;
     display: flex;
     align-items: center;
     gap: 2rem;
   }
 
-  // ─── Logo ────────────────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
+// Logo
+// ─────────────────────────────────────────────────────────────────────────────
+
   &__logo {
     display: flex;
     align-items: center;
@@ -64,24 +38,20 @@ $transition:    0.25s cubic-bezier(0.4, 0, 0.2, 1);
     &-icon {
       width: 32px;
       height: 32px;
-      color: $green-deep;
-      display: flex;
-      align-items: center;
+      color: v.$green-deep;
 
       svg {
         width: 100%;
         height: 100%;
-        filter: drop-shadow(0 2px 4px rgba($green-mid, 0.4));
-        transition: transform $transition;
+        transition: transform v.$transition;
       }
     }
 
     &-text {
-      font-family: $font-display;
+      font-family: v.$font-display;
       font-size: 1.55rem;
       font-weight: 600;
-      color: $green-deep;
-      letter-spacing: 0.02em;
+      color: v.$green-deep;
     }
 
     &:hover &-icon svg {
@@ -89,7 +59,10 @@ $transition:    0.25s cubic-bezier(0.4, 0, 0.2, 1);
     }
   }
 
-  // ─── Desktop Nav ─────────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
+// Desktop Nav
+// ─────────────────────────────────────────────────────────────────────────────
+
   &__nav {
     display: flex;
     align-items: center;
@@ -104,13 +77,11 @@ $transition:    0.25s cubic-bezier(0.4, 0, 0.2, 1);
 
   &__nav-link {
     font-size: 0.875rem;
-    font-weight: 400;
-    color: $text-mid;
+    color: v.$text-mid;
     text-decoration: none;
     padding: 0.45rem 0.9rem;
-    border-radius: $radius;
-    letter-spacing: 0.01em;
-    transition: color $transition, background $transition;
+    border-radius: v.$radius-full;
+    transition: all v.$transition;
     position: relative;
 
     &::after {
@@ -121,24 +92,28 @@ $transition:    0.25s cubic-bezier(0.4, 0, 0.2, 1);
       transform: translateX(-50%) scaleX(0);
       width: 16px;
       height: 2px;
-      background: $green-mid;
-      border-radius: 2px;
-      transition: transform $transition;
+      background: v.$green-mid;
+      transition: transform v.$transition;
     }
 
     &:hover {
-      color: $green-deep;
-      background: rgba($green-light, 0.3);
+      color: v.$green-deep;
+      background: rgba(v.$green-light, 0.3);
 
       &::after {
         transform: translateX(-50%) scaleX(1);
       }
+    }
+
+    &:focus-visible {
+      outline: 2px solid v.$green-mid;
+      outline-offset: 3px;
     }
 
     &--active {
-      color: $green-deep;
+      color: v.$green-deep;
       font-weight: 500;
-      background: rgba($green-light, 0.4);
+      background: rgba(v.$green-light, 0.4);
 
       &::after {
         transform: translateX(-50%) scaleX(1);
@@ -146,39 +121,35 @@ $transition:    0.25s cubic-bezier(0.4, 0, 0.2, 1);
     }
   }
 
-  // ─── Auth Buttons ─────────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
+// Auth Button
+// ─────────────────────────────────────────────────────────────────────────────
+
   &__auth {
     display: flex;
-    align-items: center;
     gap: 0.75rem;
-    flex-shrink: 0;
 
     @media (max-width: 860px) {
       display: none;
     }
   }
 
-  // ─── Welcome message ───────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
+// Welcome Message
+// ─────────────────────────────────────────────────────────────────────────────
+
   &__welcome {
-    font-family: $font-body;
-    font-size: 0.85rem;
-    font-weight: 400;
-    color: $text-mid;
+    font-family: v.$font-body;
+    color: v.$text-mid;
     margin-right: 0.25rem;
-    letter-spacing: 0.01em;
-    white-space: nowrap;
-
-    span {
-      font-weight: 500;
-      color: $green-deep;
-    }
-
-    @media (max-width: 860px) {
-      display: none;
-    }
+    display: inline-flex;
+    align-items: center;
   }
 
-  // ─── Burger ───────────────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
+// Burger
+// ─────────────────────────────────────────────────────────────────────────────
+
   &__burger {
     display: none;
     flex-direction: column;
@@ -186,7 +157,6 @@ $transition:    0.25s cubic-bezier(0.4, 0, 0.2, 1);
     background: none;
     border: none;
     cursor: pointer;
-    padding: 4px;
     margin-left: auto;
 
     @media (max-width: 860px) {
@@ -194,34 +164,66 @@ $transition:    0.25s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     span {
-      display: block;
       width: 24px;
       height: 2px;
-      background: $green-deep;
-      border-radius: 2px;
-      transition: transform $transition, opacity $transition;
-      transform-origin: center;
+      background: v.$green-deep;
+      transition: transform v.$transition, opacity v.$transition;
     }
 
     &--open {
       span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-      span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+      span:nth-child(2) { opacity: 0; }
       span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
     }
-  }
+}
 
-  // ─── Mobile Menu ──────────────────────────────────────────────────────────
+.burger-svg {
+  width: 24px;
+  overflow: visible;
+
+  path {
+    fill: v.$green-deep;
+  }
+}
+
+/* Animation burger SVG */
+.bun-top,
+.ingredients,
+.bun-bottom {
+  transition: transform 0.4s ease;
+  transform-origin: center;
+}
+
+.header__burger--open .bun-top {
+  transform: translateY(-50px);
+}
+
+.header__burger--open .ingredients {
+  transform: translateY(-15px);
+}
+
+.header__burger--open .bun-bottom {
+  transform: translateY(35px);
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Mobile Menu
+// ─────────────────────────────────────────────────────────────────────────────
+
   &__mobile-menu {
     overflow: hidden;
     max-height: 0;
-    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding $transition;
-    padding: 0 2rem;
-    background: $cream;
+    transition: max-height 0.4s ease, padding v.$transition;
+    background: v.$cream;
+
+    @media (min-width: 861px) {
+      display: none;
+    }
 
     &--open {
-      max-height: 500px;
+      max-height: 600px;
       padding: 1rem 2rem 1.5rem;
-      border-top: 1px solid rgba($green-light, 0.5);
+      border-top: 1px solid rgba(v.$green-light, 0.5);
     }
   }
 
@@ -231,17 +233,22 @@ $transition:    0.25s cubic-bezier(0.4, 0, 0.2, 1);
     gap: 0.25rem;
 
     a {
-      font-family: $font-body;
       font-size: 1rem;
-      color: $text-mid;
+      color: v.$text-mid;
       text-decoration: none;
       padding: 0.65rem 0.75rem;
       border-radius: 10px;
-      transition: color $transition, background $transition;
+      transition: all v.$transition;
 
       &:hover {
-        color: $green-deep;
-        background: rgba($green-light, 0.35);
+        background: rgba(v.$green-light, 0.35);
+        color: v.$green-deep;
+      }
+
+      &.active {
+        background: rgba(v.$green-light, 0.4);
+        color: v.$green-deep;
+        font-weight: 500;
       }
     }
   }
@@ -251,44 +258,46 @@ $transition:    0.25s cubic-bezier(0.4, 0, 0.2, 1);
     gap: 0.75rem;
     margin-top: 1rem;
     padding-top: 1rem;
-    border-top: 1px solid rgba($green-light, 0.4);
+    border-top: 1px solid rgba(v.$green-light, 0.4);
   }
 }
 
-// ─── Buttons ──────────────────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
+// Button
+// ─────────────────────────────────────────────────────────────────────────────
+
 .btn {
-  font-family: $font-body;
+  font-family: v.$font-body;
   font-size: 0.875rem;
   font-weight: 500;
   text-decoration: none;
   padding: 0.55rem 1.35rem;
-  border-radius: $radius;
+  border-radius: v.$radius-full;
   cursor: pointer;
-  transition: all $transition;
-  letter-spacing: 0.01em;
+  transition: all v.$transition;
   border: none;
   display: inline-flex;
   align-items: center;
 
   &--ghost {
-    color: $green-deep;
+    color: v.$green-deep;
     background: transparent;
-    border: 1.5px solid rgba($green-mid, 0.5);
+    border: 1.5px solid rgba(v.$green-mid, 0.5);
 
     &:hover {
-      background: rgba($green-light, 0.3);
-      border-color: $green-mid;
+      background: rgba(v.$green-light, 0.3);
+      border-color: v.$green-mid;
     }
   }
 
   &--solid {
-    color: $white;
-    background: $green-deep;
-    box-shadow: 0 2px 12px rgba($green-deep, 0.25);
+    color: v.$white;
+    background: v.$green-deep;
+    box-shadow: 0 2px 12px rgba(v.$green-deep, 0.25);
 
     &:hover {
-      background: color.adjust($green-deep, $lightness: -5%)m;
-      box-shadow: 0 4px 16px rgba($green-deep, 0.35);
+      background: v.$green-deep;
+      box-shadow: 0 4px 16px rgba(v.$green-deep, 0.35);
       transform: translateY(-1px);
     }
 
@@ -297,3 +306,4 @@ $transition:    0.25s cubic-bezier(0.4, 0, 0.2, 1);
     }
   }
 }
+
