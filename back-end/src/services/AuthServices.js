@@ -32,7 +32,7 @@ async function login(email, password) {
     {
       id: account.id,
       email: account.email,
-      name: account.first_name,
+      name: `${account.first_name} ${account.last_name}`,
       role, // "user" | "dietician" | "admin"
     };
     return { user, token };
