@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useAuth } from "../context/AuthContext";
 import "./google.scss";
 
 // ─── Constantes ───────────────────────────────────────────────────────────────
@@ -100,7 +101,7 @@ function formatDateFr(dateStr) {
 
 export default function BookAppointment() {
 	// Infos de l'utilisateur connecté (décodées depuis le JWT)
-	const [currentUser, setCurrentUser] = useState(null);
+	const { user: currentUser } = useAuth();
 
 	// Le diététicien unique, chargé automatiquement
 	const [dietician, setDietician] = useState(null);
@@ -132,13 +133,6 @@ export default function BookAppointment() {
 
 	useEffect(() => {
 		async function initPage() {
-			// 1. Décoder le JWT pour récupérer id, role et email
-			const jwtToken = getTokenFromCookie();
-			if (jwtToken) {
-				const payload = decodeJwtPayload(jwtToken);
-				setCurrentUser(payload);
-			}
-
 			// 2. Charger le diététicien via la route publique
 			try {
 				const response = await fetch(`${API_BASE_URL}/dieticians/public`);
@@ -227,6 +221,7 @@ export default function BookAppointment() {
 	// ─── Soumission du rendez-vous ─────────────────────────────────────────────
 
 	async function handleBookAppointment() {
+		console.log("currentUser complet :", currentUser);
 		if (!dietician || !selectedDate || !selectedSlot) return;
 
 		setIsSubmitting(true);
@@ -248,7 +243,7 @@ export default function BookAppointment() {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify({
-					summary: `Consultation — ${currentUser?.first_name || "Patient"}`,
+					summary: `Consultation — ${currentUser?.name || "Patient"}`,
 					description: `Rendez-vous avec ${dietician.first_name} ${dietician.last_name}`,
 					start: startTime,
 					end: endTime,
