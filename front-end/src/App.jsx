@@ -5,6 +5,9 @@ import Home from "./components/Home";
 import Login from "./components/Login";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import Google from "./components/google";
+import NewsLetter from "./components/NewsLetter";
+import NewsLetterDetail from "./components/NewsLetterDetail";
 import UserPage from "./components/UserPage/index";
 import DietDashboard from "./components/DietDashboard/index";
 import NewLetter from "./components/NewLetter";
@@ -16,16 +19,21 @@ function AppRoutes() {
 
   return (  
     <>
+    <div className="app-layout">
       <Header />
-      <Routes>
-        <Route path="/login"           element={<Login />} />
-        <Route path="/"                element={<ProtectedRoute><Home /></ProtectedRoute>} />
-        <Route path="/profil"          element={<UserRoute><UserPage user={user} /></UserRoute>} />
-        <Route path="/dashboard"       element={<DietRoute><DietDashboard /></DietRoute>} />
-        <Route path="/newletter"       element={<NewLetter />} />
-        <Route path="/newletter/:id"   element={<NewLetterDetail />} />
-      </Routes>
+        <div className="app-content">
+          <Routes>
+            <Route path="/login"           element={<Login />} />
+            <Route path="/"                element={<ProtectedRoute><Home /></ProtectedRoute>} />
+            <Route path="/profil"          element={<UserRoute><UserPage user={user} /></UserRoute>} />
+            <Route path="/dashboard"       element={<DietRoute><DietDashboard /></DietRoute>} />
+            <Route path="/google"          element={<ProtectedRoute><Google /></ProtectedRoute>} />
+            <Route path="/newsletter"       element={<NewsLetter />} />
+            <Route path="/newsletter/:id"   element={<NewsLetterDetail />} />
+          </Routes>
+        </div>
       <Footer />
+    </div>
     </>
   );
 }
