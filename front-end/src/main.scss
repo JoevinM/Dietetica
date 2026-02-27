@@ -1,12 +1,4 @@
-// ─────────────────────────────────────────────────────────────────────────────
-// Variables
-// ─────────────────────────────────────────────────────────────────────────────
-
-$beige:       #F0EBE1;
-
-$font-display: 'Cormorant Garamond', Georgia, serif;
-
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=DM+Sans:wght@300;400;500&display=swap');
+@use "./styles/variables.scss" as v;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Body
@@ -18,6 +10,6 @@ html, body {
 }
 
 body {
-  font-family: $font-display;
-  background-color: $beige;
+  font-family: v.$font-display;
+  background-color: v.$beige;
 }

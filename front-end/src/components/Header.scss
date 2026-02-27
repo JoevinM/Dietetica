@@ -1,20 +1,4 @@
-// ─────────────────────────────────────────────────────────────────────────────
-// Variables
-// ─────────────────────────────────────────────────────────────────────────────
-
-$green-deep:    #2D6A4F;
-$green-mid:     #52B788;
-$green-light:   #B7E4C7;
-$cream:         #FAFAF7;
-$text-mid:      #4A6357;
-$white:         #FFFFFF;
-
-$font-display:  'Cormorant Garamond', Georgia, serif;
-$font-body:     'DM Sans', sans-serif;
-
-$header-height: 72px;
-$radius-full:        50px;
-$transition:    0.25s cubic-bezier(0.4, 0, 0.2, 1);
+@use "../styles/variables.scss" as v;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Header
@@ -25,15 +9,15 @@ $transition:    0.25s cubic-bezier(0.4, 0, 0.2, 1);
   top: 0;
   z-index: 100;
   width: 100%;
-  background: rgba($cream, 0.92);
+  background: rgba(v.$cream, 0.92);
   backdrop-filter: blur(14px);
-  border-bottom: 1px solid rgba($green-mid, 0.15);
-  font-family: $font-body;
+  border-bottom: 1px solid rgba(v.$green-mid, 0.15);
+  font-family: v.$font-body;
 
   &__inner {
     max-width: 1200px;
     margin: 0 auto;
-    height: $header-height;
+    height: v.$header-height;
     padding: 0 2rem;
     display: flex;
     align-items: center;
@@ -54,20 +38,20 @@ $transition:    0.25s cubic-bezier(0.4, 0, 0.2, 1);
     &-icon {
       width: 32px;
       height: 32px;
-      color: $green-deep;
+      color: v.$green-deep;
 
       svg {
         width: 100%;
         height: 100%;
-        transition: transform $transition;
+        transition: transform v.$transition;
       }
     }
 
     &-text {
-      font-family: $font-display;
+      font-family: v.$font-display;
       font-size: 1.55rem;
       font-weight: 600;
-      color: $green-deep;
+      color: v.$green-deep;
     }
 
     &:hover &-icon svg {
@@ -93,11 +77,11 @@ $transition:    0.25s cubic-bezier(0.4, 0, 0.2, 1);
 
   &__nav-link {
     font-size: 0.875rem;
-    color: $text-mid;
+    color: v.$text-mid;
     text-decoration: none;
     padding: 0.45rem 0.9rem;
-    border-radius: $radius-full;
-    transition: all $transition;
+    border-radius: v.$radius-full;
+    transition: all v.$transition;
     position: relative;
 
     &::after {
@@ -108,13 +92,13 @@ $transition:    0.25s cubic-bezier(0.4, 0, 0.2, 1);
       transform: translateX(-50%) scaleX(0);
       width: 16px;
       height: 2px;
-      background: $green-mid;
-      transition: transform $transition;
+      background: v.$green-mid;
+      transition: transform v.$transition;
     }
 
     &:hover {
-      color: $green-deep;
-      background: rgba($green-light, 0.3);
+      color: v.$green-deep;
+      background: rgba(v.$green-light, 0.3);
 
       &::after {
         transform: translateX(-50%) scaleX(1);
@@ -122,14 +106,14 @@ $transition:    0.25s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     &:focus-visible {
-      outline: 2px solid $green-mid;
+      outline: 2px solid v.$green-mid;
       outline-offset: 3px;
     }
 
     &--active {
-      color: $green-deep;
+      color: v.$green-deep;
       font-weight: 500;
-      background: rgba($green-light, 0.4);
+      background: rgba(v.$green-light, 0.4);
 
       &::after {
         transform: translateX(-50%) scaleX(1);
@@ -155,8 +139,8 @@ $transition:    0.25s cubic-bezier(0.4, 0, 0.2, 1);
 // ─────────────────────────────────────────────────────────────────────────────
 
   &__welcome {
-    font-family: $font-body;
-    color: $text-mid;
+    font-family: v.$font-body;
+    color: v.$text-mid;
     margin-right: 0.25rem;
     display: inline-flex;
     align-items: center;
@@ -182,8 +166,8 @@ $transition:    0.25s cubic-bezier(0.4, 0, 0.2, 1);
     span {
       width: 24px;
       height: 2px;
-      background: $green-deep;
-      transition: transform $transition, opacity $transition;
+      background: v.$green-deep;
+      transition: transform v.$transition, opacity v.$transition;
     }
 
     &--open {
@@ -191,7 +175,36 @@ $transition:    0.25s cubic-bezier(0.4, 0, 0.2, 1);
       span:nth-child(2) { opacity: 0; }
       span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
     }
+}
+
+.burger-svg {
+  width: 24px;
+  overflow: visible;
+
+  path {
+    fill: v.$green-deep;
   }
+}
+
+/* Animation burger SVG */
+.bun-top,
+.ingredients,
+.bun-bottom {
+  transition: transform 0.4s ease;
+  transform-origin: center;
+}
+
+.header__burger--open .bun-top {
+  transform: translateY(-50px);
+}
+
+.header__burger--open .ingredients {
+  transform: translateY(-15px);
+}
+
+.header__burger--open .bun-bottom {
+  transform: translateY(35px);
+}
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Mobile Menu
@@ -200,8 +213,8 @@ $transition:    0.25s cubic-bezier(0.4, 0, 0.2, 1);
   &__mobile-menu {
     overflow: hidden;
     max-height: 0;
-    transition: max-height 0.4s ease, padding $transition;
-    background: $cream;
+    transition: max-height 0.4s ease, padding v.$transition;
+    background: v.$cream;
 
     @media (min-width: 861px) {
       display: none;
@@ -210,7 +223,7 @@ $transition:    0.25s cubic-bezier(0.4, 0, 0.2, 1);
     &--open {
       max-height: 600px;
       padding: 1rem 2rem 1.5rem;
-      border-top: 1px solid rgba($green-light, 0.5);
+      border-top: 1px solid rgba(v.$green-light, 0.5);
     }
   }
 
@@ -221,20 +234,20 @@ $transition:    0.25s cubic-bezier(0.4, 0, 0.2, 1);
 
     a {
       font-size: 1rem;
-      color: $text-mid;
+      color: v.$text-mid;
       text-decoration: none;
       padding: 0.65rem 0.75rem;
       border-radius: 10px;
-      transition: all $transition;
+      transition: all v.$transition;
 
       &:hover {
-        background: rgba($green-light, 0.35);
-        color: $green-deep;
+        background: rgba(v.$green-light, 0.35);
+        color: v.$green-deep;
       }
 
       &.active {
-        background: rgba($green-light, 0.4);
-        color: $green-deep;
+        background: rgba(v.$green-light, 0.4);
+        color: v.$green-deep;
         font-weight: 500;
       }
     }
@@ -245,7 +258,7 @@ $transition:    0.25s cubic-bezier(0.4, 0, 0.2, 1);
     gap: 0.75rem;
     margin-top: 1rem;
     padding-top: 1rem;
-    border-top: 1px solid rgba($green-light, 0.4);
+    border-top: 1px solid rgba(v.$green-light, 0.4);
   }
 }
 
@@ -254,37 +267,37 @@ $transition:    0.25s cubic-bezier(0.4, 0, 0.2, 1);
 // ─────────────────────────────────────────────────────────────────────────────
 
 .btn {
-  font-family: $font-body;
+  font-family: v.$font-body;
   font-size: 0.875rem;
   font-weight: 500;
   text-decoration: none;
   padding: 0.55rem 1.35rem;
-  border-radius: $radius-full;
+  border-radius: v.$radius-full;
   cursor: pointer;
-  transition: all $transition;
+  transition: all v.$transition;
   border: none;
   display: inline-flex;
   align-items: center;
 
   &--ghost {
-    color: $green-deep;
+    color: v.$green-deep;
     background: transparent;
-    border: 1.5px solid rgba($green-mid, 0.5);
+    border: 1.5px solid rgba(v.$green-mid, 0.5);
 
     &:hover {
-      background: rgba($green-light, 0.3);
-      border-color: $green-mid;
+      background: rgba(v.$green-light, 0.3);
+      border-color: v.$green-mid;
     }
   }
 
   &--solid {
-    color: $white;
-    background: $green-deep;
-    box-shadow: 0 2px 12px rgba($green-deep, 0.25);
+    color: v.$white;
+    background: v.$green-deep;
+    box-shadow: 0 2px 12px rgba(v.$green-deep, 0.25);
 
     &:hover {
-      background: $green-deep;
-      box-shadow: 0 4px 16px rgba($green-deep, 0.35);
+      background: v.$green-deep;
+      box-shadow: 0 4px 16px rgba(v.$green-deep, 0.35);
       transform: translateY(-1px);
     }
 
@@ -293,3 +306,4 @@ $transition:    0.25s cubic-bezier(0.4, 0, 0.2, 1);
     }
   }
 }
+
