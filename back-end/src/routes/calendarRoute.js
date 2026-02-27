@@ -32,10 +32,6 @@ router.get("/auth/google/callback", async (req, res, next) => {
 router.post('/calendar', async (req, res) => {
   const { summary, description, start, end, attendeeEmail } = req.body;
 
-  console.log('attendeeEmail :', attendeeEmail);
-  console.log('start :', start);
-  console.log('end :', end);
-
   try {
     const event = {
       summary,
@@ -46,8 +42,6 @@ router.post('/calendar', async (req, res) => {
         attendees: [{ email: attendeeEmail }]
       }),
     };
-
-    console.log('Event envoyé à Google :', JSON.stringify(event, null, 2));
 
     const result = await GoogleCalendarService.createEvent(event);
     res.json(result);
