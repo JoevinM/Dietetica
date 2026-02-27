@@ -6,6 +6,7 @@ import authenticateToken from "../middlewares/Auth.js";
 import { authenticateTokenOptional } from "../middlewares/TokenOptionnal.js";
 const router = express.Router();
 
+router.get("/public", dieticianController.getFirst);
 router.get("/", authenticateToken, adminOnly, dieticianController.getAll);
 router.get("/:id", authenticateToken, adminOnly, dieticianController.getById);
 router.post("/", authenticateTokenOptional, adminOnly, dieticianController.create);

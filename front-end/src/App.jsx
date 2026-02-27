@@ -5,6 +5,7 @@ import Home from "./Home";
 import Login from "./Login";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import Google from "./components/google";
 import NewsLetter from "./components/NewsLetter";
 import NewsLetterDetail from "./components/NewsLetterDetail";
 
@@ -18,11 +19,15 @@ function App() {
           <Routes>
             <Route path="/login" element={<Login />} />
 
-            <Route
-              path="/"
-              element={
+            <Route path="/" element={
                 <ProtectedRoute>
                   <Home />
+                </ProtectedRoute>
+              }
+            />
+            <Route path="/google" element={
+                <ProtectedRoute>
+                  <Google />
                 </ProtectedRoute>
               }
             />
