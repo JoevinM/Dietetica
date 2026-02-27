@@ -1,15 +1,2 @@
 @use "./styles/variables.scss" as v;
-
-// ─────────────────────────────────────────────────────────────────────────────
-// Body
-// ─────────────────────────────────────────────────────────────────────────────
-
-html, body {
-  height: 100%;
-  margin: 0;
-}
-
-body {
-  font-family: v.$font-display;
-  background-color: v.$beige;
-}
+@use "./styles/global.scss";

@@ -11,9 +11,14 @@
   }
 
   &__back {
-    display: inline-flex; align-items: center; gap: .4rem;
-    font-size: .8rem; font-weight: 500; color: v.$text-soft;
-    text-decoration: none; margin-bottom: 2.5rem;
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+    font-size: .8rem;
+    font-weight: 500;
+    color: v.$text-soft;
+    text-decoration: none;
+    margin-bottom: 2.5rem;
     transition: color .2s;
 
     svg { width: 15px; height: 15px; }
@@ -24,13 +29,16 @@
 
   &__date {
     display: block;
-    font-size: .78rem; font-weight: 300; color: v.$text-soft;
+    font-size: .78rem;
+    font-weight: 300;
+    color: v.$text-soft;
   }
 
   &__title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: v.$font-display;
     font-size: clamp(2rem, 5vw, 2.8rem);
-    font-weight: 500; line-height: 1.2;
+    font-weight: 500;
+    line-height: 1.2;
     color: v.$text-dark;
   }
 
@@ -43,8 +51,10 @@
 
   &__content {
     p {
-      font-size: 1rem; font-weight: 300;
-      color: v.$text-mid; line-height: 1.85;
+      font-size: 1rem;
+      font-weight: 300;
+      color: v.$text-mid;
+      line-height: 1.85;
       margin-bottom: 1.25rem;
     }
   }
@@ -52,26 +62,32 @@
 
 .nld-state {
   min-height: 40vh;
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  gap: 1rem; padding: 3rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 3rem 2rem;
   text-align: center;
 
   p { font-size: .9rem; color: v.$text-soft; }
-  &--error p { color: #e05c5c; }
+  &--error p { color: v.$error; }
 }
 
 .nld-spinner {
-  width: 32px; height: 32px;
+  width: 32px;
+  height: 32px;
   border: 2px solid rgba(v.$green-mid, .2);
   border-top-color: v.$green-mid;
   border-radius: 50%;
-  animation: spin .7s linear infinite;
+  animation: nlSpin .7s linear infinite;
 }
-@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes nlSpin { to { transform: rotate(360deg); } }
 
 .nld-back {
-  font-size: .85rem; color: v.$green-deep;
-  text-decoration: none; font-weight: 500;
+  font-size: .85rem;
+  color: v.$green-deep;
+  text-decoration: none;
+  font-weight: 500;
   &:hover { text-decoration: underline; }
 }
