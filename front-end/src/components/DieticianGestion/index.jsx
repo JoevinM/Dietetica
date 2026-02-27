@@ -3,14 +3,14 @@ import { getAllUsers, getEntriesByUser } from "./dietService";
 import ClientSearch from "./ClientSearch";
 import ClientDetail from "./ClientDetail";
 import { useAuth } from "../../context/AuthContext";
-import "./DietDashboard.scss";
+import "./DieticianGestion.scss";
 
 const TABS = [
   { id: "clients",    label: "Mes clients"  },
   { id: "entretiens", label: "Entretiens"   },
 ];
 
-export default function DietDashboard() {
+export default function DieticianGestion() {
   const { user: diet } = useAuth();
 
   const [activeTab,     setActiveTab]     = useState("clients");

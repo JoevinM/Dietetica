@@ -11,7 +11,7 @@ export function UserRoute({ children }) {
   
   if (!user)
     return <Navigate to="/login"   replace />;
-  if (user.role !== "user") return <Navigate to="/dashboard" replace />;
+  if (user.role !== "user") return <Navigate to="/profil" replace />;
     return children;
 }
 

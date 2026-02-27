@@ -9,9 +9,7 @@ import Google from "./components/google";
 import NewsLetter from "./components/NewsLetter";
 import NewsLetterDetail from "./components/NewsLetterDetail";
 import UserPage from "./components/UserPage/index";
-import DietDashboard from "./components/DietDashboard/index";
-import NewLetter from "./components/NewLetter";
-import NewLetterDetail from "./components/NewLetterDetail";
+import DieticianGestion from "./components/DieticianGestion/index";
 
 // Appelle toutes les routes
 function AppRoutes() {
@@ -23,11 +21,11 @@ function AppRoutes() {
       <Header />
         <div className="app-content">
           <Routes>
-            <Route path="/login"           element={<Login />} />
-            <Route path="/"                element={<ProtectedRoute><Home /></ProtectedRoute>} />
-            <Route path="/profil"          element={<UserRoute><UserPage user={user} /></UserRoute>} />
-            <Route path="/dashboard"       element={<DietRoute><DietDashboard /></DietRoute>} />
-            <Route path="/google"          element={<ProtectedRoute><Google /></ProtectedRoute>} />
+            <Route path="/login"            element={<Login />} />
+            <Route path="/"                 element={<ProtectedRoute><Home /></ProtectedRoute>} />
+            <Route path="/profil"           element={<UserRoute><UserPage user={user} /></UserRoute>} />
+            <Route path="/gestion"          element={<DietRoute><DieticianGestion /></DietRoute>} />
+            <Route path="/google"           element={<ProtectedRoute><Google /></ProtectedRoute>} />
             <Route path="/newsletter"       element={<NewsLetter />} />
             <Route path="/newsletter/:id"   element={<NewsLetterDetail />} />
           </Routes>
