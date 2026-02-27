@@ -32,7 +32,8 @@ export default function Header() {
           <a href="/" className="header__nav-link header__nav-link--active">Accueil</a>
           <a href="/NewLetter" className="header__nav-link">Article</a>
           <a href="/recettes" className="header__nav-link">Recettes</a>
-          <a href="/conseils" className="header__nav-link">Conseils</a>
+          <a href="/profil" className="header__nav-link">Mon profil</a>
+          <a href="/dashboard" className="header__nav-link">Mes patients</a>
           <a href="/contact" className="header__nav-link">Contact</a>
         </nav>
 
@@ -71,7 +72,8 @@ export default function Header() {
           <a href="/" onClick={() => setMenuOpen(false)}>Accueil</a>
           <a href="/programmes" onClick={() => setMenuOpen(false)}>Programmes</a>
           <a href="/recettes" onClick={() => setMenuOpen(false)}>Recettes</a>
-          <a href="/conseils" onClick={() => setMenuOpen(false)}>Conseils</a>
+          <a href="/profil" onClick={() => setMenuOpen(false)}>Mon profil</a>
+          <a href="/dashboard" onClick={() => setMenuOpen(false)}>Mes patients</a>
           <a href="/contact" onClick={() => setMenuOpen(false)}>Contact</a>
         </nav>
         <div className="header__mobile-auth">
