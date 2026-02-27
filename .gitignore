@@ -4,6 +4,7 @@ back-end/package-lock.json
 
 /generated/prisma
 back-end/.env
+front-end/.env
 front-end/package-lock.json
 back-end/.google-tokens.json
 .gitignore
