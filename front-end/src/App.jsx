@@ -22,7 +22,7 @@ function AppRoutes() {
         <div className="app-content">
           <Routes>
             <Route path="/login"            element={<Login />} />
-            <Route path="/"                 element={<ProtectedRoute><Home /></ProtectedRoute>} />
+            <Route path="/"                 element={<Home />} />
             <Route path="/profil"           element={<UserRoute><UserPage user={user} /></UserRoute>} />
             <Route path="/gestion"          element={<DietRoute><DieticianGestion /></DietRoute>} />
             <Route path="/google"           element={<ProtectedRoute><Google /></ProtectedRoute>} />
