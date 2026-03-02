@@ -39,7 +39,10 @@ class DailyEntryController {
 
   async create(req, res, next) {
     try {
-      const entry = await dailyEntryRepository.create(req.body);
+      const entry = await dailyEntryRepository.create({
+      ...req.body,
+      user_id: req.user.id, // récupéré depuis la session
+    });
       res.status(201).json(entry);
     } catch (err) {
       next(err);

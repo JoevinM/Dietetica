@@ -31,8 +31,9 @@ export default function Header() {
   const routes = [
     { path: "/", label: "Accueil", end: true },
     { path: "/newsletter", label: "Article" },
-    { path: "/recettes", label: "Recettes" },
-    { path: "/conseils", label: "Conseils" },
+    { path: "/google", label: "Rendez-vous" },
+    { path: "/profil", label: "Profil" },
+    { path: "/gestion", label: "Gestion" },
     { path: "/contact", label: "Contact" },
   ];
 

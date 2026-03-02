@@ -7,3 +7,5 @@ back-end/.env
 back-end/.google-tokens.json
 front-end/.env
 front-end/package-lock.json
+back-end/.google-tokens.json
+.gitignore

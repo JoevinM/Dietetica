@@ -1,0 +1,402 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=DM+Sans:wght@300;400;500&display=swap');
+
+// ─── Variables (identiques au thème global) ───────────────────────────────────
+:root {
+  --green-deep:  #2D6A4F;
+  --green:       #52B788;
+  --green-light: #B7E4C7;
+  --green-pale:  #D8F3DC;
+  --cream:       #FAFAF7;
+  --beige:       #F0EBE1;
+  --text-dark:   #1A2E23;
+  --text-mid:    #4A6357;
+  --text-soft:   #7A9589;
+  --white:       #FFFFFF;
+  --border:      rgba(82, 183, 136, 0.2);
+  --radius:      10px;
+  --tr:          0.2s ease;
+}
+
+// ─── Page ────────────────────────────────────────────────────────────────────
+.dd {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 4rem;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--text-dark);
+}
+
+// ─── Header ───────────────────────────────────────────────────────────────────
+.dd__header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.dd__avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--green-deep);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.dd__name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.dd__role {
+  font-size: 0.82rem;
+  color: var(--green);
+  font-weight: 500;
+  margin-top: 2px;
+}
+
+// ─── Onglets ──────────────────────────────────────────────────────────────────
+.dd__tabs {
+  display: flex;
+  gap: 0.25rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 2rem;
+}
+
+.dd__tab {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: var(--text-soft);
+  background: none;
+  border: none;
+  padding: 0.65rem 1.25rem;
+  cursor: pointer;
+  position: relative;
+  transition: color var(--tr);
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0; right: 0;
+    height: 2px;
+    background: var(--green-deep);
+    transform: scaleX(0);
+    transition: transform var(--tr);
+  }
+
+  &:hover { color: var(--text-dark); }
+
+  &--active {
+    color: var(--green-deep);
+    font-weight: 500;
+
+    &::after { transform: scaleX(1); }
+  }
+}
+
+// ─── Layout clients (2 colonnes) ──────────────────────────────────────────────
+.dd__clients-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 2rem;
+  align-items: start;
+
+  @media (max-width: 700px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+// ─── Panneau gauche ───────────────────────────────────────────────────────────
+.dd__clients-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.dd__search {
+  height: 40px;
+  padding: 0 0.85rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 300;
+  color: var(--text-dark);
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  outline: none;
+  width: 100%;
+  transition: border-color var(--tr), box-shadow var(--tr);
+
+  &::placeholder { color: rgba(122, 149, 137, 0.5); }
+  &:focus {
+    border-color: var(--green);
+    box-shadow: 0 0 0 3px rgba(82, 183, 136, 0.1);
+  }
+}
+
+.dd__search-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.dd__client-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  transition: border-color var(--tr), background var(--tr);
+
+  &:hover {
+    border-color: var(--green);
+    background: var(--green-pale);
+  }
+
+  &--active {
+    border-color: var(--green-deep);
+    background: var(--green-pale);
+  }
+}
+
+.dd__client-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--green-light);
+  color: var(--green-deep);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.dd__client-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.dd__client-name {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-dark);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dd__client-email {
+  font-size: 0.75rem;
+  font-weight: 300;
+  color: var(--text-soft);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dd__client-arrow {
+  width: 16px;
+  height: 16px;
+  color: var(--text-soft);
+  flex-shrink: 0;
+}
+
+// ─── Panneau droit ────────────────────────────────────────────────────────────
+.dd__detail-panel {
+  min-height: 300px;
+}
+
+.dd__placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  height: 300px;
+  color: var(--text-soft);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+
+  svg { width: 32px; height: 32px; opacity: 0.4; }
+  p   { font-size: 0.875rem; font-weight: 300; }
+}
+
+// ─── Détail client ────────────────────────────────────────────────────────────
+.dd__detail {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.dd__detail-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.dd__avatar-lg {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--green-deep);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.dd__detail-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  line-height: 1.2;
+}
+
+.dd__detail-email {
+  font-size: 0.82rem;
+  color: var(--text-soft);
+  font-weight: 300;
+}
+
+.dd__sub-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--green-deep);
+  margin-top: 0.5rem;
+}
+
+// ─── Stats ────────────────────────────────────────────────────────────────────
+.dd__stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+
+  @media (max-width: 500px) { grid-template-columns: repeat(2, 1fr); }
+}
+
+.dd__stat {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.9rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+
+  &--imc { background: var(--green-pale); border-color: var(--green-light); }
+}
+
+.dd__stat-label {
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-soft);
+}
+
+.dd__stat-value {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  line-height: 1.1;
+
+  small {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 300;
+    color: var(--text-soft);
+  }
+}
+
+// ─── Tableau ──────────────────────────────────────────────────────────────────
+.dd__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+
+  th {
+    text-align: left;
+    font-size: 0.7rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-soft);
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  td {
+    padding: 0.6rem 0.75rem;
+    color: var(--text-mid);
+    font-weight: 300;
+    border-bottom: 1px solid rgba(82, 183, 136, 0.07);
+
+    &:first-child { color: var(--text-dark); font-weight: 400; }
+  }
+
+  tr:last-child td { border-bottom: none; }
+}
+
+.dd__td-notes {
+  max-width: 160px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// ─── Entretiens ───────────────────────────────────────────────────────────────
+.dd__entretiens {
+  min-height: 300px;
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// ─── États ────────────────────────────────────────────────────────────────────
+.dd__empty {
+  font-size: 0.85rem;
+  font-weight: 300;
+  color: var(--text-soft);
+  font-style: italic;
+  padding: 0.5rem 0;
+}
+
+.dd__error {
+  font-size: 0.85rem;
+  color: #c0392b;
+  background: #fdf0ef;
+  border: 1px solid #f5c6c2;
+  border-radius: var(--radius);
+  padding: 0.65rem 1rem;
+  margin-bottom: 1rem;
+}
