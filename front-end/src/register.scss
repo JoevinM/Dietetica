@@ -280,6 +280,21 @@
     font-weight: 500;
     text-decoration: none;
     position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: v.$green-deep;
+      transition: width v.$transition;
+    }
+
+    &:hover::after {
+      width: 100%;
+    }
   }
 }
 

@@ -19,6 +19,10 @@
     gap: 2rem;
   }
 
+  a{
+    font-weight: 500;
+    font-size: clamp(1.2rem, 1vw, 1.5rem);
+  }
 // ─────────────────────────────────────────────────────────────────────────────
 // Logo
 // ─────────────────────────────────────────────────────────────────────────────
@@ -43,7 +47,7 @@
 
     &-text {
       font-family: v.$font-display;
-      font-size: 1.55rem;
+      font-size: 2.2rem;
       font-weight: 600;
       color: v.$green-deep;
     }
