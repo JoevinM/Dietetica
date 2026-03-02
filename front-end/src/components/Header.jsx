@@ -32,7 +32,8 @@ export default function Header() {
     { path: "/", label: "Accueil", end: true },
     { path: "/newsletter", label: "Article" },
     { path: "/google", label: "Rendez-vous" },
-    { path: "/conseils", label: "Conseils" },
+    { path: "/profil", label: "Profil" },
+    { path: "/gestion", label: "Gestion" },
     { path: "/contact", label: "Contact" },
   ];
 

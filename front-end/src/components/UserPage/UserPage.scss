@@ -1,0 +1,342 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=DM+Sans:wght@300;400;500&display=swap');
+
+// ─── Variables ───────────────────────────────────────────────────────────────
+:root {
+  --green-deep:  #2D6A4F;
+  --green:       #52B788;
+  --green-light: #B7E4C7;
+  --green-pale:  #D8F3DC;
+  --cream:       #FAFAF7;
+  --beige:       #F0EBE1;
+  --text-dark:   #1A2E23;
+  --text-mid:    #4A6357;
+  --text-soft:   #7A9589;
+  --white:       #FFFFFF;
+  --border:      rgba(82, 183, 136, 0.2);
+  --radius:      10px;
+  --tr:          0.2s ease;
+}
+
+// ─── Page ────────────────────────────────────────────────────────────────────
+.up {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 4rem;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--text-dark);
+}
+
+// ─── Header utilisateur ───────────────────────────────────────────────────────
+.up__header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.up__avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--green-deep);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.up__name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  line-height: 1.2;
+}
+
+.up__email {
+  font-size: 0.82rem;
+  color: var(--text-soft);
+  font-weight: 300;
+  margin-top: 2px;
+}
+
+// ─── Sections ─────────────────────────────────────────────────────────────────
+.up__section {
+  padding: 0.25rem 0;
+}
+
+.up__section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--green-deep);
+  margin-bottom: 1rem;
+}
+
+.up__divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 1.75rem 0;
+}
+
+// ─── Stats (Infos de base) ────────────────────────────────────────────────────
+.up__stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+
+  @media (max-width: 500px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.up__stat {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.9rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+
+  &--imc {
+    background: var(--green-pale);
+    border-color: var(--green-light);
+  }
+}
+
+.up__stat-label {
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-soft);
+}
+
+.up__stat-value {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  line-height: 1.1;
+
+  small {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 300;
+    color: var(--text-soft);
+  }
+}
+
+// ─── Graphique ────────────────────────────────────────────────────────────────
+.wc {
+  display: block;
+  width: 100%;
+  height: 100px;
+  margin-bottom: 1rem;
+}
+
+// ─── Formulaires ─────────────────────────────────────────────────────────────
+.up__row {
+  display: flex;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.up__form {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr auto;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+
+  @media (max-width: 560px) {
+    grid-template-columns: 1fr 1fr;
+
+    .up__btn { grid-column: 1 / -1; }
+  }
+}
+
+.up__input {
+  height: 40px;
+  padding: 0 0.85rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 300;
+  color: var(--text-dark);
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  outline: none;
+  flex: 1;
+  min-width: 0;
+  transition: border-color var(--tr), box-shadow var(--tr);
+
+  &::placeholder { color: rgba(122, 149, 137, 0.5); }
+
+  &:focus {
+    border-color: var(--green);
+    box-shadow: 0 0 0 3px rgba(82, 183, 136, 0.1);
+  }
+
+  &--sm { flex: 0 0 120px; }
+}
+
+.up__btn {
+  height: 40px;
+  padding: 0 1.2rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--white);
+  background: var(--green-deep);
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background var(--tr), transform var(--tr);
+
+  &:hover {
+    background: #25583f;
+    transform: translateY(-1px);
+  }
+
+  &:active { transform: translateY(0); }
+}
+
+// ─── Tableaux ─────────────────────────────────────────────────────────────────
+.up__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+
+  th {
+    text-align: left;
+    font-size: 0.7rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-soft);
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  td {
+    padding: 0.6rem 0.75rem;
+    color: var(--text-mid);
+    font-weight: 300;
+    border-bottom: 1px solid rgba(82, 183, 136, 0.07);
+
+    &:first-child { color: var(--text-dark); font-weight: 400; }
+  }
+
+  tfoot td {
+    padding-top: 0.75rem;
+    border-bottom: none;
+    border-top: 1px solid var(--border);
+    color: var(--text-dark);
+  }
+
+  tr:last-child td { border-bottom: none; }
+}
+
+// ─── Hint ─────────────────────────────────────────────────────────────────────
+.up__hint {
+  font-size: 0.82rem;
+  color: var(--text-soft);
+  font-weight: 300;
+  margin-bottom: 1rem;
+}
+
+// ─── Formulaire grille ────────────────────────────────────────────────────────
+.up__form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.85rem;
+
+  @media (max-width: 500px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.up__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+
+  &--full { grid-column: 1 / -1; }
+
+  label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-soft);
+  }
+
+  input {
+    height: 40px;
+    padding: 0 0.85rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 300;
+    color: var(--text-dark);
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    outline: none;
+    transition: border-color var(--tr), box-shadow var(--tr);
+
+    &::placeholder { color: rgba(122, 149, 137, 0.45); }
+    &:focus {
+      border-color: var(--green);
+      box-shadow: 0 0 0 3px rgba(82, 183, 136, 0.1);
+    }
+  }
+}
+
+// ─── Erreur ───────────────────────────────────────────────────────────────────
+.up__error {
+  font-size: 0.85rem;
+  color: #c0392b;
+  background: #fdf0ef;
+  border: 1px solid #f5c6c2;
+  border-radius: var(--radius);
+  padding: 0.65rem 1rem;
+  margin-bottom: 1rem;
+}
+
+// ─── Bouton supprimer ─────────────────────────────────────────────────────────
+.up__btn-delete {
+  background: none;
+  border: none;
+  color: var(--text-soft);
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 0 0.25rem;
+  line-height: 1;
+  transition: color var(--tr);
+
+  &:hover { color: #c0392b; }
+}
+
+// ─── Cellule notes (tronquée) ─────────────────────────────────────────────────
+.up__td-notes {
+  max-width: 160px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// ─── État vide ────────────────────────────────────────────────────────────────
+.up__empty {
+  font-size: 0.85rem;
+  font-weight: 300;
+  color: var(--text-soft);
+  font-style: italic;
+  padding: 0.5rem 0;
+}
