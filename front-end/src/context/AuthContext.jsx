@@ -8,7 +8,7 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // appel backedn pour récupérer l'utilisateur via cookie
+    // appel backend pour récupérer l'utilisateur via cookie
     api.get("/auth/me")
       .then(res => setUser(res.data.user)) // si cookie ok, setUser
       .catch(() => setUser(null)) // sinon, user = null
@@ -19,6 +19,10 @@ export function AuthProvider({ children }) {
     const res = await api.post("/auth/login", { email, password });
     setUser(res.data.user); // le back envoie { user } seulement
   };
+  const register = async (formData) => {
+    const res = await api.post("/users", formData);
+    setUser(res.data.user);
+    };
 
   const logout = async () => {
     await api.post("/auth/logout", {});
@@ -26,7 +30,7 @@ export function AuthProvider({ children }) {
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout, loading }}>
+    <AuthContext.Provider value={{ user, login, logout, register, loading }}>
       {children}
     </AuthContext.Provider>
   );

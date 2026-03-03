@@ -6,13 +6,12 @@
 
 .footer {
   background: v.$text-dark;
-  font-family: v.$font-body;
   text-align: center;
   position: relative;
 
   // Fine ligne décorative en haut du footer
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
@@ -28,10 +27,16 @@
     );
   }
 
-  &__inner {
+// ─────────────────────────────────────────────────────────────────────────────
+// Container
+// ─────────────────────────────────────────────────────────────────────────────
+
+  &__inner,
+  &__bottom-inner {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 3rem 2rem 2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -77,12 +82,8 @@
   }
 
   &__bottom-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 1.2rem 2rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    padding-top: 1.2rem;
+    padding-bottom: 1.2rem;
 
     span {
       font-size: 0.85rem;
