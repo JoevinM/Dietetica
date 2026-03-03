@@ -4,10 +4,11 @@ import ClientSearch from "./ClientSearch";
 import ClientDetail from "./ClientDetail";
 import { useAuth } from "../../context/AuthContext";
 import "./DieticianGestion.scss";
+import AddNewsLetter from "./AddNewsLetter.jsx";
 
 const TABS = [
   { id: "clients",    label: "Mes clients"  },
-  { id: "entretiens", label: "Entretiens"   },
+  { id: "Articles", label: "Articles"   },
 ];
 
 export default function DieticianGestion() {
@@ -124,12 +125,10 @@ export default function DieticianGestion() {
         </div>
       )}
 
-      {/* ── Onglet Entretiens ── */}
-      {activeTab === "entretiens" && (
-        <div className="dd__entretiens">
-          <p className="dd__empty">Intégration Google Calendar à venir.</p>
-        </div>
-      )}
+		{/* ── Onglet Entretiens ── */}
+		{activeTab === "Articles" && (
+		<AddNewsLetter onCreated={(newNewsletter) => console.log(newNewsletter)} />
+	)}
 
     </div>
   );
