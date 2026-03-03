@@ -5,7 +5,14 @@
   flex-direction: column;
   gap: 1.25rem;
   max-width: 640px;
+  min-width: 500px;
   padding: 2rem;
+  background: v.$white;
+  border: 1px solid rgba(v.$green-mid, .14);
+  border-radius: v.$radius-md;
+  overflow: hidden;
+  transition: transform v.$transition, box-shadow v.$transition;
+  animation: nlFadeUp .5s ease both;
 
   // ─── Title ─────────────────────────────────────────
   &__title {
@@ -102,6 +109,78 @@
     &:disabled {
       opacity: 0.5;
       cursor: not-allowed;
+    }
+  }
+}
+
+// ─── delete NewsLetter ─────────────────────────────────
+
+.add-nl__wrapper {
+  display: flex;
+  gap: 2rem;
+  padding: 2rem;
+  align-items: flex-start;
+}
+
+.add-nl__list {
+  flex: 1;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+
+  &-title {
+    font-family: v.$font-display;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: v.$text-dark;
+    margin: 0 0 0.5rem;
+  }
+}
+
+.add-nl__empty {
+  font-family: v.$font-body;
+  font-size: 0.85rem;
+  font-weight: 300;
+  color: v.$text-soft;
+}
+
+.add-nl__card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: v.$white;
+  border: 1px solid rgba(v.$green-mid, 0.15);
+  border-radius: v.$radius-md;
+  padding: 1rem 1.25rem;
+
+  &-title {
+    font-family: v.$font-body;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: v.$text-dark;
+  }
+
+  &-delete {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-family: v.$font-body;
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: v.$error;
+    background: rgba(v.$error, 0.08);
+    border: none;
+    border-radius: v.$radius-full;
+    padding: 0.4rem 0.85rem;
+    cursor: pointer;
+    transition: all v.$transition;
+
+    svg { width: 13px; height: 13px; }
+
+    &:hover {
+      background: v.$error;
+      color: v.$white;
     }
   }
 }
