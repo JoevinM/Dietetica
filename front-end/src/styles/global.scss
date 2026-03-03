@@ -1,11 +1,12 @@
 @use "./variables.scss" as v;
-@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=DM+Sans:wght@300;400;500&display=swap");
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Reset Global
 // ─────────────────────────────────────────────────────────────────────────────
 
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -51,13 +52,18 @@ body {
   font-size: 0.875rem;
   font-weight: 500;
   text-decoration: none;
+
   padding: 0.55rem 1.35rem;
   border-radius: v.$radius-full;
-  cursor: pointer;
-  transition: all v.$transition;
   border: none;
+
+  cursor: pointer;
   display: inline-flex;
   align-items: center;
+
+  // plus safe que "all"
+  transition: background v.$transition, border-color v.$transition, box-shadow v.$transition,
+    transform v.$transition, color v.$transition;
 
   &--ghost {
     color: v.$green-deep;
@@ -76,11 +82,9 @@ body {
     box-shadow: 0 2px 12px rgba(v.$green-deep, 0.25);
 
     &:hover {
-      background: v.$green-deep;
       box-shadow: 0 4px 16px rgba(v.$green-deep, 0.35);
       transform: translateY(-1px);
     }
-
   }
 }
 

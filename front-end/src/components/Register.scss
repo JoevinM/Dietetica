@@ -1,0 +1,272 @@
+@use "../styles/variables.scss" as v;
+
+// ─────────────────────────────────────────────
+// Panel Formulaire
+// ─────────────────────────────────────────────
+
+.register__form-panel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: v.$cream;
+  padding: 2rem;
+}
+
+.register__form-wrapper {
+  width: 100%;
+  max-width: 840px;
+  background: v.$white;
+  padding: 2.5rem;
+  border-radius: 18px;
+
+  box-shadow:
+    0 10px 40px rgba(0, 0, 0, 0.06),
+    0 2px 8px rgba(0, 0, 0, 0.04);
+
+  animation: fadeUp 0.6s ease both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+// ─────────────────────────────────────────────
+// Heading
+// ─────────────────────────────────────────────
+
+.register__heading {
+  margin-bottom: 2rem;
+  text-align: center;
+
+  h1 {
+    font-family: v.$font-display;
+    font-size: 2rem;
+    font-weight: 600;
+    color: v.$text-dark;
+    line-height: 1.2;
+  }
+}
+
+// ─────────────────────────────────────────────
+// Form Grid Layout
+// ─────────────────────────────────────────────
+
+.register__form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem 2rem;
+}
+
+// ─────────────────────────────────────────────
+// Field + Label
+// ─────────────────────────────────────────────
+
+.register__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+
+  label {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: v.$text-mid;
+    letter-spacing: 0.02em;
+  }
+}
+
+// ─────────────────────────────────────────────
+// Input Wrapper + Input
+// ─────────────────────────────────────────────
+
+.register__input-wrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.register__input-wrap input {
+  width: 100%;
+  height: 48px;
+
+  /* ✅ Par défaut : on laisse la place à une icône */
+  padding: 0 1rem 0 2.75rem;
+
+  font-family: v.$font-body;
+  font-size: 0.9rem;
+  font-weight: 300;
+
+  color: v.$text-dark;
+  background: v.$white;
+
+  border: 1.5px solid rgba(v.$green-mid, 0.25);
+  border-radius: v.$radius-middle;
+  outline: none;
+
+  transition: border-color v.$transition, box-shadow v.$transition;
+
+  &::placeholder {
+    color: rgba(v.$text-soft, 0.5);
+  }
+
+  &:focus {
+    border-color: v.$green-mid;
+    box-shadow: 0 0 0 3px rgba(v.$green-mid, 0.12);
+  }
+}
+
+/* Champs SANS icône : padding normal */
+.register__input-wrap--noicon input {
+  padding-left: 1rem;
+}
+
+/* ✅ Champ avec "eye" à droite */
+.register__input-wrap--eye input {
+  padding-right: 3rem;
+}
+
+/* Focus via classe */
+.register__field--focused .register__input-wrap input {
+  border-color: v.$green-mid;
+  box-shadow: 0 0 0 3px rgba(v.$green-mid, 0.12);
+}
+// ─────────────────────────────────────────────
+// Icons
+// ─────────────────────────────────────────────
+
+.register__input-icon {
+  position: absolute;
+  left: 0.85rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: v.$text-soft;
+  pointer-events: none;
+  transition: color v.$transition;
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.register__field--focused .register__input-icon {
+  color: v.$green-deep;
+}
+
+// ─────────────────────────────────────────────
+// Eye Toggle
+// ─────────────────────────────────────────────
+
+.register__eye {
+  position: absolute;
+  right: 0.85rem;
+  top: 50%;
+  transform: translateY(-50%);
+
+  background: none;
+  border: none;
+  cursor: pointer;
+
+  color: v.$text-soft;
+  display: flex;
+  align-items: center;
+
+  padding: 4px;
+  border-radius: 4px;
+
+  transition: color v.$transition;
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  &:hover {
+    color: v.$green-deep;
+  }
+}
+
+// ─────────────────────────────────────────────
+// Submit Button
+// ─────────────────────────────────────────────
+
+.register__submit {
+  grid-column: span 2;
+  height: 52px;
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+
+  background: v.$green-deep;
+  color: v.$white;
+
+  font-family: v.$font-body;
+  font-size: 0.95rem;
+  font-weight: 500;
+
+  border: none;
+  border-radius: v.$radius-full;
+  cursor: pointer;
+
+  transition: box-shadow v.$transition, transform v.$transition;
+  box-shadow: 0 4px 20px rgba(v.$green-deep, 0.3);
+
+  letter-spacing: 0.01em;
+
+  &:hover {
+    box-shadow: 0 6px 24px rgba(v.$green-deep, 0.4);
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+// ─────────────────────────────────────────────
+// Footer Link
+// ─────────────────────────────────────────────
+
+.register__register {
+  text-align: center;
+  font-size: 0.85rem;
+  color: v.$text-soft;
+  font-weight: 300;
+  margin-top: 1.75rem;
+
+  a {
+    color: v.$green-deep;
+    font-weight: 500;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+// ─────────────────────────────────────────────
+// Responsive mobile
+// ─────────────────────────────────────────────
+
+@media (max-width: 860px) {
+  .register__form-panel {
+    align-items: flex-start;
+    padding-top: 1rem;
+  }
+
+  .register__form-wrapper {
+    max-width: 100%;
+  }
+
+  .register__form {
+    grid-template-columns: 1fr;
+  }
+
+  .register__submit {
+    grid-column: auto;
+  }
+}

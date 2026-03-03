@@ -25,7 +25,7 @@ export default function NewsletterDetail() {
 		});
 
 	if (loading) return <div className="nld-state"><div className="nld-spinner" /><p>Chargement…</p></div>;
-	if (error) return <div className="nld-state nld-state--error"><p>{error}</p><Link to="/newsletters" className="nld-back">← Retour</Link></div>;
+	if (error) return <div className="nld-state nld-state--error"><p>{error}</p><Link to="/newsletters" className="nld__back">← Retour</Link></div>;
 
 	return (
 		<article className="nld">

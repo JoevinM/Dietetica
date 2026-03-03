@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
+import konamiSound from "/src/assets/konami.mp3";
 import { useNavigate } from "react-router-dom";
 import "/src/components/Header.scss";
 import { NavLink } from "react-router-dom";
@@ -28,14 +29,31 @@ export default function Header() {
 
         {/* Routes */}
 
-  const routes = [
-    { path: "/", label: "Accueil", end: true },
-    { path: "/newsletter", label: "Article" },
-    { path: "/google", label: "Rendez-vous" },
-    { path: "/profil", label: "Profil" },
-    { path: "/gestion", label: "Gestion" },
-    { path: "/contact", label: "Contact" },
-  ];
+  const routes = (() => {
+    if (!user) {
+        return [
+        { path: "/", label: "Accueil", end: true },
+        { path: "/contact", label: "Contact" },
+        ];
+    }
+
+    if (user.role === "dietician" || user.role === "admin") {
+        return [
+        { path: "/", label: "Accueil", end: true },
+        { path: "/google", label: "RDV" },
+        { path: "/newsletter", label: "Article" },
+        { path: "/gestion", label: "Gestion" },
+        { path: "/contact", label: "Contact" },
+        ];
+    }
+
+    return [
+        { path: "/", label: "Accueil", end: true },
+        { path: "/google", label: "RDV" },
+        { path: "/newsletter", label: "Article" },
+        { path: "/contact", label: "Contact" },
+    ];
+  })();
 
   // Konami Code detector
   useEffect(() => {
@@ -51,14 +69,18 @@ export default function Header() {
     ];
 
     let index = 0;
+    const audio = new Audio(konamiSound);
 
     const handler = (e) => {
-      if (e.key.toLowerCase() === konami[index].toLowerCase()) {
+      if (e.key === konami[index]) {
         index++;
 
         if (index === konami.length) {
-          setKonamiUnlocked(true);
-          index = 0;
+            if (!konamiUnlocked) {
+            setKonamiUnlocked(true);
+            audio.play();
+            }
+            index = 0;
         }
       } else {
         index = 0;
@@ -68,7 +90,7 @@ export default function Header() {
     window.addEventListener("keydown", handler);
 
     return () => window.removeEventListener("keydown", handler);
-  }, []);
+  }, [konamiUnlocked]);
 
   return (
     <header className="header">
@@ -91,7 +113,9 @@ export default function Header() {
               />
             </svg>
           </span>
-          <span className="header__logo-text">Dietetica</span>
+          <span className="header__logo-text">
+            {konamiUnlocked ? "Fatetica" : "Dietetica"}
+          </span>
         </NavLink>
 
         {/* Desktop Nav */}
