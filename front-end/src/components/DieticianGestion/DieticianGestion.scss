@@ -6,7 +6,6 @@
 
 .dd {
   max-width: 1000px;
-  margin: 0 auto;
   padding: 2.5rem 1.5rem 4rem;
   font-family: v.$font-body;
   color: v.$text-dark;
@@ -37,8 +36,6 @@
   font-family: v.$font-display;
   font-size: 1.3rem;
   font-weight: 600;
-
-  flex-shrink: 0;
 }
 
 .dd__name {
@@ -64,11 +61,20 @@
   gap: 0.25rem;
   border-bottom: 1px solid rgba(v.$green-mid, 0.2);
   margin-bottom: 2rem;
+
+  /* ✅ responsive: si tu as beaucoup d’onglets */
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .dd__tab {
   font-family: v.$font-body;
-  font-size: 0.875rem;
+  font-size: 0.87rem;
   font-weight: 400;
 
   color: v.$text-soft;
@@ -79,6 +85,7 @@
   cursor: pointer;
   position: relative;
 
+  white-space: nowrap;
   transition: color v.$transition;
 
   &::after {
@@ -117,10 +124,6 @@
   grid-template-columns: 280px 1fr;
   gap: 2rem;
   align-items: start;
-
-  @media (max-width: 700px) {
-    grid-template-columns: 1fr;
-  }
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -182,7 +185,6 @@
   border-radius: v.$radius-middle;
 
   cursor: pointer;
-
   transition: border-color v.$transition, background v.$transition;
 
   &:hover {
@@ -211,8 +213,6 @@
   font-family: v.$font-display;
   font-size: 1rem;
   font-weight: 600;
-
-  flex-shrink: 0;
 }
 
 .dd__client-info {
@@ -225,7 +225,7 @@
 }
 
 .dd__client-name {
-  font-size: 0.875rem;
+  font-size: 0.87rem;
   font-weight: 500;
   color: v.$text-dark;
 
@@ -248,7 +248,6 @@
   width: 16px;
   height: 16px;
   color: v.$text-soft;
-  flex-shrink: 0;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -281,6 +280,8 @@
   p {
     font-size: 0.87rem;
     font-weight: 300;
+    text-align: center;
+    padding: 0 1rem;
   }
 }
 
@@ -315,8 +316,6 @@
   font-family: v.$font-display;
   font-size: 1.2rem;
   font-weight: 600;
-
-  flex-shrink: 0;
 }
 
 .dd__detail-name {
@@ -349,10 +348,6 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 0.75rem;
-
-  @media (max-width: 500px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
 }
 
 .dd__stat {
@@ -414,6 +409,7 @@
     color: v.$text-soft;
     padding: 0.5rem 0.75rem;
     border-bottom: 1px solid rgba(v.$green-mid, 0.2);
+    white-space: nowrap;
   }
 
   td {
@@ -425,6 +421,7 @@
     &:first-child {
       color: v.$text-dark;
       font-weight: 400;
+      white-space: nowrap;
     }
   }
 
@@ -474,4 +471,55 @@
   border-radius: v.$radius-middle;
   padding: 0.65rem 1rem;
   margin-bottom: 1rem;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Responsive (tablette / mobile)
+// ─────────────────────────────────────────────────────────────────────────────
+
+/* ✅ tablette : layout un peu plus serré + stats en 2 colonnes */
+@media (max-width: v.$bp-tablet) {
+  .dd {
+    padding: 2rem 1.25rem 3rem;
+  }
+
+  .dd__clients-layout {
+    grid-template-columns: 260px 1fr;
+    gap: 1.5rem;
+  }
+
+  .dd__stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ✅ mobile : une seule colonne + tabs scrollables + table scrollable */
+@media (max-width: v.$bp-mobile) {
+  .dd {
+    padding: 1.5rem 1rem 2.5rem;
+  }
+
+  .dd__header {
+    gap: 0.85rem;
+  }
+
+  .dd__avatar {
+    width: 46px;
+    height: 46px;
+    font-size: 1.15rem;
+  }
+
+  .dd__name {
+    font-size: 1.4rem;
+  }
+
+  .dd__clients-layout {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  /* ✅ table responsive : wrappe .dd__table dans .table-scroll (global) */
+  .dd__table {
+    min-width: 620px;
+  }
 }

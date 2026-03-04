@@ -39,3 +39,10 @@ $transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 $radius-sm:   10px;
 $radius-middle: 15px;
 $radius-full: 50px;
+
+// ─────────────────────────────
+// Breakpoints
+// ─────────────────────────────
+
+$bp-mobile: 767px;
+$bp-tablet: 1023px;

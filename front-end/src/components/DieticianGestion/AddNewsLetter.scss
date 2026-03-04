@@ -1,23 +1,27 @@
 @use "../../styles/variables.scss" as v;
 
+// ─────────────────────────────────────────────────────────────────────────────
+// Add Newsletter
+// ─────────────────────────────────────────────────────────────────────────────
+
 .add-nl {
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
+
+  width: 100%;
   max-width: 640px;
-  min-width: 500px;
+
   padding: 2rem;
   background: v.$white;
-  border: 1px solid rgba(v.$green-mid, .14);
+  border: 1px solid rgba(v.$green-mid, 0.14);
   border-radius: v.$radius-middle;
   overflow: hidden;
+
   transition: transform v.$transition, box-shadow v.$transition;
-  animation: nlFadeUp .5s ease both;
+  animation: nlFadeUp 0.5s ease both;
 
-// ─────────────────────────────────────────────────────────────────────────────
-// Titre
-// ─────────────────────────────────────────────────────────────────────────────
-
+  // ── Title ────────────────────────────────────────────────────────────────
   &__title {
     font-family: v.$font-display;
     font-size: 1.6rem;
@@ -26,34 +30,27 @@
     margin: 0;
   }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// Feedback message
-// ─────────────────────────────────────────────────────────────────────────────
-
-  &__error {
-    font-family: v.$font-body;
-    font-size: 0.85rem;
-    color: v.$error;
-    background: rgba(v.$error, 0.1);
-    border-radius: v.$radius-sm;
-    padding: 0.75rem 1rem;
-    margin: 0;
-  }
-
+  // ── Feedback ─────────────────────────────────────────────────────────────
+  &__error,
   &__success {
     font-family: v.$font-body;
     font-size: 0.85rem;
-    color: v.$green-deep;
-    background: rgba(v.$green-mid, 0.1);
     border-radius: v.$radius-sm;
     padding: 0.75rem 1rem;
     margin: 0;
   }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// Fields
-// ─────────────────────────────────────────────────────────────────────────────
+  &__error {
+    color: v.$error;
+    background: rgba(v.$error, 0.1);
+  }
 
+  &__success {
+    color: v.$green-deep;
+    background: rgba(v.$green-mid, 0.1);
+  }
+
+  // ── Fields ───────────────────────────────────────────────────────────────
   &__field {
     display: flex;
     flex-direction: column;
@@ -72,12 +69,15 @@
       font-size: 0.9rem;
       font-weight: 300;
       color: v.$text-dark;
+
       background: v.$cream;
       border: 1.5px solid rgba(v.$green-mid, 0.25);
       border-radius: v.$radius-middle;
+
       padding: 0.75rem 1rem;
       outline: none;
       resize: none;
+
       transition: border-color v.$transition, box-shadow v.$transition;
 
       &::placeholder {
@@ -92,25 +92,28 @@
 
     textarea {
       line-height: 1.7;
+      min-height: 140px;
     }
   }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// Submit button
-// ─────────────────────────────────────────────────────────────────────────────
-
+  // ── Submit ───────────────────────────────────────────────────────────────
   &__submit {
     align-self: flex-end;
+
     font-family: v.$font-body;
-    font-size: 0.875rem;
+    font-size: 0.85rem;
     font-weight: 500;
+
     background: v.$green-deep;
     color: v.$white;
+
     border: none;
     border-radius: v.$radius-full;
     padding: 0.65rem 1.5rem;
+
     cursor: pointer;
-    transition: all v.$transition;
+
+    transition: transform v.$transition, box-shadow v.$transition, opacity v.$transition;
     box-shadow: 0 4px 16px rgba(v.$green-deep, 0.25);
 
     &:hover:not(:disabled) {
@@ -126,19 +129,43 @@
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Delete newsletter
+// Layout (form + list)
+// Desktop = row, tablette/mobile = column
 // ─────────────────────────────────────────────────────────────────────────────
 
 .add-nl__wrapper {
   display: flex;
-  gap: 2rem;
-  padding: 2rem;
-  align-items: flex-start;
+  flex-direction: column; // base: tablette + mobile
+  gap: 1.5rem;
+  padding: 1.5rem;
 }
 
+@media (min-width: v.$bp-tablet) {
+  .add-nl__wrapper {
+    flex-direction: row; // desktop
+    align-items: flex-start;
+    gap: 2rem;
+    padding: 2rem;
+  }
+
+  .add-nl {
+    flex: 1 1 640px;
+    max-width: 720px; // un peu plus large sur desktop si tu veux
+  }
+
+  .add-nl__list {
+    flex: 0 1 400px;
+    max-width: 400px;
+    min-width: 280px; // ok sur desktop uniquement
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// List
+// ─────────────────────────────────────────────────────────────────────────────
+
 .add-nl__list {
-  flex: 1;
-  max-width: 400px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
@@ -159,10 +186,16 @@
   color: v.$text-soft;
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// Card
+// ─────────────────────────────────────────────────────────────────────────────
+
 .add-nl__card {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 0.75rem;
+
   background: v.$white;
   border: 1px solid rgba(v.$green-mid, 0.15);
   border-radius: v.$radius-middle;
@@ -173,28 +206,86 @@
     font-size: 0.9rem;
     font-weight: 500;
     color: v.$text-dark;
+
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   &-delete {
     display: inline-flex;
     align-items: center;
     gap: 0.35rem;
+
     font-family: v.$font-body;
-    font-size: 0.78rem;
+    font-size: 0.8rem;
     font-weight: 500;
+
     color: v.$error;
     background: rgba(v.$error, 0.1);
+
     border: none;
     border-radius: v.$radius-full;
     padding: 0.4rem 0.85rem;
-    cursor: pointer;
-    transition: all v.$transition;
 
-    svg { width: 13px; height: 13px; }
+    cursor: pointer;
+
+    transition: background v.$transition, color v.$transition, transform v.$transition;
+
+    svg {
+      width: 13px;
+      height: 13px;
+    }
 
     &:hover {
       background: v.$error;
       color: v.$white;
     }
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Mobile tweaks
+// ─────────────────────────────────────────────────────────────────────────────
+
+@media (max-width: v.$bp-mobile) {
+  .add-nl__wrapper {
+    padding: 1rem;
+    gap: 1.25rem;
+  }
+
+  .add-nl {
+    padding: 1.25rem;
+  }
+
+  .add-nl__submit {
+    align-self: stretch;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .add-nl__card {
+    padding: 0.9rem 1rem;
+  }
+
+  .add-nl__card-delete {
+    padding: 0.35rem 0.7rem;
+    font-size: 0.78rem;
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Animations
+// ─────────────────────────────────────────────────────────────────────────────
+
+@keyframes nlFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

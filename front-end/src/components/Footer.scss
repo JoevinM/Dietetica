@@ -27,34 +27,36 @@
     );
   }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// Container
-// ─────────────────────────────────────────────────────────────────────────────
+  // ───────────────────────────────────────────────────────────────────────────
+  // Container
+  // ───────────────────────────────────────────────────────────────────────────
 
   &__inner,
   &__bottom-inner {
     max-width: 1200px;
     margin: 0 auto;
-    padding-left: 2rem;
-    padding-right: 2rem;
+    padding-inline: 2rem;
+
     display: flex;
     justify-content: center;
     align-items: center;
   }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// Logo
-// ─────────────────────────────────────────────────────────────────────────────
+  // ───────────────────────────────────────────────────────────────────────────
+  // Logo
+  // ───────────────────────────────────────────────────────────────────────────
 
   &__logo {
     display: inline-flex;
     align-items: center;
     gap: 0.6rem;
+
     text-decoration: none;
     font-family: v.$font-display;
     font-size: 1.6rem;
     font-weight: 600;
     color: v.$white;
+
     transition: color v.$transition;
 
     &-icon {
@@ -73,22 +75,76 @@
     }
   }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// Bottom Bar
-// ─────────────────────────────────────────────────────────────────────────────
+  // ───────────────────────────────────────────────────────────────────────────
+  // Bottom Bar
+  // ───────────────────────────────────────────────────────────────────────────
 
   &__bottom {
     border-top: 1px solid rgba(v.$white, 0.1);
   }
 
   &__bottom-inner {
-    padding-top: 1.2rem;
-    padding-bottom: 1.2rem;
+    padding-block: 1.2rem;
 
     span {
       font-size: 0.85rem;
       color: rgba(v.$white, 0.7);
       font-weight: 300;
+    }
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Responsive
+// ─────────────────────────────────────────────────────────────────────────────
+
+// Tablet (≤ 1023px)
+@media (max-width: v.$bp-tablet) {
+  .footer {
+    &__inner,
+    &__bottom-inner {
+      padding-inline: 1.5rem;
+    }
+
+    &__logo {
+      font-size: 1.45rem;
+
+      &-icon {
+        width: 28px;
+        height: 28px;
+      }
+    }
+
+    &__bottom-inner span {
+      font-size: 0.82rem;
+    }
+  }
+}
+
+// Mobile (≤ 767px)
+@media (max-width: v.$bp-mobile) {
+  .footer {
+    &__inner,
+    &__bottom-inner {
+      padding-inline: 1rem;
+    }
+
+    &__logo {
+      font-size: 1.25rem;
+      gap: 0.5rem;
+
+      &-icon {
+        width: 24px;
+        height: 24px;
+      }
+    }
+
+    &__bottom-inner {
+      padding-block: 1rem;
+
+      span {
+        font-size: 0.8rem;
+      }
     }
   }
 }

@@ -28,6 +28,33 @@ body {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
+// Responsive base (global)
+// ─────────────────────────────────────────────────────────────────────────────
+
+// Les médias ne doivent jamais déborder
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
+  height: auto;
+}
+
+// Longs mots/URLs : évite le débordement
+* {
+  overflow-wrap: anywhere;
+}
+
+// Form controls : même typo partout (sinon Safari/Chrome mettent leur style)
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // Layout
 // ─────────────────────────────────────────────────────────────────────────────
 
@@ -41,6 +68,44 @@ body {
   flex: 1;
   display: flex;
   flex-direction: column;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Container (évite de répéter max-width + margin auto + padding)
+// Desktop au-delà de tablette : “ça se débrouille tout seul”
+// ─────────────────────────────────────────────────────────────────────────────
+
+.container {
+  width: min(1100px, calc(100% - 3rem));
+  margin-inline: auto;
+}
+
+// Tablet (≤ 1023px)
+@media (max-width: v.$bp-tablet) {
+  .container {
+    width: min(1100px, calc(100% - 2.5rem));
+  }
+}
+
+// Mobile (≤ 767px)
+@media (max-width: v.$bp-mobile) {
+  .container {
+    width: min(1100px, calc(100% - 2rem));
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Tables responsive (wrap <table> dans .table-scroll si besoin)
+// ─────────────────────────────────────────────────────────────────────────────
+
+.table-scroll {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table-scroll table {
+  min-width: 600px; // ajuste selon tes colonnes
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -62,8 +127,12 @@ body {
   align-items: center;
 
   // plus safe que "all"
-  transition: background v.$transition, border-color v.$transition, box-shadow v.$transition,
-    transform v.$transition, color v.$transition;
+  transition:
+    background v.$transition,
+    border-color v.$transition,
+    box-shadow v.$transition,
+    transform v.$transition,
+    color v.$transition;
 
   &--ghost {
     color: v.$green-deep;

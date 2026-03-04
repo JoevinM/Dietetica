@@ -41,7 +41,6 @@ export default function Header() {
     if (user.role === "dietician" || user.role === "admin") {
         return [
         { path: "/", label: "Accueil", end: true },
-        { path: "/google", label: "RDV" },
         { path: "/newsletter", label: "Article" },
         { path: "/gestion", label: "Gestion" },
         { path: "/contact", label: "Contact" },
