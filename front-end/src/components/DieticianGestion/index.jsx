@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getAllUsers, getEntriesByUser } from "./dietService";
+import { getAllUsers, getEntriesByUser } from "../../api/dietService";
 import ClientSearch from "./ClientSearch";
 import ClientDetail from "./ClientDetail";
 import { useAuth } from "../../context/AuthContext";
