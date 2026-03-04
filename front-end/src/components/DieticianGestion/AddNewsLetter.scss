@@ -9,7 +9,7 @@
   padding: 2rem;
   background: v.$white;
   border: 1px solid rgba(v.$green-mid, .14);
-  border-radius: v.$radius-md;
+  border-radius: v.$radius-middle;
   overflow: hidden;
   transition: transform v.$transition, box-shadow v.$transition;
   animation: nlFadeUp .5s ease both;
@@ -151,7 +151,7 @@
   justify-content: space-between;
   background: v.$white;
   border: 1px solid rgba(v.$green-mid, 0.15);
-  border-radius: v.$radius-md;
+  border-radius: v.$radius-middle;
   padding: 1rem 1.25rem;
 
   &-title {
