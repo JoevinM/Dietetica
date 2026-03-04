@@ -87,7 +87,7 @@
 .cp__card {
   background: $white;
   border: 1px solid rgba($green-mid, 0.2);
-  border-radius: $radius-md;
+  border-radius: $radius-middle;
   padding: 2rem;
   display: flex;
   flex-direction: column;
@@ -163,7 +163,7 @@
 .cp__form {
   background: $white;
   border: 1px solid rgba($green-mid, 0.2);
-  border-radius: $radius-md;
+  border-radius: $radius-middle;
   padding: 2rem;
 }
 
