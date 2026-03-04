@@ -82,7 +82,7 @@
   }
 
   p {
-    font-size: 0.875rem;
+    font-size: 0.87rem;
     color: v.$text-soft;
     font-weight: 300;
   }
@@ -113,7 +113,7 @@
     font-size: 0.8rem;
     font-weight: 500;
     color: v.$text-mid;
-    letter-spacing: 0.02em;
+    letter-spacing: 0.05em;
     transition: color v.$transition;
   }
 }
@@ -156,14 +156,14 @@
 
     &:focus {
       border-color: v.$green-mid;
-      box-shadow: 0 0 0 3px rgba(v.$green-mid, 0.12);
+      box-shadow: 0 0 0 3px rgba(v.$green-mid, 0.1);
     }
   }
 }
 
 .login__field--focused .login__input-wrap input {
   border-color: v.$green-mid;
-  box-shadow: 0 0 0 3px rgba(v.$green-mid, 0.12);
+  box-shadow: 0 0 0 3px rgba(v.$green-mid, 0.1);
 }
 
 
@@ -240,7 +240,7 @@
   cursor: pointer;
   transition: all v.$transition;
   box-shadow: 0 4px 20px rgba(v.$green-deep, 0.3);
-  letter-spacing: 0.01em;
+  letter-spacing: 0.05em;
   margin-top: 0.25rem;
 
   svg {

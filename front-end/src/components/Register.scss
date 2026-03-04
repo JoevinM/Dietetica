@@ -71,7 +71,7 @@
     font-size: 0.8rem;
     font-weight: 500;
     color: v.$text-mid;
-    letter-spacing: 0.02em;
+    letter-spacing: 0.05em;
   }
 }
 
@@ -89,7 +89,7 @@
   width: 100%;
   height: 48px;
 
-  /* ✅ Par défaut : on laisse la place à une icône */
+  /* Par défaut : on laisse la place à une icône */
   padding: 0 1rem 0 2.75rem;
 
   font-family: v.$font-body;
@@ -111,7 +111,7 @@
 
   &:focus {
     border-color: v.$green-mid;
-    box-shadow: 0 0 0 3px rgba(v.$green-mid, 0.12);
+    box-shadow: 0 0 0 3px rgba(v.$green-mid, 0.1);
   }
 }
 
@@ -120,7 +120,7 @@
   padding-left: 1rem;
 }
 
-/* ✅ Champ avec "eye" à droite */
+/* Champ avec "eye" à droite */
 .register__input-wrap--eye input {
   padding-right: 3rem;
 }
@@ -204,7 +204,7 @@
   color: v.$white;
 
   font-family: v.$font-body;
-  font-size: 0.95rem;
+  font-size: 0.1rem;
   font-weight: 500;
 
   border: none;
@@ -214,7 +214,7 @@
   transition: box-shadow v.$transition, transform v.$transition;
   box-shadow: 0 4px 20px rgba(v.$green-deep, 0.3);
 
-  letter-spacing: 0.01em;
+  letter-spacing: 0.05em;
 
   &:hover {
     box-shadow: 0 6px 24px rgba(v.$green-deep, 0.4);

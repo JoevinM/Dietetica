@@ -1,5 +1,9 @@
 @use "../styles/variables.scss" as v;
 
+// ─────────────────────────────────────────────────────────────────────────────
+// Page Newsletter Detail
+// ─────────────────────────────────────────────────────────────────────────────
+
 .nld {
   min-height: 70vh;
   padding: 3rem 2rem 5rem;
@@ -10,28 +14,39 @@
     margin: 0 auto;
   }
 
+  // ───────────────────────────────────────────────────────────────────────────
+  // Lien retour
+  // ───────────────────────────────────────────────────────────────────────────
+
   &__back {
     display: inline-flex;
     align-items: center;
-    gap: .4rem;
-    font-size: .8rem;
+    gap: 0.4rem;
+
+    font-size: 0.8rem;
     font-weight: 500;
     color: v.$text-soft;
     text-decoration: none;
-    margin-bottom: 2.5rem;
-    transition: color .2s;
 
-    svg { width: 15px; height: 15px; }
-    &:hover { color: v.$green-deep; }
+    margin-bottom: 2.5rem;
+    transition: color 0.2s;
+
+    svg {
+      width: 15px;
+      height: 15px;
+    }
+
+    &:hover {
+      color: v.$green-deep;
+    }
   }
 
-  &__header { margin-bottom: 1.5rem; }
+  // ───────────────────────────────────────────────────────────────────────────
+  // En-tête
+  // ───────────────────────────────────────────────────────────────────────────
 
-  &__date {
-    display: block;
-    font-size: .78rem;
-    font-weight: 300;
-    color: v.$text-soft;
+  &__header {
+    margin-bottom: 1.5rem;
   }
 
   &__title {
@@ -49,6 +64,10 @@
     margin-bottom: 2rem;
   }
 
+  // ───────────────────────────────────────────────────────────────────────────
+  // Contenu
+  // ───────────────────────────────────────────────────────────────────────────
+
   &__content {
     p {
       font-size: 1rem;
@@ -58,7 +77,35 @@
       margin-bottom: 1.25rem;
     }
   }
+
+  &__date {
+    display: block;
+    margin-top: 1.25rem;
+    font-size: 0.8rem;
+    font-weight: 300;
+    color: v.$text-soft;
+  }
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Carte (conteneur)
+// ─────────────────────────────────────────────────────────────────────────────
+
+.nld-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+
+  padding: 1.5rem;
+  background: v.$cream;
+  border-radius: v.$radius-middle;
+
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// États (loading / error)
+// ─────────────────────────────────────────────────────────────────────────────
 
 .nld-state {
   min-height: 40vh;
@@ -67,34 +114,50 @@
   align-items: center;
   justify-content: center;
   gap: 1rem;
+
   padding: 3rem 2rem;
   text-align: center;
 
-  p { font-size: .9rem; color: v.$text-soft; }
-  &--error p { color: v.$error; }
+  p {
+    font-size: 0.9rem;
+    color: v.$text-soft;
+  }
+
+  &--error p {
+    color: v.$error;
+  }
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Loader
+// ─────────────────────────────────────────────────────────────────────────────
 
 .nld-spinner {
   width: 32px;
   height: 32px;
-  border: 2px solid rgba(v.$green-mid, .2);
+  border: 2px solid rgba(v.$green-mid, 0.2);
   border-top-color: v.$green-mid;
   border-radius: 50%;
-  animation: nlSpin .7s linear infinite;
+  animation: nlSpin 0.7s linear infinite;
 }
-@keyframes nlSpin { to { transform: rotate(360deg); } }
+
+@keyframes nlSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Lien retour (version affichée en cas d'erreur)
+// ─────────────────────────────────────────────────────────────────────────────
 
 .nld-back {
-  font-size: .85rem;
+  font-size: 0.85rem;
   color: v.$green-deep;
   text-decoration: none;
   font-weight: 500;
-  &:hover { text-decoration: underline; }
-}
 
-.nld-card {
-	display: flex; flex-direction: column;
-	gap: .8rem; padding: 1.5rem;
-	background: v.$cream; border-radius: 15px;
-	box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  &:hover {
+    text-decoration: underline;
+  }
 }

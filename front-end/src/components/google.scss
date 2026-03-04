@@ -1,31 +1,13 @@
-// ─── Variables (cohérentes avec le projet) ────────────────────────────────────
-$green-deep:    #2D6A4F;
-$green-mid:     #52B788;
-$green-light:   #B7E4C7;
-$green-pale:    #D8F3DC;
-$cream:         #FAFAF7;
-$beige:         #F0EBE1;
-$text-dark:     #1A2E23;
-$text-mid:      #4A6357;
-$text-soft:     #7A9589;
-$white:         #FFFFFF;
-$error-red:     #E05C5C;
-$warning-amber: #D97706;
-$warning-bg:    #FFFBEB;
-$warning-border:#FDE68A;
+@use "../styles/variables.scss" as v;
 
-$font-display:  'Cormorant Garamond', Georgia, serif;
-$font-body:     'DM Sans', sans-serif;
-$radius:        12px;
-$tr:            0.2s ease;
+// ─────────────────────────────────────────────────────────────────────────────
+// Page
+// ─────────────────────────────────────────────────────────────────────────────
 
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=DM+Sans:wght@300;400;500&display=swap');
-
-// ─── Page ─────────────────────────────────────────────────────────────────────
 .book {
   min-height: 100vh;
-  background: $beige;
-  font-family: $font-body;
+  background: v.$beige;
+  font-family: v.$font-body;
   padding: 3rem 1.5rem 5rem;
 
   &__container {
@@ -33,56 +15,64 @@ $tr:            0.2s ease;
     margin: 0 auto;
   }
 
-  // ─── En-tête ──────────────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
+// Entête
+// ─────────────────────────────────────────────────────────────────────────────
+
   &__header {
     margin-bottom: 1.75rem;
     animation: fadeUp 0.5s ease both;
   }
 
   &__title {
-    font-family: $font-display;
+    font-family: v.$font-display;
     font-size: 2.2rem;
     font-weight: 600;
-    color: $text-dark;
+    color: v.$text-dark;
     margin: 0 0 0.35rem;
     line-height: 1.2;
   }
 
   &__subtitle {
     font-size: 0.9rem;
-    color: $text-soft;
+    color: v.$text-soft;
     margin: 0;
     font-weight: 300;
 
     strong {
-      color: $text-mid;
+      color: v.$text-mid;
       font-weight: 500;
     }
   }
 
-  // ─── Bandeau Google Calendar ───────────────────────────────────────────────
-  &__gcal {
+// ─────────────────────────────────────────────────────────────────────────────
+// Bandeau Google Calendar
+// ─────────────────────────────────────────────────────────────────────────────
+
+&__gcal {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
+
     padding: 0.85rem 1.1rem;
-    border-radius: $radius;
+    border-radius: v.$radius-middle;
     margin-bottom: 1.5rem;
+
     font-size: 0.85rem;
     font-weight: 400;
     animation: fadeUp 0.5s ease 0.1s both;
 
     &--ok {
-      background: rgba($green-pale, 0.5);
-      border: 1px solid rgba($green-mid, 0.35);
-      color: $green-deep;
+      background: rgba(v.$green-pale, 0.5);
+      border: 1px solid rgba(v.$green-mid, 0.35);
+      color: v.$green-deep;
     }
 
     &--warn {
-      background: $warning-bg;
-      border: 1px solid $warning-border;
-      color: $warning-amber;
+      background: v.$warning-bg;
+      border: 1px solid v.$warning-border;
+      color: v.$warning-amber;
     }
   }
 
@@ -100,29 +90,34 @@ $tr:            0.2s ease;
 
   &__gcal-btn {
     padding: 0.45rem 1rem;
-    font-family: $font-body;
+    font-family: v.$font-body;
     font-size: 0.8rem;
     font-weight: 500;
-    color: $white;
-    background: $warning-amber;
+
+    color: v.$white;
+    background: v.$warning-amber;
     border: none;
-    border-radius: 50px;
+    border-radius: v.$radius-full;
     cursor: pointer;
     white-space: nowrap;
-    transition: all $tr;
+
+    transition: transform v.$transition, box-shadow v.$transition;
 
     &:hover {
-      background: $warning-amber;
       transform: translateY(-1px);
     }
   }
 
-  // ─── Alertes ──────────────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
+// Alertes
+// ─────────────────────────────────────────────────────────────────────────────
+
   &__alert {
     padding: 0.9rem 1.1rem;
-    border-radius: $radius;
-    font-size: 0.875rem;
+    border-radius: v.$radius-middle;
+    font-size: 0.87rem;
     margin-bottom: 1.25rem;
+
     display: flex;
     align-items: center;
     gap: 0.6rem;
@@ -134,26 +129,28 @@ $tr:            0.2s ease;
     }
 
     &--error {
-      background: rgba($error-red, 0.08);
-      border: 1px solid rgba($error-red, 0.25);
-      color: $error-red;
+      background: rgba(v.$error, 0.1);
+      border: 1px solid rgba(v.$error, 0.25);
+      color: v.$error;
     }
 
     &--success {
-      background: rgba($green-pale, 0.6);
-      border: 1px solid rgba($green-mid, 0.4);
-      color: $green-deep;
+      background: rgba(v.$green-pale, 0.6);
+      border: 1px solid rgba(v.$green-mid, 0.4);
+      color: v.$green-deep;
       font-weight: 500;
     }
   }
 
-  // ─── Étapes ───────────────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
+// Etapes
+// ─────────────────────────────────────────────────────────────────────────────
+
   &__steps {
     display: flex;
     flex-direction: column;
     gap: 1.25rem;
 
-    // Désactivé si Google non connecté
     &--disabled {
       opacity: 0.5;
       pointer-events: none;
@@ -161,10 +158,10 @@ $tr:            0.2s ease;
   }
 
   &__step {
-    background: $white;
-    border-radius: $radius;
+    background: v.$white;
+    border-radius: v.$radius-middle;
     padding: 1.6rem;
-    border: 1px solid rgba($green-mid, 0.12);
+    border: 1px solid rgba(v.$green-mid, 0.1);
     animation: fadeUp 0.5s ease both;
 
     &:nth-child(1) { animation-delay: 0.15s; }
@@ -172,52 +169,63 @@ $tr:            0.2s ease;
     &:nth-child(3) { animation-delay: 0.35s; }
 
     &--confirm {
-      border-color: rgba($green-mid, 0.3);
-      background: rgba($green-pale, 0.15);
+      border-color: rgba(v.$green-mid, 0.3);
+      background: rgba(v.$green-pale, 0.15);
     }
   }
 
   &__step-title {
     font-size: 0.95rem;
     font-weight: 500;
-    color: $text-dark;
+    color: v.$text-dark;
     margin: 0 0 1.2rem;
+
     display: flex;
     align-items: center;
     gap: 0.6rem;
-    letter-spacing: 0.01em;
+
+    letter-spacing: 0.05em;
   }
 
   &__step-number {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+
     width: 24px;
     height: 24px;
-    background: $green-deep;
-    color: $white;
+
+    background: v.$green-deep;
+    color: v.$white;
     border-radius: 50%;
+
     font-size: 0.75rem;
     font-weight: 600;
     flex-shrink: 0;
   }
 
-  // ─── Sélecteur de date ─────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
+// Selecteur de dates
+// ─────────────────────────────────────────────────────────────────────────────
+
   &__date-input {
     padding: 0.7rem 1rem;
-    font-family: $font-body;
+    font-family: v.$font-body;
     font-size: 0.9rem;
-    color: $text-dark;
-    background: $cream;
-    border: 1.5px solid rgba($green-mid, 0.2);
-    border-radius: $radius;
+
+    color: v.$text-dark;
+    background: v.$cream;
+
+    border: 1.5px solid rgba(v.$green-mid, 0.2);
+    border-radius: v.$radius-middle;
     outline: none;
+
     cursor: pointer;
-    transition: border-color $tr, box-shadow $tr;
+    transition: border-color v.$transition, box-shadow v.$transition;
 
     &:focus {
-      border-color: $green-mid;
-      box-shadow: 0 0 0 3px rgba($green-mid, 0.1);
+      border-color: v.$green-mid;
+      box-shadow: 0 0 0 3px rgba(v.$green-mid, 0.1);
     }
 
     &:disabled {
@@ -226,7 +234,10 @@ $tr:            0.2s ease;
     }
   }
 
-  // ─── Grille des créneaux ───────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
+// Grilles des créneaux
+// ─────────────────────────────────────────────────────────────────────────────
+
   &__slots,
   &__slots-loading {
     display: grid;
@@ -236,44 +247,48 @@ $tr:            0.2s ease;
 
   &__slot {
     position: relative;
+
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
     padding: 0.6rem 0.4rem;
-    font-family: $font-body;
-    background: $cream;
-    border: 1.5px solid rgba($green-mid, 0.18);
-    border-radius: 8px;
+    font-family: v.$font-body;
+
+    background: v.$cream;
+    border: 1.5px solid rgba(v.$green-mid, 0.2);
+    border-radius: v.$radius-sm;
+
     cursor: pointer;
-    transition: all $tr;
     min-height: 52px;
-	color: black;
+
+    transition: transform v.$transition, box-shadow v.$transition, background v.$transition,
+      border-color v.$transition, color v.$transition;
 
     &:hover:not(:disabled) {
-      border-color: $green-mid;
-      background: $white;
+      border-color: v.$green-mid;
+      background: v.$white;
       transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba($green-deep, 0.08);
+      box-shadow: 0 4px 12px rgba(v.$green-deep, 0.1);
     }
 
     &--selected {
-      background: $green-deep !important;
-      border-color: $green-deep !important;
-      color: $white;
+      background: v.$green-deep !important;
+      border-color: v.$green-deep !important;
+      color: v.$white;
       transform: translateY(-2px);
-      box-shadow: 0 4px 14px rgba($green-deep, 0.25);
+      box-shadow: 0 4px 14px rgba(v.$green-deep, 0.25);
     }
 
     &--booked {
-      background: rgba($text-soft, 0.05);
-      border-color: rgba($text-soft, 0.12);
+      background: rgba(v.$text-soft, 0.05);
+      border-color: rgba(v.$text-soft, 0.1);
       cursor: not-allowed;
       transform: none !important;
       box-shadow: none !important;
     }
 
-    // Squelette de chargement
     &--skeleton {
       background: linear-gradient(90deg, #e8e8e8 25%, #f0f0f0 50%, #e8e8e8 75%);
       background-size: 200% 100%;
@@ -284,84 +299,98 @@ $tr:            0.2s ease;
   }
 
   &__slot-time {
-    font-size: 0.88rem;
+    font-size: 0.9rem;
     font-weight: 500;
     color: inherit;
   }
 
-  .book__slot--booked &__slot-time {
-    color: rgba($text-soft, 0.4);
+  &__slot--booked &__slot-time {
+    color: rgba(v.$text-soft, 0.4);
     font-weight: 400;
   }
 
   &__slot-tag {
-    font-size: 0.62rem;
-    color: rgba($text-soft, 0.5);
+    font-size: 0.6rem;
+    color: rgba(v.$text-soft, 0.5);
     margin-top: 2px;
     font-weight: 300;
   }
 
-  // ─── Notice (désactivé) ────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
+// Notice
+// ─────────────────────────────────────────────────────────────────────────────
+
   &__notice {
-    font-size: 0.875rem;
-    color: $text-soft;
+    font-size: 0.87rem;
+    color: v.$text-soft;
     font-weight: 300;
     margin: 0;
     font-style: italic;
   }
 
-  // ─── Récapitulatif ─────────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
+// Récap
+// ─────────────────────────────────────────────────────────────────────────────
+
   &__recap {
-    border: 1px solid rgba($green-mid, 0.18);
-    border-radius: $radius;
+    border: 1px solid rgba(v.$green-mid, 0.2);
+    border-radius: v.$radius-middle;
     overflow: hidden;
     margin-bottom: 1.25rem;
-    background: $white;
+    background: v.$white;
   }
 
   &__recap-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
     padding: 0.8rem 1rem;
-    font-size: 0.875rem;
+    font-size: 0.87rem;
 
     &:not(:last-child) {
-      border-bottom: 1px solid rgba($green-mid, 0.08);
+      border-bottom: 1px solid rgba(v.$green-mid, 0.1);
     }
 
     span {
-      color: $text-soft;
+      color: v.$text-soft;
       font-weight: 300;
     }
 
     strong {
-      color: $text-dark;
+      color: v.$text-dark;
       font-weight: 500;
       text-align: right;
       text-transform: capitalize;
     }
   }
 
-  // ─── Bouton de confirmation ────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
+// Bouton Confirm
+// ─────────────────────────────────────────────────────────────────────────────
+
   &__confirm-btn {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 0.6rem;
+
     padding: 0.9rem;
-    font-family: $font-body;
-    font-size: 0.925rem;
+    font-family: v.$font-body;
+    font-size: 0.92rem;
     font-weight: 500;
-    color: $white;
-    background: $green-deep;
+
+    color: v.$white;
+    background: v.$green-deep;
     border: none;
-    border-radius: 50px;
+    border-radius: v.$radius-full;
     cursor: pointer;
-    transition: all $tr;
-    box-shadow: 0 4px 16px rgba($green-deep, 0.22);
-    letter-spacing: 0.01em;
+
+    transition: transform v.$transition, box-shadow v.$transition;
+    box-shadow: 0 4px 16px rgba(v.$green-deep, 0.2);
+
+    letter-spacing: 0.05em;
 
     svg {
       width: 17px;
@@ -371,7 +400,7 @@ $tr:            0.2s ease;
 
     &:hover:not(:disabled) {
       transform: translateY(-1px);
-      box-shadow: 0 6px 20px rgba($green-deep, 0.32);
+      box-shadow: 0 6px 20px rgba(v.$green-deep, 0.3);
     }
 
     &:active:not(:disabled) {
@@ -384,26 +413,29 @@ $tr:            0.2s ease;
     }
   }
 
-  // Spinner dans le bouton
   &__btn-spinner {
     display: inline-block;
     width: 16px;
     height: 16px;
-    border: 2px solid rgba($white, 0.35);
-    border-top-color: $white;
+    border: 2px solid rgba(v.$white, 0.35);
+    border-top-color: v.$white;
     border-radius: 50%;
     animation: spin 0.7s linear infinite;
     flex-shrink: 0;
   }
 
-  // ─── Spinner page ──────────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
+// Spinner Page
+// ─────────────────────────────────────────────────────────────────────────────
+
   &__spinner {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 1rem;
+
     padding: 4rem 0;
-    color: $text-soft;
+    color: v.$text-soft;
     font-size: 0.9rem;
     font-weight: 300;
   }
@@ -411,14 +443,16 @@ $tr:            0.2s ease;
   &__spinner-circle {
     width: 36px;
     height: 36px;
-    border: 2.5px solid rgba($green-mid, 0.2);
-    border-top-color: $green-mid;
+    border: 2.5px solid rgba(v.$green-mid, 0.2);
+    border-top-color: v.$green-mid;
     border-radius: 50%;
     animation: spin 0.8s linear infinite;
   }
 }
 
-// ─── Animations ───────────────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
+// Animations
+// ─────────────────────────────────────────────────────────────────────────────
 
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(14px); }

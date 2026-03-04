@@ -6,7 +6,7 @@
 
 .header {
   position: sticky;
-  background: rgba(v.$cream, 0.92);
+  background: rgba(v.$cream, 1);
   border-bottom: 1px solid rgba(v.$green-mid, 0.15);
 
   &__inner {
@@ -74,7 +74,7 @@
   }
 
   &__nav-link {
-    font-size: 0.875rem;
+    font-size: 0.87rem;
     color: v.$text-mid;
     text-decoration: none;
     padding: 0.45rem 0.9rem;

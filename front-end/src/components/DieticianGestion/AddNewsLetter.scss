@@ -9,12 +9,15 @@
   padding: 2rem;
   background: v.$white;
   border: 1px solid rgba(v.$green-mid, .14);
-  border-radius: v.$radius-md;
+  border-radius: v.$radius-middle;
   overflow: hidden;
   transition: transform v.$transition, box-shadow v.$transition;
   animation: nlFadeUp .5s ease both;
 
-  // ─── Title ─────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
+// Titre
+// ─────────────────────────────────────────────────────────────────────────────
+
   &__title {
     font-family: v.$font-display;
     font-size: 1.6rem;
@@ -23,12 +26,15 @@
     margin: 0;
   }
 
-  // ─── Feedback messages ─────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
+// Feedback message
+// ─────────────────────────────────────────────────────────────────────────────
+
   &__error {
     font-family: v.$font-body;
     font-size: 0.85rem;
     color: v.$error;
-    background: rgba(v.$error, 0.08);
+    background: rgba(v.$error, 0.1);
     border-radius: v.$radius-sm;
     padding: 0.75rem 1rem;
     margin: 0;
@@ -44,7 +50,10 @@
     margin: 0;
   }
 
-  // ─── Fields ────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
+// Fields
+// ─────────────────────────────────────────────────────────────────────────────
+
   &__field {
     display: flex;
     flex-direction: column;
@@ -77,7 +86,7 @@
 
       &:focus {
         border-color: v.$green-mid;
-        box-shadow: 0 0 0 3px rgba(v.$green-mid, 0.12);
+        box-shadow: 0 0 0 3px rgba(v.$green-mid, 0.1);
       }
     }
 
@@ -86,7 +95,10 @@
     }
   }
 
-  // ─── Submit button ─────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
+// Submit button
+// ─────────────────────────────────────────────────────────────────────────────
+
   &__submit {
     align-self: flex-end;
     font-family: v.$font-body;
@@ -113,7 +125,9 @@
   }
 }
 
-// ─── delete NewsLetter ─────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
+// Delete newsletter
+// ─────────────────────────────────────────────────────────────────────────────
 
 .add-nl__wrapper {
   display: flex;
@@ -151,7 +165,7 @@
   justify-content: space-between;
   background: v.$white;
   border: 1px solid rgba(v.$green-mid, 0.15);
-  border-radius: v.$radius-md;
+  border-radius: v.$radius-middle;
   padding: 1rem 1.25rem;
 
   &-title {
@@ -169,7 +183,7 @@
     font-size: 0.78rem;
     font-weight: 500;
     color: v.$error;
-    background: rgba(v.$error, 0.08);
+    background: rgba(v.$error, 0.1);
     border: none;
     border-radius: v.$radius-full;
     padding: 0.4rem 0.85rem;
