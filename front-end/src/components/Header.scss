@@ -6,24 +6,23 @@
 
 .header {
   position: sticky;
-  top: 0;
-  z-index: 100;
-  width: 100%;
   background: rgba(v.$cream, 0.92);
-  backdrop-filter: blur(14px);
   border-bottom: 1px solid rgba(v.$green-mid, 0.15);
-  font-family: v.$font-body;
 
   &__inner {
     max-width: 1200px;
     margin: 0 auto;
-    height: v.$header-height;
+    height: 72px;
     padding: 0 2rem;
     display: flex;
     align-items: center;
     gap: 2rem;
   }
 
+  a{
+    font-weight: 500;
+    font-size: clamp(1.2rem, 1vw, 1.5rem);
+  }
 // ─────────────────────────────────────────────────────────────────────────────
 // Logo
 // ─────────────────────────────────────────────────────────────────────────────
@@ -33,7 +32,6 @@
     align-items: center;
     gap: 0.6rem;
     text-decoration: none;
-    flex-shrink: 0;
 
     &-icon {
       width: 32px;
@@ -49,7 +47,7 @@
 
     &-text {
       font-family: v.$font-display;
-      font-size: 1.55rem;
+      font-size: 2.2rem;
       font-weight: 600;
       color: v.$green-deep;
     }
@@ -83,6 +81,8 @@
     border-radius: v.$radius-full;
     transition: all v.$transition;
     position: relative;
+  font-size: clamp(0.85rem, 1vw, 1rem);
+  font-weight: 500;
 
     &::after {
       content: '';
@@ -159,7 +159,7 @@
     cursor: pointer;
     margin-left: auto;
 
-    @media (max-width: 860px) {
+    @media (max-width: 861px) {
       display: flex;
     }
 
@@ -187,6 +187,7 @@
 }
 
 /* Animation burger SVG */
+
 .bun-top,
 .ingredients,
 .bun-bottom {
@@ -216,7 +217,7 @@
     transition: max-height 0.4s ease, padding v.$transition;
     background: v.$cream;
 
-    @media (min-width: 861px) {
+    @media (min-width: 860px) {
       display: none;
     }
 
@@ -261,49 +262,3 @@
     border-top: 1px solid rgba(v.$green-light, 0.4);
   }
 }
-
-// ─────────────────────────────────────────────────────────────────────────────
-// Button
-// ─────────────────────────────────────────────────────────────────────────────
-
-.btn {
-  font-family: v.$font-body;
-  font-size: 0.875rem;
-  font-weight: 500;
-  text-decoration: none;
-  padding: 0.55rem 1.35rem;
-  border-radius: v.$radius-full;
-  cursor: pointer;
-  transition: all v.$transition;
-  border: none;
-  display: inline-flex;
-  align-items: center;
-
-  &--ghost {
-    color: v.$green-deep;
-    background: transparent;
-    border: 1.5px solid rgba(v.$green-mid, 0.5);
-
-    &:hover {
-      background: rgba(v.$green-light, 0.3);
-      border-color: v.$green-mid;
-    }
-  }
-
-  &--solid {
-    color: v.$white;
-    background: v.$green-deep;
-    box-shadow: 0 2px 12px rgba(v.$green-deep, 0.25);
-
-    &:hover {
-      background: v.$green-deep;
-      box-shadow: 0 4px 16px rgba(v.$green-deep, 0.35);
-      transform: translateY(-1px);
-    }
-
-    &:active {
-      transform: translateY(0);
-    }
-  }
-}
-

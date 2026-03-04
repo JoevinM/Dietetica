@@ -3,6 +3,7 @@ import { AuthProvider, useAuth } from "./context/AuthContext";
 import ProtectedRoute, { UserRoute, DietRoute } from "./components/ProtectedRoute";
 import Home from "./components/Home";
 import Login from "./components/Login";
+import Register from "./components/Register";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Google from "./components/google";
@@ -16,7 +17,7 @@ import Contact from "./components/Contact";
 function AppRoutes() {
   const { user } = useAuth();
 
-  return (  
+  return (
     <>
     <div className="app-layout">
       <Header />
@@ -24,6 +25,7 @@ function AppRoutes() {
           <Routes>
             <Route path="/login"            element={<Login />} />
             <Route path="/"                 element={<Home />} />
+            <Route path="/register"         element={<Register />} />
             <Route path="/profil"           element={<UserRoute><UserPage user={user} /></UserRoute>} />
             <Route path="/gestion"          element={<DietRoute><DieticianGestion /></DietRoute>} />
             <Route path="/google"           element={<ProtectedRoute><Google /></ProtectedRoute>} />

@@ -1,10 +1,109 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=DM+Sans:wght@300;400;500&display=swap');
 @use "./variables.scss" as v;
-* {
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Reset Global
+// ─────────────────────────────────────────────────────────────────────────────
+
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
+html,
 body {
+  height: 100%;
   margin: 0;
-  font-family: system-ui, sans-serif;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Typo
+// ─────────────────────────────────────────────────────────────────────────────
+
+body {
+  font-family: v.$font-body;
+  background: v.$beige;
+  color: v.$text-dark;
+  line-height: 1.6;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Layout
+// ─────────────────────────────────────────────────────────────────────────────
+
+.app-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Button
+// ─────────────────────────────────────────────────────────────────────────────
+
+.btn {
+  font-family: v.$font-body;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+
+  padding: 0.55rem 1.35rem;
+  border-radius: v.$radius-full;
+  border: none;
+
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+
+  // plus safe que "all"
+  transition: background v.$transition, border-color v.$transition, box-shadow v.$transition,
+    transform v.$transition, color v.$transition;
+
+  &--ghost {
+    color: v.$green-deep;
+    background: transparent;
+    border: 1.5px solid rgba(v.$green-mid, 0.5);
+
+    &:hover {
+      background: rgba(v.$green-light, 0.3);
+      border-color: v.$green-mid;
+    }
+  }
+
+  &--solid {
+    color: v.$white;
+    background: v.$green-deep;
+    box-shadow: 0 2px 12px rgba(v.$green-deep, 0.25);
+
+    &:hover {
+      box-shadow: 0 4px 16px rgba(v.$green-deep, 0.35);
+      transform: translateY(-1px);
+    }
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Scroll Bar style
+// ─────────────────────────────────────────────────────────────────────────────
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: v.$cream;
+}
+
+::-webkit-scrollbar-thumb {
+  background: v.$green-deep;
+  border-radius: 9px;
+  border: 2.5px solid transparent;
+  background-clip: padding-box;
+  transition: background 0.2s ease;
 }
