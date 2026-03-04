@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getEntriesByUser, createEntry, deleteEntry } from "../../api/userService";
+import { getEntriesByUser, createEntry, deleteEntry, getUser } from "../../api/userService";
 import WeightChart from "./WeightChart";
 import EntryForm   from "./EntryForm";
 import "./UserPage.scss";
@@ -8,18 +8,12 @@ function computeImc(weight, height) {
   return (weight / (height / 100) ** 2).toFixed(1);
 }
 
-function imcLabel(imc) {
-  if (imc < 18.5) return "Insuffisant";
-  if (imc < 25)   return "Normal";
-  if (imc < 30)   return "Surpoids";
-  return "Obésité";
-}
-
 export default function UserPage({ user }) {
   const [entries, setEntries] = useState([]);
   const [loading, setLoading] = useState(true);
   const [saving,  setSaving]  = useState(false);
   const [error,   setError]   = useState(null);
+  const [userData, setUserData] = useState(null);
 
   // ── Chargement initial ────────────────────────────────────────────────────
   useEffect(() => {
@@ -28,6 +22,10 @@ export default function UserPage({ user }) {
       .then(data  => setEntries(data))
       .catch(err  => setError(err.message))
       .finally(()  => setLoading(false));
+    // Charger le profil de l'utilisateur
+    getUser(user.id)
+    .then(setUserData)
+    .catch(err => setError(err.message));
   }, [user?.id]);
 
   // ── Créer une entrée ──────────────────────────────────────────────────────
@@ -56,7 +54,10 @@ export default function UserPage({ user }) {
 
   // ── Données dérivées ──────────────────────────────────────────────────────
   const latestWeight = entries.find(e => e.weight)?.weight ?? null;
-  const imc = latestWeight && user?.height ? computeImc(latestWeight, user.height) : null;
+  const imc =
+    latestWeight && userData?.height
+      ? computeImc(latestWeight, userData.height)
+      : null; 
 
   const chartData = [...entries]
     .filter(e => e.weight)
@@ -93,7 +94,7 @@ export default function UserPage({ user }) {
           </div>
           <div className="up__stat up__stat--imc">
             <span className="up__stat-label">IMC</span>
-            <span className="up__stat-value">{imc ?? "—"} <small>{imc ? imcLabel(imc) : ""}</small></span>
+            <span className="up__stat-value">{imc ?? "—"}</span>
           </div>
         </div>
       </section>
