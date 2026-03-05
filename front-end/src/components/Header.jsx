@@ -49,6 +49,7 @@ export default function Header() {
 
     return [
         { path: "/", label: "Accueil", end: true },
+		{ path: "/profil", label: "Profil" },
         { path: "/google", label: "RDV" },
         { path: "/newsletter", label: "Article" },
         { path: "/contact", label: "Contact" },

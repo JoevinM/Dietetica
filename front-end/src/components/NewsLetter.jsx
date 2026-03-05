@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "/src/components/NewsLetter.scss";
+import image from "/src/assets/dietetica.jpg";
 
 export default function Newsletters() {
   const [newsletters, setNewsletters] = useState([]);
@@ -91,12 +92,7 @@ export default function Newsletters() {
           >
             {index === 0 && !search && (
               <div className="nl-card__visual">
-                <div className="nl-card__visual-icon">
-                  <svg viewBox="0 0 64 64" fill="none">
-                    <path d="M32 8C32 8 16 20 16 36a16 16 0 0032 0c0-16-16-28-16-28z" fill="white"/>
-                    <path d="M32 24C32 24 22 32 22 42a10 10 0 0020 0c0-10-10-18-10-18z" fill="#52B788" opacity=".8"/>
-                  </svg>
-                </div>
+                <img src={image}/>
               </div>
             )}
 
