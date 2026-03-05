@@ -18,7 +18,6 @@
   border-radius: v.$radius-middle;
   overflow: hidden;
 
-  transition: transform v.$transition, box-shadow v.$transition;
   animation: nlFadeUp 0.5s ease both;
 
   // ── Title ────────────────────────────────────────────────────────────────
@@ -217,6 +216,7 @@
     display: inline-flex;
     align-items: center;
     gap: 0.35rem;
+	min-width: 110px;
 
     font-family: v.$font-body;
     font-size: 0.8rem;
