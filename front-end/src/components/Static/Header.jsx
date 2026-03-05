@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../../context/AuthContext";
 import konamiSound from "/src/assets/konami.mp3";
 import { useNavigate } from "react-router-dom";
-import "/src/components/Header.scss";
+import "./Header.scss";
 import { NavLink } from "react-router-dom";
 
 export default function Header() {
