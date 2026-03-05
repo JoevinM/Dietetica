@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import image from "/src/assets/dietetica.jpg";
 import "./Home.scss";
 
 const BASE_URL = "http://localhost:3000";
@@ -73,7 +74,7 @@ export default function Home() {
       <p className="home__hero-subtitle">
         Votre espace santé personnalisé, en lien direct avec votre diététicien.
       </p>
-      <a href="/register" className="home__hero-cta">Prendre rendez-vous</a>
+      <a href="/profil" className="home__hero-cta">Prendre rendez-vous</a>
     </section>
 
     <div className="home__cards">
@@ -147,7 +148,7 @@ export default function Home() {
           <p className="home__empty">Chargement…</p>
         ) : latestArticle ? (
           <>
-            <h3 className="home__article-title">{latestArticle.title}</h3>
+            <img src={image} alt="Article" className="home__article-img" />
             <p className="home__article-date">
               {new Date(latestArticle.created_at).toLocaleDateString("fr-FR", {
                 day: "numeric", month: "long", year: "numeric"
@@ -162,6 +163,7 @@ export default function Home() {
         ) : (
           <p className="home__empty">Aucun article publié pour le moment.</p>
         )}
+        <a href="/newsletter" className="home__article-details">Plus d'articles</a>
       </div>
 
     </div>
