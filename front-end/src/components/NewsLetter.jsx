@@ -20,7 +20,9 @@ export default function Newsletters() {
       .finally(() => setLoading(false));
   }, []);
 
-  const filtered = newsletters.filter((n) =>
+  const filtered = newsletters
+  .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+  .filter((n) =>
     n.title.toLowerCase().includes(search.toLowerCase()) ||
     n.content.toLowerCase().includes(search.toLowerCase())
   );
