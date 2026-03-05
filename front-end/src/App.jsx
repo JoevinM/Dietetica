@@ -1,14 +1,14 @@
 import { Routes, Route } from "react-router-dom";
 import { AuthProvider, useAuth } from "./context/AuthContext";
 import ProtectedRoute, { UserRoute, DietRoute } from "./components/ProtectedRoute";
-import Home from "./components/Home";
+import Home from "./components/HomePage/Home";
 import Login from "./components/Login";
 import Register from "./components/Register";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import Google from "./components/google";
-import NewsLetter from "./components/NewsLetter";
-import NewsLetterDetail from "./components/NewsLetterDetail";
+import Header from "./components/Static/Header";
+import Footer from "./components/Static/Footer";
+import Google from "./components/Appointments/google";
+import NewsLetter from "./components/Newsletter/NewsLetter";
+import NewsLetterDetail from "./components/Newsletter/NewsLetterDetail";
 import UserPage from "./components/UserPage/index";
 import DieticianGestion from "./components/DieticianGestion/index";
 

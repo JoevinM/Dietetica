@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import "/src/components/NewsLetter.scss";
+import "./NewsLetter.scss";
 import image from "/src/assets/dietetica.jpg";
 
 export default function Newsletters() {
