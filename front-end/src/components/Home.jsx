@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "./Home.scss";
+import { Check, Pin, Clock } from 'lucide-react';
 
 const BASE_URL = "http://localhost:3000";
 
@@ -11,11 +12,10 @@ const ACTIVITIES = [
   { label: "Nutrition pédiatrique" },
   { label: "Troubles du comportement alimentaire" },
 ];
-
 const INFOS = {
-  approach: `Mon approche est centrée sur la personne et non sur le régime. 
-  Je pratique une diététique thérapeutique bienveillante, en tenant compte 
-  de vos habitudes, de votre histoire et de vos objectifs. Ma spécialisation 
+  approach: `Mon approche est centrée sur la personne et non sur le régime.
+  Je pratique une diététique thérapeutique bienveillante, en tenant compte
+  de vos habitudes, de votre histoire et de vos objectifs. Ma spécialisation
   porte sur la nutrition clinique et les troubles digestifs.`,
 
   cabinet: {
@@ -84,6 +84,7 @@ export default function Home() {
         <div className="home__activities">
           {ACTIVITIES.map((activity, i) => (
             <div key={i} className="home__activity-item">
+              <Check size={16} />
               <span>{activity.label}</span>
             </div>
           ))}
@@ -101,8 +102,8 @@ export default function Home() {
         <div className="home__card">
           <h2 className="home__card-title">Mon cabinet</h2>
           <div className="home__cabinet">
-            <p>{INFOS.cabinet.address}</p>
-            <p>{INFOS.cabinet.schedule}</p>
+            <p><Pin size={16}/> {INFOS.cabinet.address}</p>
+            <p><Clock size={16}/> {INFOS.cabinet.schedule}</p>
           </div>
         </div>
       )}
@@ -112,7 +113,10 @@ export default function Home() {
         <h2 className="home__card-title">Modalités de consultation</h2>
         <ul className="home__list">
           {INFOS.consultations.map((item, i) => (
-            <li key={i} className="home__list-item">{item}</li>
+            <li key={i} className="home__list-item">
+              <Check size={16} />
+              {item}
+            </li>
           ))}
         </ul>
       </div>
@@ -122,7 +126,10 @@ export default function Home() {
         <h2 className="home__card-title">Modalités de remboursement</h2>
         <ul className="home__list">
           {INFOS.reimbursements.map((item, i) => (
-            <li key={i} className="home__list-item">{item}</li>
+            <li key={i} className="home__list-item">
+              <Check size={16} />
+              {item}
+            </li>
           ))}
         </ul>
       </div>

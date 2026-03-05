@@ -126,19 +126,6 @@
   font-size: 0.9rem;
   color: v.$text-mid;
 
-  &::before {
-    content: "";
-    display: block;
-    min-width: 0.45rem;
-    min-height: 0.45rem;
-    width: 0.45rem;
-    height: 0.45rem;
-    border-right: 2.5px solid v.$green-deep;
-    border-bottom: 2.5px solid v.$green-deep;
-    transform: rotate(45deg);
-    flex-shrink: 0;
-    margin-bottom: 3px;
-  }
 }
 
 // ── Texte générique dans les cards ───────────────────────────────────────────
@@ -164,17 +151,6 @@
     display: flex;
     align-items: baseline;
     gap: 0.6rem;
-
-    &::before {
-      content: "";
-      display: inline-block;
-      width: 0.5rem;
-      height: 0.5rem;
-      border-right: 2px solid v.$green-mid;
-      border-bottom: 2px solid v.$green-mid;
-      transform: rotate(45deg) translateY(-2px);
-      flex-shrink: 0;
-    }
   }
 }
 
@@ -195,18 +171,6 @@
   display: flex;
   align-items: baseline;
   gap: 0.6rem;
-
-  // Check stylisé via ::before
-  &::before {
-    content: "";
-    display: inline-block;
-    width: 0.5rem;
-    height: 0.5rem;
-    border-right: 2px solid v.$green-mid;
-    border-bottom: 2px solid v.$green-mid;
-    transform: rotate(45deg) translateY(-2px);
-    flex-shrink: 0;
-  }
 }
 
 // ── Tarifs ───────────────────────────────────────────────────────────────────
