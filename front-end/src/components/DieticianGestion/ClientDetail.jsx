@@ -81,7 +81,7 @@ export default function ClientDetail({ client, entries, loading }) {
                   <td>{entryImc}</td>
                   <td>{entry.activity || "—"}</td>
                   <td>{entry.calories ? `${entry.calories} kcal` : "—"}</td>
-                  <td className="dd__td-notes">{entry.notes || "—"}</td>
+                  <td className="dd__td-notes" title ={entry.notes || ""}>{entry.notes || "—"}</td>
                 </tr>
               );
             })}
