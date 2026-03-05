@@ -33,6 +33,7 @@ export default function Header() {
     if (!user) {
         return [
         { path: "/", label: "Accueil", end: true },
+        { path: "/newsletter", label: "Article" },
         { path: "/contact", label: "Contact" },
         ];
     }
@@ -40,7 +41,6 @@ export default function Header() {
     if (user.role === "dietician" || user.role === "admin") {
         return [
         { path: "/", label: "Accueil", end: true },
-        { path: "/google", label: "RDV" },
         { path: "/newsletter", label: "Article" },
         { path: "/gestion", label: "Gestion" },
         { path: "/contact", label: "Contact" },
@@ -49,7 +49,7 @@ export default function Header() {
 
     return [
         { path: "/", label: "Accueil", end: true },
-		{ path: "/profil", label: "Profil" },
+        { path: "/profil", label: "Profil" },
         { path: "/google", label: "RDV" },
         { path: "/newsletter", label: "Article" },
         { path: "/contact", label: "Contact" },

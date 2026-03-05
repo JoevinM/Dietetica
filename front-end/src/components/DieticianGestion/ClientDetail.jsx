@@ -64,6 +64,7 @@ export default function ClientDetail({ client, entries, loading }) {
       {entries.length === 0 ? (
         <p className="dd__empty">Aucune entrée enregistrée pour ce client.</p>
       ) : (
+    <div className="table-scroll">
         <table className="dd__table">
           <thead>
             <tr><th>Date</th><th>Poids</th><th>IMC</th><th>Exercice</th><th>Calories</th><th>Notes</th></tr>
@@ -86,6 +87,7 @@ export default function ClientDetail({ client, entries, loading }) {
             })}
           </tbody>
         </table>
+    </div>
       )}
     </div>
   );

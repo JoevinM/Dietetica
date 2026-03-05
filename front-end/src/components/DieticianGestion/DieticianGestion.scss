@@ -1,32 +1,20 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=DM+Sans:wght@300;400;500&display=swap');
+@use "../../styles/variables.scss" as v;
 
-// ─── Variables (identiques au thème global) ───────────────────────────────────
-:root {
-  --green-deep:  #2D6A4F;
-  --green:       #52B788;
-  --green-light: #B7E4C7;
-  --green-pale:  #D8F3DC;
-  --cream:       #FAFAF7;
-  --beige:       #F0EBE1;
-  --text-dark:   #1A2E23;
-  --text-mid:    #4A6357;
-  --text-soft:   #7A9589;
-  --white:       #FFFFFF;
-  --border:      rgba(82, 183, 136, 0.2);
-  --radius:      10px;
-  --tr:          0.2s ease;
-}
+// ─────────────────────────────────────────────────────────────────────────────
+// Page Dietician Dashboard
+// ─────────────────────────────────────────────────────────────────────────────
 
-// ─── Page ────────────────────────────────────────────────────────────────────
 .dd {
   max-width: 1000px;
-  margin: 0 auto;
   padding: 2.5rem 1.5rem 4rem;
-  font-family: 'DM Sans', sans-serif;
-  color: var(--text-dark);
+  font-family: v.$font-body;
+  color: v.$text-dark;
 }
 
-// ─── Header ───────────────────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
+// Header
+// ─────────────────────────────────────────────────────────────────────────────
+
 .dd__header {
   display: flex;
   align-items: center;
@@ -38,85 +26,110 @@
   width: 52px;
   height: 52px;
   border-radius: 50%;
-  background: var(--green-deep);
-  color: var(--white);
+  background: v.$green-deep;
+  color: v.$white;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Cormorant Garamond', serif;
+
+  font-family: v.$font-display;
   font-size: 1.3rem;
   font-weight: 600;
-  flex-shrink: 0;
 }
 
 .dd__name {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: v.$font-display;
   font-size: 1.6rem;
   font-weight: 600;
   line-height: 1.2;
 }
 
 .dd__role {
-  font-size: 0.82rem;
-  color: var(--green);
+  font-size: 0.8rem;
+  color: v.$green-mid;
   font-weight: 500;
   margin-top: 2px;
 }
 
-// ─── Onglets ──────────────────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
+// Tabs
+// ─────────────────────────────────────────────────────────────────────────────
+
 .dd__tabs {
   display: flex;
   gap: 0.25rem;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid rgba(v.$green-mid, 0.2);
   margin-bottom: 2rem;
+
+  /* ✅ responsive: si tu as beaucoup d’onglets */
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .dd__tab {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 0.875rem;
+  font-family: v.$font-body;
+  font-size: 0.87rem;
   font-weight: 400;
-  color: var(--text-soft);
+
+  color: v.$text-soft;
   background: none;
   border: none;
+
   padding: 0.65rem 1.25rem;
   cursor: pointer;
   position: relative;
-  transition: color var(--tr);
+
+  white-space: nowrap;
+  transition: color v.$transition;
 
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     bottom: -1px;
-    left: 0; right: 0;
+    left: 0;
+    right: 0;
     height: 2px;
-    background: var(--green-deep);
+
+    background: v.$green-deep;
     transform: scaleX(0);
-    transition: transform var(--tr);
+    transition: transform v.$transition;
   }
 
-  &:hover { color: var(--text-dark); }
+  &:hover {
+    color: v.$text-dark;
+  }
 
   &--active {
-    color: var(--green-deep);
+    color: v.$green-deep;
     font-weight: 500;
 
-    &::after { transform: scaleX(1); }
+    &::after {
+      transform: scaleX(1);
+    }
   }
 }
 
-// ─── Layout clients (2 colonnes) ──────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
+// Layout clients (2 colonnes)
+// ─────────────────────────────────────────────────────────────────────────────
+
 .dd__clients-layout {
   display: grid;
   grid-template-columns: 280px 1fr;
   gap: 2rem;
   align-items: start;
-
-  @media (max-width: 700px) {
-    grid-template-columns: 1fr;
-  }
 }
 
-// ─── Panneau gauche ───────────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
+// Panneau gauche (clients)
+// ─────────────────────────────────────────────────────────────────────────────
+
 .dd__clients-panel {
   display: flex;
   flex-direction: column;
@@ -125,22 +138,29 @@
 
 .dd__search {
   height: 40px;
-  padding: 0 0.85rem;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 0.875rem;
-  font-weight: 300;
-  color: var(--text-dark);
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  outline: none;
   width: 100%;
-  transition: border-color var(--tr), box-shadow var(--tr);
 
-  &::placeholder { color: rgba(122, 149, 137, 0.5); }
+  padding: 0 0.85rem;
+  font-family: v.$font-body;
+  font-size: 0.87rem;
+  font-weight: 300;
+
+  color: v.$text-dark;
+  background: v.$white;
+
+  border: 1px solid rgba(v.$green-mid, 0.2);
+  border-radius: v.$radius-middle;
+  outline: none;
+
+  transition: border-color v.$transition, box-shadow v.$transition;
+
+  &::placeholder {
+    color: rgba(v.$text-soft, 0.5);
+  }
+
   &:focus {
-    border-color: var(--green);
-    box-shadow: 0 0 0 3px rgba(82, 183, 136, 0.1);
+    border-color: v.$green-mid;
+    box-shadow: 0 0 0 3px rgba(v.$green-mid, 0.1);
   }
 }
 
@@ -151,26 +171,30 @@
 }
 
 .dd__client-row {
+  width: 100%;
+  text-align: left;
+
   display: flex;
   align-items: center;
   gap: 0.75rem;
+
   padding: 0.75rem;
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
+  background: v.$white;
+
+  border: 1px solid rgba(v.$green-mid, 0.2);
+  border-radius: v.$radius-middle;
+
   cursor: pointer;
-  width: 100%;
-  text-align: left;
-  transition: border-color var(--tr), background var(--tr);
+  transition: border-color v.$transition, background v.$transition;
 
   &:hover {
-    border-color: var(--green);
-    background: var(--green-pale);
+    border-color: v.$green-mid;
+    background: v.$green-pale;
   }
 
   &--active {
-    border-color: var(--green-deep);
-    background: var(--green-pale);
+    border-color: v.$green-deep;
+    background: v.$green-pale;
   }
 }
 
@@ -178,29 +202,33 @@
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: var(--green-light);
-  color: var(--green-deep);
+
+  background: v.$green-light;
+  color: v.$green-deep;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Cormorant Garamond', serif;
+
+  font-family: v.$font-display;
   font-size: 1rem;
   font-weight: 600;
-  flex-shrink: 0;
 }
 
 .dd__client-info {
   display: flex;
   flex-direction: column;
   gap: 0.1rem;
+
   flex: 1;
   min-width: 0;
 }
 
 .dd__client-name {
-  font-size: 0.875rem;
+  font-size: 0.87rem;
   font-weight: 500;
-  color: var(--text-dark);
+  color: v.$text-dark;
+
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -209,7 +237,8 @@
 .dd__client-email {
   font-size: 0.75rem;
   font-weight: 300;
-  color: var(--text-soft);
+  color: v.$text-soft;
+
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -218,31 +247,48 @@
 .dd__client-arrow {
   width: 16px;
   height: 16px;
-  color: var(--text-soft);
-  flex-shrink: 0;
+  color: v.$text-soft;
 }
 
-// ─── Panneau droit ────────────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
+// Panneau droit (détails)
+// ─────────────────────────────────────────────────────────────────────────────
+
 .dd__detail-panel {
   min-height: 300px;
 }
 
 .dd__placeholder {
+  height: 300px;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  height: 300px;
-  color: var(--text-soft);
-  border: 1px dashed var(--border);
-  border-radius: var(--radius);
 
-  svg { width: 32px; height: 32px; opacity: 0.4; }
-  p   { font-size: 0.875rem; font-weight: 300; }
+  color: v.$text-soft;
+  border: 1px dashed rgba(v.$green-mid, 0.2);
+  border-radius: v.$radius-middle;
+
+  svg {
+    width: 32px;
+    height: 32px;
+    opacity: 0.4;
+  }
+
+  p {
+    font-size: 0.87rem;
+    font-weight: 300;
+    text-align: center;
+    padding: 0 1rem;
+  }
 }
 
-// ─── Détail client ────────────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
+// Détail client
+// ─────────────────────────────────────────────────────────────────────────────
+
 .dd__detail {
   display: flex;
   flex-direction: column;
@@ -259,110 +305,129 @@
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background: var(--green-deep);
-  color: var(--white);
+
+  background: v.$green-deep;
+  color: v.$white;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Cormorant Garamond', serif;
+
+  font-family: v.$font-display;
   font-size: 1.2rem;
   font-weight: 600;
-  flex-shrink: 0;
 }
 
 .dd__detail-name {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: v.$font-display;
   font-size: 1.4rem;
   font-weight: 600;
-  color: var(--text-dark);
+  color: v.$text-dark;
   line-height: 1.2;
 }
 
 .dd__detail-email {
-  font-size: 0.82rem;
-  color: var(--text-soft);
+  font-size: 0.8rem;
+  color: v.$text-soft;
   font-weight: 300;
 }
 
 .dd__sub-title {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: v.$font-display;
   font-size: 1.1rem;
   font-weight: 600;
-  color: var(--green-deep);
+  color: v.$green-deep;
   margin-top: 0.5rem;
 }
 
-// ─── Stats ────────────────────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
+// Stats
+// ─────────────────────────────────────────────────────────────────────────────
+
 .dd__stats {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 0.75rem;
-
-  @media (max-width: 500px) { grid-template-columns: repeat(2, 1fr); }
 }
 
 .dd__stat {
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
+  background: v.$white;
+  border: 1px solid rgba(v.$green-mid, 0.2);
+  border-radius: v.$radius-middle;
+
   padding: 0.9rem 1rem;
+
   display: flex;
   flex-direction: column;
   gap: 0.2rem;
 
-  &--imc { background: var(--green-pale); border-color: var(--green-light); }
+  &--imc {
+    background: v.$green-pale;
+    border-color: rgba(v.$green-mid, 0.35);
+  }
 }
 
 .dd__stat-label {
   font-size: 0.7rem;
   font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--text-soft);
+  letter-spacing: 0.05em;
+  color: v.$text-soft;
 }
 
 .dd__stat-value {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: v.$font-display;
   font-size: 1.5rem;
   font-weight: 600;
-  color: var(--text-dark);
+  color: v.$text-dark;
   line-height: 1.1;
 
   small {
-    font-family: 'DM Sans', sans-serif;
+    font-family: v.$font-body;
     font-size: 0.75rem;
     font-weight: 300;
-    color: var(--text-soft);
+    color: v.$text-soft;
   }
 }
 
-// ─── Tableau ──────────────────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
+// Tableau
+// ─────────────────────────────────────────────────────────────────────────────
+
 .dd__table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.875rem;
+  font-size: 0.87rem;
 
   th {
     text-align: left;
     font-size: 0.7rem;
     font-weight: 500;
     text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: var(--text-soft);
+    letter-spacing: 0.05em;
+
+    color: v.$text-soft;
     padding: 0.5rem 0.75rem;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid rgba(v.$green-mid, 0.2);
+    white-space: nowrap;
   }
 
   td {
     padding: 0.6rem 0.75rem;
-    color: var(--text-mid);
+    color: v.$text-mid;
     font-weight: 300;
-    border-bottom: 1px solid rgba(82, 183, 136, 0.07);
+    border-bottom: 1px solid rgba(v.$green-mid, 0.1);
 
-    &:first-child { color: var(--text-dark); font-weight: 400; }
+    &:first-child {
+      color: v.$text-dark;
+      font-weight: 400;
+      white-space: nowrap;
+    }
   }
 
-  tr:last-child td { border-bottom: none; }
+  tr:last-child td {
+    border-bottom: none;
+  }
 }
 
 .dd__td-notes {
@@ -372,31 +437,89 @@
   text-overflow: ellipsis;
 }
 
-// ─── Entretiens ───────────────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
+// Entretiens
+// ─────────────────────────────────────────────────────────────────────────────
+
 .dd__entretiens {
   min-height: 300px;
-  border: 1px dashed var(--border);
-  border-radius: var(--radius);
+  border: 1px dashed rgba(v.$green-mid, 0.2);
+  border-radius: v.$radius-middle;
+
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-// ─── États ────────────────────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
+// États (empty / error)
+// ─────────────────────────────────────────────────────────────────────────────
+
 .dd__empty {
   font-size: 0.85rem;
   font-weight: 300;
-  color: var(--text-soft);
+  color: v.$text-soft;
   font-style: italic;
   padding: 0.5rem 0;
 }
 
 .dd__error {
   font-size: 0.85rem;
-  color: #c0392b;
-  background: #fdf0ef;
-  border: 1px solid #f5c6c2;
-  border-radius: var(--radius);
+  color: v.$error;
+  background: rgba(v.$error, 0.1);
+  border: 1px solid rgba(v.$error, 0.25);
+  border-radius: v.$radius-middle;
   padding: 0.65rem 1rem;
   margin-bottom: 1rem;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Responsive (tablette / mobile)
+// ─────────────────────────────────────────────────────────────────────────────
+
+/* ✅ tablette : layout un peu plus serré + stats en 2 colonnes */
+@media (max-width: v.$bp-tablet) {
+  .dd {
+    padding: 2rem 1.25rem 3rem;
+  }
+
+  .dd__clients-layout {
+    grid-template-columns: 260px 1fr;
+    gap: 1.5rem;
+  }
+
+  .dd__stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ✅ mobile : une seule colonne + tabs scrollables + table scrollable */
+@media (max-width: v.$bp-mobile) {
+  .dd {
+    padding: 1.5rem 1rem 2.5rem;
+  }
+
+  .dd__header {
+    gap: 0.85rem;
+  }
+
+  .dd__avatar {
+    width: 46px;
+    height: 46px;
+    font-size: 1.15rem;
+  }
+
+  .dd__name {
+    font-size: 1.4rem;
+  }
+
+  .dd__clients-layout {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  /* ✅ table responsive : wrappe .dd__table dans .table-scroll (global) */
+  .dd__table {
+    min-width: 620px;
+  }
 }
