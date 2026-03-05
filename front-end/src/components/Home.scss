@@ -1,0 +1,296 @@
+@use "../styles/variables.scss" as v;
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Home — Vitrine
+// ─────────────────────────────────────────────────────────────────────────────
+
+.home {
+  background: v.$beige;
+  color: v.$text-dark;
+  font-family: v.$font-body;
+}
+
+// ── Hero ─────────────────────────────────────────────────────────────────────
+
+.home__hero {
+  background: v.$green-deep;
+  color: v.$white;
+  text-align: center;
+  padding: 1rem 1.5rem;
+
+  &-title {
+    font-family: v.$font-display;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 600;
+    margin: 0 0 1rem;
+  }
+
+  &-subtitle {
+    font-size: 1.1rem;
+    color: v.$green-light;
+    margin: 0 0 2rem;
+  }
+
+  &-cta {
+    display: inline-block;
+    padding: 0.7rem 2rem;
+    background: v.$white;
+    color: v.$green-deep;
+    font-weight: 600;
+    border-radius: v.$radius-full;
+    text-decoration: none;
+    transition: background v.$transition, color v.$transition;
+
+    &:hover {
+      background: v.$green-light;
+    }
+  }
+}
+
+// ── Sections ─────────────────────────────────────────────────────────────────
+
+.home__section {
+  padding: 4rem 1.5rem;
+  max-width: 900px;
+  margin-inline: auto;
+}
+
+.home__section-title {
+  font-family: v.$font-display;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: v.$green-deep;
+  margin: 0 0 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid v.$green-light;
+}
+
+// ── Cards alternées ───────────────────────────────────────────────────────────
+// Chaque section est une card positionnée en alternance droite/gauche
+// avec fond pale ou beige en alternance
+
+.home__cards {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 4rem 1.5rem;
+  max-width: 1100px;
+  margin-inline: auto;
+}
+
+.home__card {
+  background: v.$green-pale;   // pair → pale
+  border-radius: v.$radius-middle;
+  padding: 2rem 2.5rem;
+  width: 65%;
+  box-shadow: 0 2px 12px rgba(v.$green-deep, 0.06);
+
+  // Card 1, 3, 5... → droite
+  &:nth-child(odd) {
+    align-self: flex-end;
+    background: v.$green-light;
+  }
+
+  // Card 2, 4, 6... → gauche
+  &:nth-child(even) {
+    align-self: flex-start;
+    background: v.$white;
+  }
+}
+
+.home__card-title {
+  font-family: v.$font-display;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: v.$green-deep;
+  margin: 0 0 1rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 2px solid v.$green-deep;
+}
+
+// ── Activités ────────────────────────────────────────────────────────────────
+
+.home__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.home__activity-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.9rem;
+  color: v.$text-mid;
+
+  &::before {
+    content: "";
+    display: block;
+    min-width: 0.45rem;
+    min-height: 0.45rem;
+    width: 0.45rem;
+    height: 0.45rem;
+    border-right: 2.5px solid v.$green-deep;
+    border-bottom: 2.5px solid v.$green-deep;
+    transform: rotate(45deg);
+    flex-shrink: 0;
+    margin-bottom: 3px;
+  }
+}
+
+// ── Texte générique dans les cards ───────────────────────────────────────────
+
+.home__card-text {
+  font-size: 1rem;
+  color: v.$text-mid;
+  line-height: 1.8;
+  margin: 0;
+}
+
+// ── Cabinet ──────────────────────────────────────────────────────────────────
+
+.home__cabinet {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-size: 1rem;
+  color: v.$text-mid;
+
+  p {
+    margin: 0;
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+
+    &::before {
+      content: "";
+      display: inline-block;
+      width: 0.5rem;
+      height: 0.5rem;
+      border-right: 2px solid v.$green-mid;
+      border-bottom: 2px solid v.$green-mid;
+      transform: rotate(45deg) translateY(-2px);
+      flex-shrink: 0;
+    }
+  }
+}
+
+// ── Listes ───────────────────────────────────────────────────────────────────
+
+.home__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.home__list-item {
+  font-size: 0.95rem;
+  color: v.$text-mid;
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+
+  // Check stylisé via ::before
+  &::before {
+    content: "";
+    display: inline-block;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-right: 2px solid v.$green-mid;
+    border-bottom: 2px solid v.$green-mid;
+    transform: rotate(45deg) translateY(-2px);
+    flex-shrink: 0;
+  }
+}
+
+// ── Tarifs ───────────────────────────────────────────────────────────────────
+
+.home__pricing {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.home__pricing-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid rgba(v.$green-mid, 0.2);
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.home__pricing-label {
+  font-size: 0.95rem;
+  color: v.$text-mid;
+}
+
+.home__pricing-price {
+  font-weight: 600;
+  color: v.$green-deep;
+}
+
+// ── Dernier article ──────────────────────────────────────────────────────────
+
+.home__article-title {
+  font-family: v.$font-display;
+  font-size: 1.2rem;
+  color: v.$green-deep;
+  margin: 0 0 0.3rem;
+}
+
+.home__article-date {
+  font-size: 0.85rem;
+  color: v.$text-soft;
+  margin: 0 0 0.75rem;
+}
+
+.home__article-excerpt {
+  font-size: 0.95rem;
+  color: v.$text-mid;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.home__empty {
+  color: v.$text-soft;
+  font-style: italic;
+}
+
+// ── Responsive ───────────────────────────────────────────────────────────────
+
+@media (max-width: v.$bp-tablet) {
+  .home__card {
+    width: 80%;
+  }
+}
+
+@media (max-width: v.$bp-mobile) {
+  .home__hero {
+    padding: 3rem 1rem;
+  }
+
+  .home__card {
+    width: 100%;
+    align-self: stretch !important;
+  }
+
+  .home__activities {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .home__pricing-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.2rem;
+  }
+}
