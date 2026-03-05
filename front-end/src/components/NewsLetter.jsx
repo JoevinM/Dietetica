@@ -35,7 +35,6 @@ export default function Newsletters() {
 
       <section className="nl-hero">
         <div className="nl-hero__inner">
-          <div className="nl-hero__eyebrow">Nos publications</div>
           <h1>Conseils &amp; <em>Actualités</em><br />nutrition</h1>
         </div>
       </section>

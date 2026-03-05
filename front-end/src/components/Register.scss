@@ -45,6 +45,7 @@
     font-weight: 600;
     color: v.$text-dark;
     line-height: 1.2;
+    margin: 0;
   }
 }
 
@@ -71,7 +72,7 @@
     font-size: 0.8rem;
     font-weight: 500;
     color: v.$text-mid;
-    letter-spacing: 0.02em;
+    letter-spacing: 0.05em;
   }
 }
 
@@ -89,7 +90,7 @@
   width: 100%;
   height: 48px;
 
-  /* ✅ Par défaut : on laisse la place à une icône */
+  // Par défaut : on laisse la place à une icône
   padding: 0 1rem 0 2.75rem;
 
   font-family: v.$font-body;
@@ -111,25 +112,26 @@
 
   &:focus {
     border-color: v.$green-mid;
-    box-shadow: 0 0 0 3px rgba(v.$green-mid, 0.12);
+    box-shadow: 0 0 0 3px rgba(v.$green-mid, 0.1);
   }
 }
 
-/* Champs SANS icône : padding normal */
+// Champs SANS icône : padding normal
 .register__input-wrap--noicon input {
   padding-left: 1rem;
 }
 
-/* ✅ Champ avec "eye" à droite */
+// Champ avec "eye" à droite
 .register__input-wrap--eye input {
   padding-right: 3rem;
 }
 
-/* Focus via classe */
+// Focus via classe
 .register__field--focused .register__input-wrap input {
   border-color: v.$green-mid;
   box-shadow: 0 0 0 3px rgba(v.$green-mid, 0.12);
 }
+
 // ─────────────────────────────────────────────
 // Icons
 // ─────────────────────────────────────────────
@@ -204,7 +206,7 @@
   color: v.$white;
 
   font-family: v.$font-body;
-  font-size: 0.95rem;
+  font-size: 0.95rem; // ✅ fix (au lieu de 0.1rem)
   font-weight: 500;
 
   border: none;
@@ -214,7 +216,7 @@
   transition: box-shadow v.$transition, transform v.$transition;
   box-shadow: 0 4px 20px rgba(v.$green-deep, 0.3);
 
-  letter-spacing: 0.01em;
+  letter-spacing: 0.05em;
 
   &:hover {
     box-shadow: 0 6px 24px rgba(v.$green-deep, 0.4);
@@ -249,24 +251,54 @@
 }
 
 // ─────────────────────────────────────────────
-// Responsive mobile
+// Responsive
 // ─────────────────────────────────────────────
 
-@media (max-width: 860px) {
+// Tablet (≤ 1023px)
+@media (max-width: v.$bp-tablet) {
   .register__form-panel {
     align-items: flex-start;
-    padding-top: 1rem;
+    padding: 2rem 1.5rem;
   }
 
   .register__form-wrapper {
-    max-width: 100%;
+    padding: 2.25rem;
+  }
+
+  .register__form {
+    gap: 1.25rem 1.5rem;
+  }
+}
+
+// Mobile (≤ 767px)
+@media (max-width: v.$bp-mobile) {
+  .register__form-panel {
+    padding: 1.25rem 1rem;
+  }
+
+  .register__form-wrapper {
+    padding: 1.5rem;
+    border-radius: 16px;
+  }
+
+  .register__heading {
+    margin-bottom: 1.5rem;
+
+    h1 {
+      font-size: 1.75rem;
+    }
   }
 
   .register__form {
     grid-template-columns: 1fr;
+    gap: 1rem;
   }
 
   .register__submit {
     grid-column: auto;
+  }
+
+  .register__register {
+    margin-top: 1.25rem;
   }
 }
