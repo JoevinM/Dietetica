@@ -11,7 +11,6 @@ import NewsLetter from "./components/NewsLetter";
 import NewsLetterDetail from "./components/NewsLetterDetail";
 import UserPage from "./components/UserPage/index";
 import DieticianGestion from "./components/DieticianGestion/index";
-import Contact from "./components/Contact";
 
 // Appelle toutes les routes
 function AppRoutes() {
@@ -31,7 +30,6 @@ function AppRoutes() {
             <Route path="/google"           element={<ProtectedRoute><Google /></ProtectedRoute>} />
             <Route path="/newsletter"       element={<NewsLetter />} />
             <Route path="/newsletter/:id"   element={<NewsLetterDetail />} />
-            <Route path="/contact"          element={<Contact />} />
           </Routes>
         </div>
       <Footer />
