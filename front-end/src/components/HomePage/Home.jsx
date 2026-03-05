@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import image from "/src/assets/dietetica.jpg";
 import "./Home.scss";
-import { Check, Pin, Clock } from "lucide-react";
+import { Check, Pin, Clock, Phone, Mail } from 'lucide-react';
+
 
 const BASE_URL = "http://localhost:3000";
 
@@ -23,6 +24,8 @@ const INFOS = {
     hasFixedCabinet: true,
     address: "12 rue de la Santé, 75014 Paris",
     schedule: "Lundi au vendredi, 9h–18h",
+	phone: "01 23 45 67 89",
+	mail: "dietetica.maj@gmail.com",
   },
 
   consultations: [
@@ -105,6 +108,8 @@ export default function Home() {
           <div className="home__cabinet">
             <p><Pin size={16}/> {INFOS.cabinet.address}</p>
             <p><Clock size={16}/> {INFOS.cabinet.schedule}</p>
+			<p><Phone size={16}/> {INFOS.cabinet.phone}</p>
+			<p><Mail size={16}/> {INFOS.cabinet.mail}</p>
           </div>
         </div>
       )}
