@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import image from "/src/assets/dietetica.jpg";
 import "./Home.scss";
-import { Check, Pin, Clock } from 'lucide-react';
+import { Check, Pin, Clock } from "lucide-react";
 
 const BASE_URL = "http://localhost:3000";
 
