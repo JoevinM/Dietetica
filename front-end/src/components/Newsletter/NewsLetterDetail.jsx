@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import "/src/components/NewsLetterDetail.scss";
+import "./NewsLetterDetail.scss";
 
 export default function NewsletterDetail() {
 	const { id } = useParams();

@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../../context/AuthContext";
 import konamiSound from "/src/assets/konami.mp3";
 import { useNavigate } from "react-router-dom";
-import "/src/components/Header.scss";
+import "./Header.scss";
 import { NavLink } from "react-router-dom";
 
 export default function Header() {
@@ -34,7 +34,6 @@ export default function Header() {
         return [
         { path: "/", label: "Accueil", end: true },
         { path: "/newsletter", label: "Article" },
-        { path: "/contact", label: "Contact" },
         ];
     }
 
@@ -43,7 +42,6 @@ export default function Header() {
         { path: "/", label: "Accueil", end: true },
         { path: "/newsletter", label: "Article" },
         { path: "/gestion", label: "Gestion" },
-        { path: "/contact", label: "Contact" },
         ];
     }
 
@@ -52,7 +50,6 @@ export default function Header() {
         { path: "/profil", label: "Profil" },
         { path: "/google", label: "RDV" },
         { path: "/newsletter", label: "Article" },
-        { path: "/contact", label: "Contact" },
     ];
   })();
 

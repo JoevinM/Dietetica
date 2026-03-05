@@ -1,4 +1,4 @@
-@use "../styles/variables.scss" as v;
+@use "../../styles/variables.scss" as v;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Home — Vitrine
@@ -229,6 +229,32 @@
   color: v.$text-soft;
   font-style: italic;
 }
+
+.home__article-details {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.45rem 1.2rem;
+  border-radius: v.$radius-full;
+  border: 1.5px solid v.$green-deep;
+  color: v.$green-deep;
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background v.$transition, color v.$transition;
+
+  &:hover {
+    background: v.$green-deep;
+    color: v.$white;
+  }
+}
+
+.home__article-img {
+  width: 100%;
+  margin: 0rem -2.5rem 1.25rem 0rem;
+  height: 200px;
+  object-fit: cover;
+  border-radius: v.$radius-middle;
+} 
 
 // ── Responsive ───────────────────────────────────────────────────────────────
 
