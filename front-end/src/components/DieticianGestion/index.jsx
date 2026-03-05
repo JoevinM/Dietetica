@@ -8,7 +8,7 @@ import AddNewsLetter from "./AddNewsLetter.jsx";
 
 const TABS = [
   { id: "clients",    label: "Mes clients"  },
-  { id: "Articles", label: "Articles"   },
+  { id: "articles", label: "Articles"   },
 ];
 
 export default function DieticianGestion() {
@@ -126,8 +126,8 @@ export default function DieticianGestion() {
       )}
 
 		{/* ── Onglet Entretiens ── */}
-		{activeTab === "Articles" && (
-		<AddNewsLetter onCreated={(newNewsletter) => console.log(newNewsletter)} />
+		{activeTab === "articles" && (
+		<AddNewsLetter onCreated={(newNewsletter) => newNewsletter} />
 	)}
 
     </div>

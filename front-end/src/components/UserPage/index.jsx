@@ -141,7 +141,7 @@ export default function UserPage({ user }) {
                     <td>{entryImc}</td>
                     <td>{entry.activity || "—"}</td>
                     <td>{entry.calories ? `${entry.calories} kcal` : "—"}</td>
-                    <td className="up__td-notes">{entry.notes || "—"}</td>
+                    <td className="up__td-notes" title ={entry.notes || ""}>{entry.notes || "—"}</td>
                     <td>
                       <button className="up__btn-delete" onClick={() => handleDelete(entry.id)} aria-label="Supprimer">×</button>
                     </td>
