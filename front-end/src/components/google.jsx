@@ -29,20 +29,6 @@ function getTokenFromCookie() {
 }
 
 /**
- * Décode le payload du JWT sans librairie externe
- * @param {string} token
- * @returns {object|null}
- */
-function decodeJwtPayload(token) {
-	try {
-		const base64Payload = token.split(".")[1];
-		return JSON.parse(atob(base64Payload));
-	} catch {
-		return null;
-	}
-}
-
-/**
  * Génère tous les créneaux horaires de la journée ["08:00", "09:00", ...]
  * @returns {string[]}
  */
@@ -73,17 +59,7 @@ function buildISODateTime(dateStr, timeStr) {
 }
 
 /**
- * Extrait l'heure locale "HH:00" depuis une dateTime ISO
- * @param {string} dateTimeStr
- * @returns {string}
- */
-function extractHourSlot(dateTimeStr) {
-	const date = new Date(dateTimeStr);
-	return `${String(date.getHours()).padStart(2, "0")}:00`;
-}
-
-/**
- * Formate une date "YYYY-MM-DD" en label lisible français
+ * Formate une date "YYYY-MM-DD" en label lisible
  * @param {string} dateStr
  * @returns {string}
  */

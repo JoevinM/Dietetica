@@ -1,5 +1,3 @@
-import { google } from 'googleapis';
-
 import express from 'express';
 const router = express.Router();
 import GoogleCalendarService from '../services/GoogleCalendarService.js';
@@ -59,6 +57,18 @@ router.get('/calendar', async (req, res) => {
     res.json(events);
   } catch (err) {
     res.status(500).json({ error: err.message });
+  }
+});
+
+// Endpoint to delete an appointment by its Google Calendar event ID
+router.delete('/calendar/:eventId', async (req, res, next) => {
+  const { eventId } = req.params;
+
+  try {
+    await GoogleCalendarService.deleteEvent(eventId);
+    res.status(204).send();
+  } catch (err) {
+    next(Object.assign(err, { statusCode: 500, message: "Error deleting Google Calendar event." }));
   }
 });
 
