@@ -1,0 +1,48 @@
+// Ce fichier centralise toutes les variables globales
+// (couleurs, typographie, effets, radius)
+
+// ─────────────────────────────
+// Colors
+// ─────────────────────────────
+
+$green-deep:  #2D6A4F;
+$green-mid:   #52B788;
+$green-light: #B7E4C7;
+$green-pale:  #D8F3DC;
+
+$text-dark:   #1A2E23;
+$text-mid:    #4A6357;
+$text-soft:   #7A9589;
+
+$beige:       #F0EBE1;
+$cream:       #FAFAF7;
+$white:       #FFFFFF;
+
+$error:       #E05C5C;
+$warning-amber: #D97706;
+$warning-bg:    #FFFBEB;
+$warning-border:#FDE68A;
+
+// ─────────────────────────────
+// Typography
+// ─────────────────────────────
+
+$font-display: 'Cormorant Garamond', Georgia, serif;
+$font-body:    'DM Sans', sans-serif;
+
+// ─────────────────────────────
+// Effects
+// ─────────────────────────────
+
+$transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+
+$radius-sm:   10px;
+$radius-middle: 15px;
+$radius-full: 50px;
+
+// ─────────────────────────────
+// Breakpoints
+// ─────────────────────────────
+
+$bp-mobile: 767px;
+$bp-tablet: 1023px;

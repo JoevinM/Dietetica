@@ -1,0 +1,11 @@
+node_modules/
+.vscode/
+back-end/package-lock.json
+
+/generated/prisma
+back-end/.env
+back-end/.google-tokens.json
+front-end/.env
+front-end/package-lock.json
+back-end/.google-tokens.json
+.gitignore

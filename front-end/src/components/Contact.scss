@@ -1,0 +1,228 @@
+@use "../styles/variables.scss" as *;
+
+.cp {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 4rem;
+  font-family: $font-body;
+  color: $text-dark;
+}
+
+// ─── En-tête ──────────────────────────────────────────────────────────────────
+.cp__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.cp__title {
+  font-family: $font-display;
+  font-size: 2rem;
+  font-weight: 600;
+  color: $text-dark;
+  line-height: 1.15;
+}
+
+.cp__subtitle {
+  font-size: 0.85rem;
+  font-weight: 300;
+  color: $text-soft;
+  margin-top: 0.25rem;
+}
+
+// ─── Boutons ──────────────────────────────────────────────────────────────────
+.cp__btn-edit {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: $font-body;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: $green-deep;
+  background: $green-pale;
+  border: 1px solid $green-light;
+  border-radius: $radius-full;
+  padding: 0.5rem 1.1rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background $transition;
+
+  svg { width: 14px; height: 14px; }
+  &:hover { background: $green-light; }
+}
+
+.cp__btn-save {
+  font-family: $font-body;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: $white;
+  background: $green-deep;
+  border: none;
+  border-radius: $radius-full;
+  padding: 0.6rem 1.5rem;
+  cursor: pointer;
+  transition: background $transition;
+
+  &:hover { background: darken($green-deep, 6%); }
+}
+
+.cp__btn-cancel {
+  font-family: $font-body;
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: $text-soft;
+  background: none;
+  border: 1px solid rgba($text-soft, 0.3);
+  border-radius: $radius-full;
+  padding: 0.6rem 1.2rem;
+  cursor: pointer;
+  transition: border-color $transition, color $transition;
+
+  &:hover { border-color: $text-mid; color: $text-mid; }
+}
+
+// ─── Carte (mode lecture) ─────────────────────────────────────────────────────
+.cp__card {
+  background: $white;
+  border: 1px solid rgba($green-mid, 0.2);
+  border-radius: $radius-middle;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.cp__card-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.cp__avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: $green-deep;
+  color: $white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: $font-display;
+  font-size: 1.4rem;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.cp__fullname {
+  font-family: $font-display;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: $text-dark;
+  line-height: 1.2;
+}
+
+.cp__role-title {
+  font-size: 0.82rem;
+  color: $green-mid;
+  font-weight: 400;
+  margin-top: 0.2rem;
+}
+
+.cp__description {
+  font-size: 0.875rem;
+  font-weight: 300;
+  color: $text-mid;
+  line-height: 1.65;
+  padding-top: 0.5rem;
+  border-top: 1px solid rgba($green-mid, 0.15);
+}
+
+.cp__infos {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.cp__info-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 300;
+  color: $text-mid;
+  text-decoration: none;
+  transition: color $transition;
+
+  svg { width: 16px; height: 16px; color: $green-mid; flex-shrink: 0; }
+  &[href]:hover { color: $green-deep; }
+}
+
+// ─── Formulaire (mode édition) ────────────────────────────────────────────────
+.cp__form {
+  background: $white;
+  border: 1px solid rgba($green-mid, 0.2);
+  border-radius: $radius-middle;
+  padding: 2rem;
+}
+
+.cp__form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+
+  @media (max-width: 500px) { grid-template-columns: 1fr; }
+}
+
+.cp__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+
+  &--full { grid-column: 1 / -1; }
+
+  label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: $text-soft;
+  }
+
+  input, textarea {
+    font-family: $font-body;
+    font-size: 0.875rem;
+    font-weight: 300;
+    color: $text-dark;
+    background: $cream;
+    border: 1px solid rgba($green-mid, 0.2);
+    border-radius: $radius-sm;
+    padding: 0 0.85rem;
+    height: 40px;
+    outline: none;
+    width: 100%;
+    transition: border-color $transition, box-shadow $transition;
+
+    &::placeholder { color: rgba($text-soft, 0.45); }
+    &:focus {
+      border-color: $green-mid;
+      box-shadow: 0 0 0 3px rgba($green-mid, 0.1);
+    }
+  }
+
+  textarea {
+    height: auto;
+    padding: 0.7rem 0.85rem;
+    resize: vertical;
+  }
+}
+
+.cp__form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba($green-mid, 0.12);
+}

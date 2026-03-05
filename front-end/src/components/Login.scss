@@ -1,0 +1,347 @@
+@use "../styles/variables.scss" as v;
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Panneau droit (formulaire)
+// ─────────────────────────────────────────────────────────────────────────────
+
+.login__form-panel {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: v.$cream;
+  padding: 2rem 1.5rem;
+}
+
+.login__form-wrapper {
+  width: 100%;
+  max-width: 420px;
+  background: v.$white;
+  padding: 2.5rem;
+  border-radius: 18px;
+  box-shadow:
+    0 10px 40px rgba(0, 0, 0, 0.06),
+    0 2px 8px rgba(0, 0, 0, 0.04);
+  position: relative;
+  animation: fadeUp 0.6s ease both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Logo
+// ─────────────────────────────────────────────────────────────────────────────
+
+.login__logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+  font-family: v.$font-display;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: v.$green-deep;
+  margin-bottom: 2.5rem;
+
+  &-icon {
+    width: 30px;
+    height: 30px;
+    color: v.$green-deep;
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Heading
+// ─────────────────────────────────────────────────────────────────────────────
+
+.login__heading {
+  margin-bottom: 2rem;
+
+  h1 {
+    font-family: v.$font-display;
+    font-size: 2rem;
+    font-weight: 600;
+    color: v.$text-dark;
+    margin-bottom: 0.4rem;
+    line-height: 1.2;
+  }
+
+  p {
+    font-size: 0.87rem;
+    color: v.$text-soft;
+    font-weight: 300;
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Form
+// ─────────────────────────────────────────────────────────────────────────────
+
+.login__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Field
+// ─────────────────────────────────────────────────────────────────────────────
+
+.login__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+
+  label {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: v.$text-mid;
+    letter-spacing: 0.05em;
+    transition: color v.$transition;
+  }
+}
+
+.login__field-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Input wrapper
+// ─────────────────────────────────────────────────────────────────────────────
+
+.login__input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  input {
+    width: 100%;
+    height: 48px;
+    padding: 0 3rem 0 2.75rem;
+    font-family: v.$font-body;
+    font-size: 0.9rem;
+    font-weight: 300;
+
+    color: v.$text-dark;
+    background: v.$white;
+
+    border: 1.5px solid rgba(v.$green-mid, 0.25);
+    border-radius: v.$radius-middle;
+    outline: none;
+
+    transition: border-color v.$transition, box-shadow v.$transition;
+
+    &::placeholder {
+      color: rgba(v.$text-soft, 0.5);
+    }
+
+    &:focus {
+      border-color: v.$green-mid;
+      box-shadow: 0 0 0 3px rgba(v.$green-mid, 0.1);
+    }
+  }
+}
+
+.login__field--focused .login__input-wrap input {
+  border-color: v.$green-mid;
+  box-shadow: 0 0 0 3px rgba(v.$green-mid, 0.1);
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Icons
+// ─────────────────────────────────────────────────────────────────────────────
+
+.login__input-icon {
+  position: absolute;
+  left: 0.85rem;
+  color: v.$text-soft;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+  transition: color v.$transition;
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.login__field--focused .login__input-icon {
+  color: v.$green-deep;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Eye toggle
+// ─────────────────────────────────────────────────────────────────────────────
+
+.login__eye {
+  position: absolute;
+  right: 0.85rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: v.$text-soft;
+
+  display: flex;
+  align-items: center;
+  padding: 4px;
+
+  transition: color v.$transition;
+  border-radius: 4px;
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  &:hover {
+    color: v.$green-deep;
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Submit
+// ─────────────────────────────────────────────────────────────────────────────
+
+.login__submit {
+  height: 52px;
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+
+  background: v.$green-deep;
+  color: v.$white;
+
+  font-family: v.$font-body;
+  font-size: 0.95rem;
+  font-weight: 500;
+
+  border: none;
+  border-radius: v.$radius-full;
+  cursor: pointer;
+
+  transition:
+    transform v.$transition,
+    box-shadow v.$transition,
+    background v.$transition;
+
+  box-shadow: 0 4px 20px rgba(v.$green-deep, 0.3);
+  letter-spacing: 0.05em;
+  margin-top: 0.25rem;
+
+  svg {
+    width: 18px;
+    height: 18px;
+    transition: transform v.$transition;
+  }
+
+  &:hover {
+    box-shadow: 0 6px 24px rgba(v.$green-deep, 0.4);
+    transform: translateY(-1px);
+
+    svg { transform: translateX(3px); }
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Register link
+// ─────────────────────────────────────────────────────────────────────────────
+
+.login__register {
+  text-align: center;
+  font-size: 0.85rem;
+  color: v.$text-soft;
+  font-weight: 300;
+  margin-top: 1.75rem;
+
+  a {
+    color: v.$green-deep;
+    font-weight: 500;
+    text-decoration: none;
+    position: relative;
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Responsive
+// ─────────────────────────────────────────────────────────────────────────────
+
+// Tablet (≤ 1023px)
+@media (max-width: v.$bp-tablet) {
+  .login__form-panel {
+    padding: 3rem 1.5rem;
+    align-items: flex-start;
+    padding-top: 4rem;
+  }
+
+  .login__form-wrapper {
+    max-width: 520px; // un peu plus large sur tablette
+    width: 100%;
+  }
+}
+
+// Mobile (≤ 767px)
+@media (max-width: v.$bp-mobile) {
+  .login__form-panel {
+    padding: 2.25rem 1rem;
+    padding-top: 3rem;
+  }
+
+  .login__form-wrapper {
+    padding: 1.5rem;
+    border-radius: 16px;
+  }
+
+  .login__logo {
+    font-size: 1.35rem;
+    margin-bottom: 1.75rem;
+
+    &-icon {
+      width: 28px;
+      height: 28px;
+    }
+  }
+
+  .login__heading {
+    margin-bottom: 1.5rem;
+
+    h1 {
+      font-size: 1.75rem;
+    }
+
+    p {
+      font-size: 0.85rem;
+    }
+  }
+
+  .login__input-wrap input {
+    height: 46px;
+    padding: 0 2.75rem 0 2.5rem;
+  }
+
+  .login__submit {
+    height: 50px;
+    font-size: 0.92rem;
+  }
+
+  .login__register {
+    margin-top: 1.25rem;
+  }
+}

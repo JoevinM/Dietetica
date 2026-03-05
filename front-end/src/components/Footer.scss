@@ -1,0 +1,150 @@
+@use "../styles/variables.scss" as v;
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Footer
+// ─────────────────────────────────────────────────────────────────────────────
+
+.footer {
+  background: v.$text-dark;
+  text-align: center;
+  position: relative;
+
+  // Fine ligne décorative en haut du footer
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(
+      90deg,
+      v.$green-deep,
+      v.$green-mid,
+      v.$green-light,
+      v.$green-mid,
+      v.$green-deep
+    );
+  }
+
+  // ───────────────────────────────────────────────────────────────────────────
+  // Container
+  // ───────────────────────────────────────────────────────────────────────────
+
+  &__inner,
+  &__bottom-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-inline: 2rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  // ───────────────────────────────────────────────────────────────────────────
+  // Logo
+  // ───────────────────────────────────────────────────────────────────────────
+
+  &__logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+
+    text-decoration: none;
+    font-family: v.$font-display;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: v.$white;
+
+    transition: color v.$transition;
+
+    &-icon {
+      width: 30px;
+      height: 30px;
+      color: v.$green-mid;
+
+      svg {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    &:hover {
+      color: v.$green-light;
+    }
+  }
+
+  // ───────────────────────────────────────────────────────────────────────────
+  // Bottom Bar
+  // ───────────────────────────────────────────────────────────────────────────
+
+  &__bottom {
+    border-top: 1px solid rgba(v.$white, 0.1);
+  }
+
+  &__bottom-inner {
+    padding-block: 1.2rem;
+
+    span {
+      font-size: 0.85rem;
+      color: rgba(v.$white, 0.7);
+      font-weight: 300;
+    }
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Responsive
+// ─────────────────────────────────────────────────────────────────────────────
+
+// Tablet (≤ 1023px)
+@media (max-width: v.$bp-tablet) {
+  .footer {
+    &__inner,
+    &__bottom-inner {
+      padding-inline: 1.5rem;
+    }
+
+    &__logo {
+      font-size: 1.45rem;
+
+      &-icon {
+        width: 28px;
+        height: 28px;
+      }
+    }
+
+    &__bottom-inner span {
+      font-size: 0.82rem;
+    }
+  }
+}
+
+// Mobile (≤ 767px)
+@media (max-width: v.$bp-mobile) {
+  .footer {
+    &__inner,
+    &__bottom-inner {
+      padding-inline: 1rem;
+    }
+
+    &__logo {
+      font-size: 1.25rem;
+      gap: 0.5rem;
+
+      &-icon {
+        width: 24px;
+        height: 24px;
+      }
+    }
+
+    &__bottom-inner {
+      padding-block: 1rem;
+
+      span {
+        font-size: 0.8rem;
+      }
+    }
+  }
+}
