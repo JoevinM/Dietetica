@@ -1,4 +1,4 @@
-@use "../styles/variables.scss" as v;
+@use "../../styles/variables.scss" as v;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Header
@@ -9,8 +9,8 @@
   top: 0;
   z-index: 50;
 
-  background: rgba(v.$cream, 1);
-  border-bottom: 1px solid rgba(v.$green-mid, 0.15);
+  background: v.$white;
+  border-bottom: 1px solid v.$green-mid;
 
   &__inner {
     max-width: 1200px;
@@ -68,11 +68,13 @@
   // ───────────────────────────────────────────────────────────────────────────
 
   &__nav {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+
     display: flex;
     align-items: center;
     gap: 0.25rem;
-    flex: 1;
-    justify-content: center;
   }
 
   &__nav-link {
@@ -133,6 +135,7 @@
   // ───────────────────────────────────────────────────────────────────────────
 
   &__auth {
+    margin-left: auto;
     display: flex;
     gap: 0.75rem;
   }
