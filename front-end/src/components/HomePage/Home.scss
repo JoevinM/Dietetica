@@ -47,24 +47,6 @@
   }
 }
 
-// ── Sections ─────────────────────────────────────────────────────────────────
-
-.home__section {
-  padding: 4rem 1.5rem;
-  max-width: 900px;
-  margin-inline: auto;
-}
-
-.home__section-title {
-  font-family: v.$font-display;
-  font-size: 1.8rem;
-  font-weight: 600;
-  color: v.$green-deep;
-  margin: 0 0 1.5rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 2px solid v.$green-light;
-}
-
 // ── Cards alternées ───────────────────────────────────────────────────────────
 // Chaque section est une card positionnée en alternance droite/gauche
 // avec fond pale ou beige en alternance
@@ -109,15 +91,6 @@
 }
 
 // ── Activités ────────────────────────────────────────────────────────────────
-
-.home__list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
 
 .home__activity-item {
   display: flex;
@@ -205,13 +178,6 @@
 
 // ── Dernier article ──────────────────────────────────────────────────────────
 
-.home__article-title {
-  font-family: v.$font-display;
-  font-size: 1.2rem;
-  color: v.$green-deep;
-  margin: 0 0 0.3rem;
-}
-
 .home__article-date {
   font-size: 0.85rem;
   color: v.$text-soft;
@@ -254,7 +220,7 @@
   height: 200px;
   object-fit: cover;
   border-radius: v.$radius-middle;
-} 
+}
 
 // ── Responsive ───────────────────────────────────────────────────────────────
 

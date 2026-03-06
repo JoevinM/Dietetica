@@ -57,7 +57,7 @@ export default function UserPage({ user }) {
   const imc =
     latestWeight && userData?.height
       ? computeImc(latestWeight, userData.height)
-      : null; 
+      : null;
 
   const chartData = [...entries]
     .filter(e => e.weight)
@@ -86,8 +86,10 @@ export default function UserPage({ user }) {
       <section className="up__section">
         <h2 className="up__section-title">Informations</h2>
         <div className="up__stats">
-          {user.age    && <div className="up__stat"><span className="up__stat-label">Âge</span>   <span className="up__stat-value">{user.age} <small>ans</small></span></div>}
-          {user.height && <div className="up__stat"><span className="up__stat-label">Taille</span><span className="up__stat-value">{user.height} <small>cm</small></span></div>}
+          <div className="up__stat">
+            <span className="up__stat-label">Taille</span>
+            <span className="up__stat-value">{userData?.height ?? "—"} <small>cm</small></span>
+          </div>
           <div className="up__stat">
             <span className="up__stat-label">Poids actuel</span>
             <span className="up__stat-value">{latestWeight ?? "—"} <small>kg</small></span>

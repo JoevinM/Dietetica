@@ -96,7 +96,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
-  
+
   padding: 1.5rem;
   background: v.$cream;
   border-radius: v.$radius-middle;
@@ -148,21 +148,6 @@
 @keyframes nlSpin {
   to {
     transform: rotate(360deg);
-  }
-}
-
-// ─────────────────────────────────────────────────────────────────────────────
-// Lien retour (version affichée en cas d'erreur)
-// ─────────────────────────────────────────────────────────────────────────────
-
-.nld-back {
-  font-size: 0.85rem;
-  color: v.$green-deep;
-  text-decoration: none;
-  font-weight: 500;
-
-  &:hover {
-    text-decoration: underline;
   }
 }
 
