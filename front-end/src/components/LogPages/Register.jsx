@@ -13,6 +13,7 @@ export default function Register() {
     email: "",
     password: "",
     birth_date: "",
+    height: "",
   });
 
   const [focused, setFocused] = useState(null);
@@ -33,6 +34,7 @@ export default function Register() {
         email: form.email.trim(),
         password: form.password,
         birth_date: form.birth_date,
+        height: form.height ? parseInt(form.height, 10) : null,
       };
 
       await register(payload);
@@ -185,6 +187,25 @@ export default function Register() {
                   </svg>
                 )}
               </button>
+            </div>
+          </div>
+
+          {/* Height */}
+          <div className={fieldClass("height", form.height)}>
+            <label htmlFor="height">Taille</label>
+            <div className="register__input-wrap register__input-wrap--noicon">
+                <input
+                id="height"
+                type="number"
+                name="height"
+                placeholder="165"
+                value={form.height}
+                onChange={handleChange}
+                onFocus={() => setFocused("height")}
+                onBlur={() => setFocused(null)}
+                min="50"
+                max="250"
+                />
             </div>
           </div>
 

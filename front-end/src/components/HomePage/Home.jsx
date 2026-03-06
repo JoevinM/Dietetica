@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import image from "/src/assets/dietetica.jpg";
 import "./Home.scss";
 import { Check, Pin, Clock, Phone, Mail } from 'lucide-react';
+import { useAuth } from "../../context/AuthContext";
 
 
 const BASE_URL = "http://localhost:3000";
@@ -53,6 +54,7 @@ const INFOS = {
 export default function Home() {
   const [latestArticle, setLatestArticle] = useState(null);
   const [loadingArticle, setLoadingArticle] = useState(true);
+  const { user } = useAuth();
 
   // Récupère uniquement le dernier article publié
   useEffect(() => {
@@ -77,7 +79,9 @@ export default function Home() {
       <p className="home__hero-subtitle">
         Votre espace santé personnalisé, en lien direct avec votre diététicien.
       </p>
-      <a href="/profil" className="home__hero-cta">Prendre rendez-vous</a>
+      {user?.role === "user" && (
+        <a href="/google" className="home__hero-cta">Prendre rendez-vous</a>
+      )}
     </section>
 
     <div className="home__cards">
