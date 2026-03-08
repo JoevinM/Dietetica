@@ -4,28 +4,52 @@ import { useAuth } from "../../context/AuthContext";
 import "./Register.scss";
 
 export default function Register() {
-  const navigate = useNavigate();
-  const { register } = useAuth();
+    const navigate = useNavigate();
+    const { register } = useAuth();
 
-  const [form, setForm] = useState({
-    first_name: "",
-    last_name: "",
-    email: "",
-    password: "",
-    birth_date: "",
-    height: "",
-  });
+    const [form, setForm] = useState({
+      first_name: "",
+      last_name: "",
+      email: "",
+      password: "",
+      birth_date: "",
+      height: "",
+    });
 
-  const [focused, setFocused] = useState(null);
-  const [showPassword, setShowPassword] = useState(false);
+    const [focused, setFocused] = useState(null);
+    const [showPassword, setShowPassword] = useState(false);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setForm((prev) => ({ ...prev, [name]: value }));
-  };
+    const handleChange = (e) => {
+      const { name, value } = e.target;
+      setForm((prev) => ({ ...prev, [name]: value }));
+    };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+
+    // Vérifier si un champ est vide
+    const hasEmptyField = Object.values(form).some(
+      (value) => value === "" || value === null
+    );
+
+    if (hasEmptyField) {
+      alert("Tous les champs doivent être remplis");
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailRegex.test(form.email)) {
+      alert("Veuillez entrer une adresse email valide.");
+      return;
+    }
+
+    const heightValue = parseInt(form.height, 10);
+
+    if (Number.isNaN(heightValue) || heightValue < 50 || heightValue > 250) {
+        alert("La taille doit être comprise entre 50 et 250 cm.");
+        return;
+    }
 
     try {
       const payload = {
@@ -34,15 +58,29 @@ export default function Register() {
         email: form.email.trim(),
         password: form.password,
         birth_date: form.birth_date,
-        height: form.height ? parseInt(form.height, 10) : null,
+        height: heightValue,
       };
 
-      await register(payload);
-      navigate("/", { replace: true });
-    } catch (err) {
-      console.error("Erreur inscription :", err?.response?.data || err?.message || err);
+       await register(payload);
+    navigate("/", { replace: true });
+  } catch (err) {
+    const status = err?.response?.status;
+    const message = err?.response?.data?.message;
+
+    if (status === 409) {
+      alert("Un utilisateur existe déjà avec cette adresse email.");
+      return;
     }
-  };
+
+    if (message?.toLowerCase().includes("already exists")) {
+      alert("Un utilisateur existe déjà avec cette adresse email.");
+      return;
+    }
+
+    console.error("Erreur inscription :", err?.response?.data || err?.message || err);
+    alert("Une erreur est survenue lors de l'inscription.");
+  }
+};
 
   const fieldClass = (name, value) =>
     `register__field ${focused === name ? "register__field--focused" : ""} ${
@@ -70,6 +108,7 @@ export default function Register() {
                 onFocus={() => setFocused("first_name")}
                 onBlur={() => setFocused(null)}
                 autoComplete="given-name"
+                required
               />
             </div>
           </div>
@@ -87,6 +126,7 @@ export default function Register() {
                 onFocus={() => setFocused("last_name")}
                 onBlur={() => setFocused(null)}
                 autoComplete="family-name"
+                required
               />
             </div>
           </div>
@@ -104,6 +144,7 @@ export default function Register() {
                 onFocus={() => setFocused("birth_date")}
                 onBlur={() => setFocused(null)}
                 autoComplete="bday"
+                required
               />
             </div>
           </div>
@@ -135,6 +176,7 @@ export default function Register() {
                 onChange={handleChange}
                 onFocus={() => setFocused("email")}
                 onBlur={() => setFocused(null)}
+                required
               />
             </div>
           </div>
@@ -166,6 +208,7 @@ export default function Register() {
                 onChange={handleChange}
                 onFocus={() => setFocused("password")}
                 onBlur={() => setFocused(null)}
+                required
               />
 
               <button
@@ -205,6 +248,7 @@ export default function Register() {
                 onBlur={() => setFocused(null)}
                 min="50"
                 max="250"
+                required
                 />
             </div>
           </div>

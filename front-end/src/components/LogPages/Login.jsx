@@ -10,21 +10,36 @@ export default function LoginPage() {
   const { login } = useAuth();
 
   const navigate = useNavigate();
+  
+  const [error, setError] = useState("");
 
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
+  setForm({ ...form, [e.target.name]: e.target.value });
+};
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
+  setError("");
 
-    try {
-      await login(form.email, form.password);
-      navigate("/", { replace: true });
-    } catch (err) {
-      console.error("Erreur de connexion :", err.response?.data?.message);
+  if (!form.email || !form.password) {
+    setError("Veuillez remplir tous les champs.");
+    return;
+  }
+
+  try {
+    await login(form.email.trim(), form.password);
+    navigate("/", { replace: true });
+  } catch (err) {
+    const status = err?.response?.status;
+
+    if (status === 401 || status === 403) {
+      setError("Email ou mot de passe incorrect.");
+      return;
     }
-  };
+
+    setError("Une erreur est survenue lors de la connexion.");
+  }
+};
 
   return (
     <div className="login__form-panel">
@@ -117,7 +132,7 @@ export default function LoginPage() {
               </button>
             </div>
           </div>
-
+          {error && <div className="login__error">{error}</div>}
           <button type="submit" className="login__submit">
             <span>Se connecter</span>
 

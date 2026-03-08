@@ -329,7 +329,7 @@ export default function BookAppointment() {
 					</div>
 
 					{/* Bouton connexion : visible uniquement pour le diété et l'admin */}
-					{!isGoogleConnected && currentUser?.role !== "user" && (
+					{!isGoogleConnected && (
 						<button className="book__gcal-btn" onClick={handleConnectGoogle}>
 							Connecter Google Calendar
 						</button>
