@@ -12,14 +12,14 @@ async function login(email, password) {
     role = "user"; // User normal, jamais admin
   } else {
     account = await prisma.dietician.findUnique({ where: { email } });
-    if (!account) throw new Error("Wrong Email");
+    if (!account) throw new Error("Wrong Credential");
 
     // Dietician peut être admin ou non
     role = account.admin ? "admin" : "dietician";
   }
 
   const ok = await bcrypt.compare(password, account.password);
-  if (!ok) throw new Error("Wrong Password");
+  if (!ok) throw new Error("Wrong Credential");
 
   // Crée le token
   const token = jwt.sign(

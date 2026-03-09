@@ -8,20 +8,35 @@ const TOKENS_FILE_PATH = path.join(process.cwd(), '.google-tokens.json');
 
 class GoogleCalendarService {
   constructor() {
-    this.oAuth2Client = new google.auth.OAuth2(
-      process.env.GOOGLE_CLIENT_ID,
-      process.env.GOOGLE_CLIENT_SECRET,
-      process.env.GOOGLE_REDIRECT_URI
-    );
+  this.oAuth2Client = new google.auth.OAuth2(
+    process.env.GOOGLE_CLIENT_ID,
+    process.env.GOOGLE_CLIENT_SECRET,
+    process.env.GOOGLE_REDIRECT_URI
+  );
 
-    this.calendar = google.calendar({
-      version: 'v3',
-      auth: this.oAuth2Client
-    });
+  this.calendar = google.calendar({
+    version: 'v3',
+    auth: this.oAuth2Client
+  });
 
-    // Charge les tokens sauvegardés au démarrage du serveur
-    this.loadSavedTokens();
-  }
+  // Sauvegarde automatique à chaque refresh du token
+  this.oAuth2Client.on('tokens', (newTokens) => {
+    try {
+      const current = fs.existsSync(TOKENS_FILE_PATH)
+        ? JSON.parse(fs.readFileSync(TOKENS_FILE_PATH, 'utf8'))
+        : {};
+
+      // Merge pour ne pas perdre le refresh_token existant
+      const updated = { ...current, ...newTokens };
+      fs.writeFileSync(TOKENS_FILE_PATH, JSON.stringify(updated, null, 2));
+      console.log('Token rafraîchi et sauvegardé');
+    } catch (err) {
+      console.warn('Impossible de sauvegarder le token rafraîchi :', err.message);
+    }
+  });
+
+  this.loadSavedTokens();
+}
 
   /**
    * Charge les tokens depuis le fichier local.

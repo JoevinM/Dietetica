@@ -24,7 +24,7 @@ services:
       - postgres
     volumes:
       - ./back-end:/back-end
-      - /back-end/node_module
+      - /back-end/node_modules
 
   front-end:
     build: ./front-end
