@@ -59,7 +59,7 @@ Dietetica bridges the gap between nutrition professionals and their patients. It
 
 | Layer | Technology |
 |---|---|
-| **Frontend** | React, JavaScript, CSS |
+| **Frontend** | React, JavaScript, SCSS |
 | **Backend** | Node.js, Express |
 | **Database** | PostgreSQL + Prisma ORM |
 | **Containerization** | Docker, Docker Compose |
