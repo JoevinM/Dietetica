@@ -110,7 +110,7 @@ All services are containerized and orchestrated via **Docker Compose**.
 ## Getting Started
 
 ### Prerequisites
-- [Docker](https://www.docker.com/) installed
+- [Docker](https://www.docker.com/) installed and launched
 - [Node.js](https://nodejs.org/) (v18+)
 
 ### First Launch
