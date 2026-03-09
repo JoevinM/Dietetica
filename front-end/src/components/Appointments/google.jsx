@@ -149,7 +149,7 @@ export default function BookAppointment() {
 	 */
 	async function handleConnectGoogle() {
 		try {
-			const response = await fetch(`${API_BASE_URL}/auth-url`);
+			const response = await fetch(`${API_BASE_URL}/calendar/auth-url`);
 			if (!response.ok) throw new Error("Impossible d'obtenir l'URL Google.");
 			const { url } = await response.json();
 			window.location.href = url;

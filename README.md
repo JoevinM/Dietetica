@@ -103,78 +103,14 @@ All services are containerized and orchestrated via **Docker Compose**.
 
 > The database is managed with **Prisma ORM** connected to **PostgreSQL**.
 
-Main entities:
-
-```
-Dietician
-├── id             (UUID)
-├── first_name
-├── last_name
-├── email          (unique)
-├── password       (hashed)
-├── bio            (optional)
-├── admin          (Boolean — true = admin role)
-├── created_at
-├── users[]        → User[]
-├── appointments[] → Appointment[]
-└── newsletters[]  → Newsletter[]
-
-User
-├── id             (UUID)
-├── first_name
-├── last_name
-├── email          (unique)
-├── password       (hashed)
-├── height         (optional)
-├── birth_date     (optional)
-├── created_at
-├── dietician_id   (FK → Dietician, optional)
-├── daily_entries[] → DailyEntry[]
-└── appointments[] → Appointment[]
-
-DailyEntry
-├── id             (UUID)
-├── user_id        (FK → User, cascade delete)
-├── date
-├── weight         (optional)
-├── calories       (optional)
-├── activity       (optional)
-├── notes          (optional)
-└── [unique: user_id + date]
-
-Newsletter
-├── id             (UUID)
-├── dietician_id   (FK → Dietician, cascade delete)
-├── title
-├── content
-└── created_at
-
-Appointment
-├── id              (UUID)
-├── user_id         (FK → User, cascade delete)
-├── dietician_id    (FK → Dietician, cascade delete)
-├── date
-├── start_time
-├── end_time
-├── google_event_id (optional)
-└── status          (default: "confirmed")
-```
-
-**Relations:**
-```
-Dietician (1) ──── (N) User
-Dietician (1) ──── (N) Newsletter
-Dietician (1) ──── (N) Appointment
-User      (1) ──── (N) DailyEntry
-User      (1) ──── (N) Appointment
-```
+<img width="1739" height="2830" alt="image" src="https://github.com/user-attachments/assets/767b2329-0078-48d1-b0cf-c8a44af7e0ff" />
 
 ---
 
 ## Getting Started
 
 ### Prerequisites
-- [Docker](https://www.docker.com/) installed
+- [Docker](https://www.docker.com/) installed and launched
 - [Node.js](https://nodejs.org/) (v18+)
 
 ### First Launch
@@ -184,20 +120,8 @@ User      (1) ──── (N) Appointment
 git clone https://github.com/JoevinM/Dietetica.git
 cd Dietetica
 
-# 2. Navigate to back-end folder
-cd back-end
-
-# 3. Install dependencies
-npm install
-
-# 4. Build and start all containers
+# 2. Build and start all containers
 docker compose up --build
-```
-
-### Subsequent Launches
-
-```bash
-docker-compose start
 ```
 
 ### Initialize the Database
@@ -216,6 +140,12 @@ npx prisma generate
 
 # (Optional) Open visual DB explorer
 npx prisma studio --browser none
+```
+
+### Subsequent Launches
+
+```bash
+docker-compose start
 ```
 
 ---
