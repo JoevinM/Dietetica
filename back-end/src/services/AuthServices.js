@@ -45,7 +45,7 @@ async function me(token) {
   if (!account) throw new Error("User not found");
 
   const role = account.admin ? "admin" : account.role || "user";
-  return { id: account.id, email: account.email, name: account.first_name, role };
+  return { id: account.id, email: account.email, name: `${account.first_name} ${account.last_name}`, role };
 }
 
 export default { login, me };

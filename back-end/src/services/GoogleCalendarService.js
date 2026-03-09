@@ -48,10 +48,10 @@ class GoogleCalendarService {
         const savedTokens = JSON.parse(fs.readFileSync(TOKENS_FILE_PATH, 'utf8'));
         this.oAuth2Client.setCredentials(savedTokens);;
       } else {
-        console.log('⚠️  Aucun token Google Calendar trouvé — flow OAuth requis.');
+        console.log('Aucun token Google Calendar trouvé — flow OAuth requis.');
       }
     } catch (err) {
-      console.warn('⚠️  Impossible de charger les tokens Google Calendar :', err.message);
+      console.warn('Impossible de charger les tokens Google Calendar :', err.message);
     }
   }
 
@@ -65,9 +65,9 @@ class GoogleCalendarService {
 
     try {
       fs.writeFileSync(TOKENS_FILE_PATH, JSON.stringify(tokens, null, 2));
-      console.log('✅ Tokens Google Calendar sauvegardés');
+      console.log('Tokens Google Calendar sauvegardés');
     } catch (err) {
-      console.warn('⚠️  Impossible de sauvegarder les tokens :', err.message);
+      console.warn('Impossible de sauvegarder les tokens :', err.message);
     }
   }
 
