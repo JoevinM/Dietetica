@@ -184,20 +184,8 @@ User      (1) ──── (N) Appointment
 git clone https://github.com/JoevinM/Dietetica.git
 cd Dietetica
 
-# 2. Navigate to back-end folder
-cd back-end
-
-# 3. Install dependencies
-npm install
-
-# 4. Build and start all containers
+# 2. Build and start all containers
 docker compose up --build
-```
-
-### Subsequent Launches
-
-```bash
-docker-compose start
 ```
 
 ### Initialize the Database
@@ -216,6 +204,12 @@ npx prisma generate
 
 # (Optional) Open visual DB explorer
 npx prisma studio --browser none
+```
+
+### Subsequent Launches
+
+```bash
+docker-compose start
 ```
 
 ---
