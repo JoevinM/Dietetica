@@ -345,3 +345,18 @@
     margin-top: 1.25rem;
   }
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Error
+// ─────────────────────────────────────────────────────────────────────────────
+
+  .login__error {
+    color: v.$error;
+    background: v.$white;
+    border: 1px solid #f5c2c7;
+    padding: 0.6rem 0.8rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
