@@ -60,9 +60,10 @@ class DieticianController {
       // Copy of data to be updated
       const updateData = { ...req.body };
 
-      // If the user **is not an admin**, the admin field is removed to prevent privilege escalation			if (req.user.role !== "admin") {
-      delete updateData.admin;
-
+      // If the user **is not an admin**, the admin field is removed to prevent privilege escalation			
+      if (req.user.role !== "admin") {
+        delete updateData.admin;
+      }
 
       // Database update
       const dietician = await dieticianRepository.update(String(id), updateData);
