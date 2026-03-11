@@ -3,7 +3,7 @@ import { google } from 'googleapis';
 import fs from 'fs';
 import path from 'path';
 
-// Fichier de sauvegarde des tokens OAuth — survit aux redémarrages
+// Fichier de sauvegarde des tokens OAuth
 const TOKENS_FILE_PATH = path.join(process.cwd(), '.google-tokens.json');
 
 class GoogleCalendarService {
@@ -40,13 +40,13 @@ class GoogleCalendarService {
 
   /**
    * Charge les tokens depuis le fichier local.
-   * Appelé automatiquement au démarrage — plus besoin de refaire l'OAuth après redémarrage.
+   * Appelé automatiquement au démarrage.
    */
   loadSavedTokens() {
     try {
       if (fs.existsSync(TOKENS_FILE_PATH)) {
         const savedTokens = JSON.parse(fs.readFileSync(TOKENS_FILE_PATH, 'utf8'));
-        this.oAuth2Client.setCredentials(savedTokens);;
+        this.oAuth2Client.setCredentials(savedTokens);
       } else {
         console.log('Aucun token Google Calendar trouvé — flow OAuth requis.');
       }
@@ -56,8 +56,8 @@ class GoogleCalendarService {
   }
 
   /**
-   * Sauvegarde les tokens en mémoire ET dans un fichier local.
-   * Appelé après le callback OAuth — une seule fois suffit.
+   * Sauvegarde les tokens en mémoire et dans un fichier local.
+   * Appelé après le callback OAuth.
    * @param {object} tokens - Tokens retournés par Google
    */
   async setCredentials(tokens) {
