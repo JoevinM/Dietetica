@@ -2,7 +2,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import prisma from "../PrismaClient.js";
 
-const MDP_JWT = process.env.MDP_JWT || "dev_secret";
+const JWT_SECRET = process.env.JWT_SECRET || "dev_secret";
 
 async function login(email, password) {
   let account = await prisma.user.findUnique({ where: { email } });
