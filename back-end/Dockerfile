@@ -7,10 +7,6 @@ RUN npm install
 
 COPY . .
 
-COPY .env.build .env
-
-RUN npx prisma generate
-
 EXPOSE 10000
 
-CMD ["sh", "-c", "npx prisma migrate deploy && npm start"]
+CMD ["sh", "-c", "npx prisma generate && npx prisma migrate deploy && npm start"]
