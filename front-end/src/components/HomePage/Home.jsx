@@ -5,7 +5,7 @@ import { Check, Pin, Clock, Phone, Mail } from 'lucide-react';
 import { useAuth } from "../../context/AuthContext";
 
 
-const BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
+const BASE_URL = import.meta.env.VITE_API_URL;
 
 // ── Données statiques de la vitrine ──────────────────────────────────────────
 

@@ -17,7 +17,7 @@ app.use(cookieParser());
 app.use(express.json());
 
 app.use(cors({
-    origin: *, // permet à toutes les origines d'accéder à l'API
+    origin: process.env.FRONTEND_URL, // URL frontend
     credentials: true                   // permet de lire le cookie
 }));
 

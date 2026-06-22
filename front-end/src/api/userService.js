@@ -1,7 +1,7 @@
 // src/api/userService.js
 // Toutes les requêtes vers le back-end (sessions/cookies, pas besoin de token manuel)
 
-const BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
+const BASE_URL = import.meta.env.VITE_API_URL;
 
 // ─── Utilitaire fetch ─────────────────────────────────────────────────────────
 async function request(path, options = {}) {

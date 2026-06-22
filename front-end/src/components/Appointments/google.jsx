@@ -4,7 +4,7 @@ import "./google.scss";
 
 // ─── Constantes ───────────────────────────────────────────────────────────────
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
+const API_BASE_URL = import.meta.env.VITE_API_URL;
 
 // Durée fixe d'un créneau en heures
 const SLOT_DURATION_HOURS = 1;
