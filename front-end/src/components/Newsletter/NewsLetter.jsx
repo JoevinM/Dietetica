@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./NewsLetter.scss";
 import image from "/src/assets/dietetica.jpg";
 
-const API_BASE_URL = import.meta.env.VITE_API_URL;
+const API_BASE_URL = import.meta.env.VITE_API_URL || "https://dietetica-bah4.onrender.com";
 
 export default function Newsletters() {
   const [newsletters, setNewsletters] = useState([]);

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import "./NewsLetterDetail.scss";
 
-const API_BASE_URL = import.meta.env.VITE_API_URL;
+const API_BASE_URL = import.meta.env.VITE_API_URL || "https://dietetica-bah4.onrender.com";
 
 export default function NewsletterDetail() {
 	const { id } = useParams();
