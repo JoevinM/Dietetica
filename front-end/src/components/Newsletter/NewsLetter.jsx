@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import "./NewsLetter.scss";
 import image from "/src/assets/dietetica.jpg";
 
+const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
+
 export default function Newsletters() {
   const [newsletters, setNewsletters] = useState([]);
   const [search, setSearch] = useState("");
@@ -10,7 +12,7 @@ export default function Newsletters() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch("https://dietetica-t86m.onrender.com/newsletters")
+    fetch(`${API_BASE_URL}/newsletters`)
       .then((res) => {
         if (!res.ok) throw new Error("Erreur lors du chargement");
         return res.json();

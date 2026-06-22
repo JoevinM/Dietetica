@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import "./NewsLetterDetail.scss";
 
+const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
+
 export default function NewsletterDetail() {
 	const { id } = useParams();
 	const [newsletter, setNewsletter] = useState(null);
@@ -9,7 +11,7 @@ export default function NewsletterDetail() {
 	const [error, setError] = useState(null);
 
 	useEffect(() => {
-		fetch(`https://dietetica-t86m.onrender.com/newsletters/${id}`)
+		fetch(`${API_BASE_URL}/newsletters/${id}`)
 			.then((res) => {
 				if (!res.ok) throw new Error("Newsletter introuvable");
 				return res.json();

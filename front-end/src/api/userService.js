@@ -1,7 +1,7 @@
 // src/api/userService.js
 // Toutes les requêtes vers le back-end (sessions/cookies, pas besoin de token manuel)
 
-const BASE_URL = "https://dietetica-t86m.onrender.com";
+const BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
 
 // ─── Utilitaire fetch ─────────────────────────────────────────────────────────
 async function request(path, options = {}) {

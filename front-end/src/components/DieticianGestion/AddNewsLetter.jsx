@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useAuth } from "../../context/AuthContext";
 import "./AddNewsLetter.scss";
 
-const BASE_URL = "https://dietetica-t86m.onrender.com";
+const BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
 
 export default function AddNewsletter({ onCreated }) {
   const { user } = useAuth();
