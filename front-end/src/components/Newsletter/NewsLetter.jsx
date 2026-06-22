@@ -10,7 +10,7 @@ export default function Newsletters() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:3000/newsletters")
+    fetch("https://dietetica-t86m.onrender.com/newsletters", {)
       .then((res) => {
         if (!res.ok) throw new Error("Erreur lors du chargement");
         return res.json();

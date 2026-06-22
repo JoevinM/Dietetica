@@ -9,7 +9,7 @@ export default function NewsletterDetail() {
 	const [error, setError] = useState(null);
 
 	useEffect(() => {
-		fetch(`http://localhost:3000/newsletters/${id}`)
+		fetch(`https://dietetica-t86m.onrender.com/newsletters/${id}`)
 			.then((res) => {
 				if (!res.ok) throw new Error("Newsletter introuvable");
 				return res.json();

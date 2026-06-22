@@ -1,6 +1,6 @@
 // src/api/dietService.js
 
-const BASE_URL = "http://localhost:3000";
+const BASE_URL = "https://dietetica-t86m.onrender.com";
 
 async function request(path, options = {}) {
   const res = await fetch(`${BASE_URL}${path}`, {

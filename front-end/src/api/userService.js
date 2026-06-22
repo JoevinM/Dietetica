@@ -1,7 +1,7 @@
 // src/api/userService.js
 // Toutes les requêtes vers le back-end (sessions/cookies, pas besoin de token manuel)
 
-const BASE_URL = "http://localhost:3000";
+const BASE_URL = "https://dietetica-t86m.onrender.com";
 
 // ─── Utilitaire fetch ─────────────────────────────────────────────────────────
 async function request(path, options = {}) {

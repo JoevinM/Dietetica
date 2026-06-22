@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useAuth } from "../../context/AuthContext";
 import "./AddNewsLetter.scss";
 
-const BASE_URL = "http://localhost:3000";
+const BASE_URL = "https://dietetica-t86m.onrender.com";
 
 export default function AddNewsletter({ onCreated }) {
   const { user } = useAuth();

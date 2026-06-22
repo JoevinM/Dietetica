@@ -5,7 +5,7 @@ import { Check, Pin, Clock, Phone, Mail } from 'lucide-react';
 import { useAuth } from "../../context/AuthContext";
 
 
-const BASE_URL = "http://localhost:3000";
+const BASE_URL = "https://dietetica-t86m.onrender.com";
 
 // ── Données statiques de la vitrine ──────────────────────────────────────────
 
