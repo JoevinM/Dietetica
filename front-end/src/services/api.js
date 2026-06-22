@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://dietetica-t86m.onrender.com",
-  withCredentials: true // permet de lire le cookie
+  baseURL: import.meta.env.VITE_API_URL || "http://localhost:3000",
+  withCredentials: true
 });
 
 export default api;
