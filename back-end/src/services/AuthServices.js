@@ -24,7 +24,7 @@ async function login(email, password) {
   // Crée le token
   const token = jwt.sign(
     { id: account.id, role },
-    MDP_JWT,
+    JWT_SECRET,
     { expiresIn: "1h" }
   );
 
@@ -39,7 +39,7 @@ async function login(email, password) {
 }
 
 async function me(token) {
-  const decoded = jwt.verify(token, MDP_JWT);
+  const decoded = jwt.verify(token, JWT_SECRET);
   let account = await prisma.user.findUnique({ where: { id: decoded.id } });
   if (!account) account = await prisma.dietician.findUnique({ where: { id: decoded.id } });
   if (!account) throw new Error("User not found");

@@ -10,7 +10,7 @@ export default function authenticateToken(req, res, next) {
   }
 
   try {
-    const decoded = jwt.verify(token, MDP_JWT);
+    const decoded = jwt.verify(token, JWT_SECRET);
     req.user = decoded; // contient id + role
     next();
   } catch {
