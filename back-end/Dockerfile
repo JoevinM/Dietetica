@@ -7,6 +7,8 @@ RUN npm install
 
 COPY . .
 
+COPY .env.build .env
+
 RUN npx prisma generate
 
 EXPOSE 10000
