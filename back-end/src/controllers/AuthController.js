@@ -14,9 +14,9 @@ export async function login(req, res) {
     // Mettre le token dans un cookie httpOnly
     res.cookie("token", token, {
       httpOnly: true,
-      secure: true,
-      sameSite: "none",
-      maxAge: 60 * 60 * 1000 //1h
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+      maxAge: 60 * 60 * 1000 // 1h
     });
 
     // Renvoie seulement le user
