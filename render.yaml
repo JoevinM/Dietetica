@@ -1,0 +1,68 @@
+version: "1"
+projects:
+  - name: Dietetica
+    environments:
+      - name: Production
+        services:
+          - type: web
+            name: dietetica-back
+            runtime: docker
+            repo: https://github.com/JoevinM/Dietetica
+            branch: Prod-Joe
+            plan: free
+            region: frankfurt
+            rootDir: back-end
+            dockerContext: back-end
+            dockerfilePath: back-end/Dockerfile
+            autoDeployTrigger: commit
+            envVars:
+              - key: DATABASE_URL
+                sync: false
+              - key: NODE_ENV
+                value: production
+              - key: PORT
+                value: "10000"
+              - key: JWT_SECRET
+                sync: false
+              - key: FRONTEND_URL
+                sync: false
+              - key: CALENDAR_ID
+                sync: false
+              - key: GOOGLE_REDIRECT_URI
+                sync: false
+              - key: GOOGLE_CLIENT_SECRET
+                sync: false
+              - key: GOOGLE_CLIENT_ID
+                sync: false
+
+          - type: web
+            name: dietetica-front
+            runtime: docker
+            repo: https://github.com/JoevinM/Dietetica
+            branch: Prod-Joe
+            plan: free
+            region: frankfurt
+            rootDir: front-end
+            dockerContext: front-end
+            dockerfilePath: front-end/Dockerfile
+            autoDeployTrigger: commit
+            envVars:
+              - key: VITE_CALENDAR_ID
+                sync: false
+              - key: VITE_GOOGLE_API_KEY
+                sync: false
+              - key: VITE_GOOGLE_CLIENT_ID
+                sync: false
+              - key: VITE_API_URL
+                sync: false
+
+        databases:
+          - name: dietetica-db
+            databaseName: dietetica
+            user: dietetica_user
+            plan: free
+            region: frankfurt
+            postgresMajorVersion: "16"
+            ipAllowList:
+              - source: 0.0.0.0/0
+                description: everywhere
