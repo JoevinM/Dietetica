@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 
-const MDP_JWT = process.env.MDP_JWT || "dev_secret"; // secret identique partout
+const JWT_SECRET = process.env.JWT_SECRET || "dev_secret"; // secret identique partout
 
 export default function authenticateToken(req, res, next) {
   const token = req.cookies.token; // prendre le token depuis le cookie
