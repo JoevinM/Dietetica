@@ -17,7 +17,7 @@ app.use(cookieParser());
 app.use(express.json());
 
 app.use(cors({
-    origin: "http://localhost:5173",    // URL frontend
+    origin: "https://dietetica-front.onrender.com",    // URL frontend
     credentials: true                   // permet de lire le cookie
 }));
 
